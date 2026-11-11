@@ -1,0 +1,47 @@
+# Project Summary
+
+> Status: VERIFIED
+
+## Purpose
+This file answers, in one page, what DairyChain is, what it does, and what it does not claim to be. It is for a reader who has five minutes and needs the whole project before deciding where to read next.
+
+## In this file
+- What DairyChain is
+- The four business areas
+- The verified numbers
+- What is not claimed
+- Where to read next
+
+## What DairyChain is
+DairyChain is an end-to-end data analytics project for dairy supply chain operations. It uses Python, SQL, PostgreSQL and Power BI. It brings together procurement, milk quality, production and sales data, and turns operational records into structured analytical datasets and business intelligence reports.
+
+## The four business areas
+- Procurement: milk collection, supplier performance and procurement costs.
+- Quality: accepted and rejected milk, rejection rates, fat and SNF measurements.
+- Production: raw milk input, finished product output, byproducts and production duration.
+- Sales: revenue, product performance, order fulfilment and sales trends.
+
+## How it works, in one line
+Operational CSV files are ingested with Python into PostgreSQL, stored in a Bronze layer, cleaned into a Silver layer, summarised into a Gold layer, and reported in Power BI. The full flow is in [../02_System_Architecture/data_flow.md](../02_System_Architecture/data_flow.md).
+
+## What the supplied numbers show
+## Verified numbers used in this file
+All numbers below come only from the user-supplied README, 2026-11-11, not independently verified against source code.
+- Source: 10 CSV files, 99,584 total records.
+- Bronze: ingested source data in PostgreSQL. Silver: 10 cleaned tables. Gold: 6 tables.
+- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts VERIFIED by Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
+- Procurement: 18,000 batches, 15,689 accepted, 2,311 rejected, batch rejection 12.84 percent, total milk 8,758,507.64 L, rejected milk 1,117,247.35 L, volume rejection 12.76 percent.
+- Production: 4,000 batches. Finished litre-based 1,484,135.25 L, byproduct litre-based 466,514.75 L, finished kg-based 266,416.65 kg, byproduct kg-based 402,413.85 kg. Litre and kg must stay separate.
+- Sales: revenue Rs 26,734,294.03, 14,000 orders, quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607.
+- Intended period, to verify: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
+
+## What is not claimed
+DairyChain is an academic analytics and data engineering project. It is not presented as a production-ready dairy management platform. Cloud deployment, automated orchestration, real-time streaming, production monitoring and enterprise-scale security are not claimed as implemented unless separately demonstrated in the repository. No such demonstration was supplied.
+
+## Scope note
+The README scope is procurement, quality, production and sales. Wastage, returns, inventory and expiry, outlet expenses and energy telemetry are not described in the README scope. They are covered in the Q and A folder as NOT IMPLEMENTED or PENDING EVIDENCE, with the method and the evidence that would be needed. Do not treat them as DairyChain findings.
+
+## Next step / Related files
+- Business context](business_context.md)
+- Objectives and scope](objectives_and_scope.md)
+- Guided tour](../README.md)

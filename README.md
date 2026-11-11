@@ -1,0 +1,138 @@
+# DairyChain - Dairy Supply Chain Analytics
+
+> Status: VERIFIED for the numbers copied from the user-supplied README, 2026-11-11. All other claims carry their own status label in the file where they appear.
+
+## Purpose
+This file is the entry point for DairyChain. It is for a first-time reader who wants to understand the project end to end, in story order, without jumping around. Each section below links to the exact file that covers it, with one line saying what the reader will learn there.
+
+## In this file
+- Business Problem
+- Requirements
+- Medallion Architecture
+- System Design
+- Data Engineering
+- Python and SQL
+- Business Analytics
+- Questions and Actual Answers
+- Business Findings
+- Management Recommendations
+- AI-assisted development, Testing, Debugging, Security, Performance, Engineering Decisions
+- Evidence and Glossary
+
+## Verified numbers used in this file
+All numbers below come only from the user-supplied README, 2026-11-11, not independently verified against source code.
+- Source: 10 CSV files, 99,584 total records.
+- Bronze: ingested source data in PostgreSQL. Silver: 10 cleaned tables. Gold: 6 tables.
+- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts VERIFIED by Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
+- Procurement: 18,000 batches, 15,689 accepted, 2,311 rejected, batch rejection 12.84 percent, total milk 8,758,507.64 L, rejected milk 1,117,247.35 L, volume rejection 12.76 percent.
+- Production: 4,000 batches. Finished litre-based 1,484,135.25 L, byproduct litre-based 466,514.75 L, finished kg-based 266,416.65 kg, byproduct kg-based 402,413.85 kg. Litre and kg must stay separate.
+- Sales: revenue Rs 26,734,294.03, 14,000 orders, quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607.
+- Intended period, to verify: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
+
+## Medallion Architecture
+
+### Data Engineering Pipeline Using the Medallion Architecture
+
+DairyChain follows the Medallion Architecture, implemented using PostgreSQL with three logical data layers:
+
+1. Bronze - Raw Layer: Stores the original source data in 10 PostgreSQL tables (99,584 rows).
+2. Silver - Structured Layer: Contains structured and typed data in 10 PostgreSQL tables (99,584 rows).
+3. Gold - Business Layer: Contains business-oriented analytical tables in 6 PostgreSQL tables (22,596 rows).
+
+Flow: Source CSV Files -> Python Ingestion -> PostgreSQL Medallion Architecture (Bronze -> Silver -> Gold) -> Power BI.
+
+Bronze, Silver, and Gold are three schemas inside ONE large PostgreSQL database, `dairychain`, not three separate databases.
+
+![Architecture whiteboard](docs/assets/architecture-whiteboard.png)
+
+The image above is the user-supplied architecture whiteboard (Source 27, 2026-11-11). It is an illustration of the intended pipeline. Accuracy flag: the whiteboard itself shows four implementation details that are NOT verified and must not be read as verified implementation: "Python Script (scripts/load_bronze.py)", "SQLAlchemy + psycopg (Postgres driver)", "Pandas DataFrames (read_csv)", and "Database connection validation before ingestion". The verified evidence (Source 15 notebook) shows pandas `read_csv` in Google Colab only, with NO SQLAlchemy, NO psycopg, NO `load_bronze.py`, and NO local scripts folder. Those four details are unconfirmed and still need evidence. They appear nowhere else in these docs as facts.
+
+DairyChain uses the Medallion Architecture: Bronze, then Silver, then Gold. Data is refined one layer at a time, and each layer has a different job.
+
+| Layer | Schema | Purpose | Tables | Rows |
+|---|---|---|---|---:|
+| Bronze | `bronze` | Raw ingestion as-is: the source CSV data loaded into PostgreSQL without cleaning | 10 | 99,584 |
+| Silver | `silver` | Cleaned and typed: the same records with proper data types and cleaning applied | 10 | 99,584 |
+| Gold | `gold` | Business-ready aggregates: analytical tables built for reporting in Power BI | 6 | 22,596 |
+
+The layer inventory is verified: table names by Source 17 (psql table inventory, 26 rows), column names and types by Source 18 (238 columns: Bronze 82, all text; Silver 83, typed; Gold 73, typed), Gold row counts by Source 19 (live database COUNT(*), total 22,596), and Bronze and Silver row totals by Source 25 (user-reported database totals, 99,584 each, no screenshot or query output supplied, per-table counts still PENDING EVIDENCE). Silver kept all 99,584 rows, so cleaning dropped 0 rows at the Bronze-to-Silver step.
+
+Important boundary, stated plainly: the layer structures and row counts above are verified, but the transformation logic that produced Silver and Gold inside PostgreSQL has NOT been located or verified. No Bronze-to-Silver or Silver-to-Gold SQL has been supplied, and the Gold SQL is still outstanding. The Colab notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation. The full Medallion design is in [docs/02_System_Architecture/system_architecture.md](docs/02_System_Architecture/system_architecture.md), [docs/02_System_Architecture/database_design.md](docs/02_System_Architecture/database_design.md), [docs/02_System_Architecture/data_dictionary.md](docs/02_System_Architecture/data_dictionary.md), and [docs/03_Data_Engineering/bronze_silver_gold_layers.md](docs/03_Data_Engineering/bronze_silver_gold_layers.md).
+
+## How to read status labels
+- VERIFIED: the fact is stated in the user-supplied README or brief and is copied exactly.
+- PARTIALLY VERIFIED: part of the claim is in the supplied sources, part still needs source evidence.
+- PENDING EVIDENCE: the claim needs a source file, query output, test output or screenshot before it can be trusted.
+- NOT IMPLEMENTED: the supplied README does not describe this as part of DairyChain.
+
+## Business Problem
+Dairy supply chains involve many connected stages, and reading each stage alone hides where losses occur. DairyChain joins procurement, quality, production and sales so a manager can see where milk is lost, how production performs, and which products contribute most to revenue. Learn more in [docs/00_Project_Overview/project_summary.md](docs/00_Project_Overview/project_summary.md) - the one-page summary - and [docs/00_Project_Overview/business_context.md](docs/00_Project_Overview/business_context.md) - the dairy workflow.
+
+## Requirements
+The business needs procurement, quality, production and sales analysis, with a structured analytical model for reporting. Learn what was asked for in [docs/01_Business_Requirements/business_requirements.md](docs/01_Business_Requirements/business_requirements.md), what the system must do in [docs/01_Business_Requirements/functional_requirements.md](docs/01_Business_Requirements/functional_requirements.md), the quality limits in [docs/01_Business_Requirements/non_functional_requirements.md](docs/01_Business_Requirements/non_functional_requirements.md), and the assumptions in [docs/01_Business_Requirements/assumptions_and_constraints.md](docs/01_Business_Requirements/assumptions_and_constraints.md).
+
+## System Design
+The design is layered: CSV to Python to PostgreSQL, then Bronze, Silver and Gold, then Power BI. Learn the design in [docs/02_System_Architecture/system_architecture.md](docs/02_System_Architecture/system_architecture.md), follow a record in [docs/02_System_Architecture/data_flow.md](docs/02_System_Architecture/data_flow.md), see the layer design in [docs/02_System_Architecture/database_design.md](docs/02_System_Architecture/database_design.md), and check the named tables in [docs/02_System_Architecture/data_dictionary.md](docs/02_System_Architecture/data_dictionary.md).
+
+## Data Engineering
+Raw CSV data becomes clean, report-ready tables in three layers. Learn ingestion in [docs/03_Data_Engineering/data_ingestion.md](docs/03_Data_Engineering/data_ingestion.md), validation in [docs/03_Data_Engineering/data_validation.md](docs/03_Data_Engineering/data_validation.md), cleaning in [docs/03_Data_Engineering/data_cleaning.md](docs/03_Data_Engineering/data_cleaning.md), transformation in [docs/03_Data_Engineering/transformation_logic.md](docs/03_Data_Engineering/transformation_logic.md), the layers in [docs/03_Data_Engineering/bronze_silver_gold_layers.md](docs/03_Data_Engineering/bronze_silver_gold_layers.md), and execution in [docs/03_Data_Engineering/pipeline_execution.md](docs/03_Data_Engineering/pipeline_execution.md).
+
+## Python and SQL
+Python does ingestion and processing with Pandas. SQL does relational analysis in PostgreSQL. Learn the Python patterns in [docs/07_AI_Assisted_Development/python_development.md](docs/07_AI_Assisted_Development/python_development.md), the SQL patterns in [docs/07_AI_Assisted_Development/sql_development.md](docs/07_AI_Assisted_Development/sql_development.md), and the method that joins them in [docs/04_Business_Analytics/analytics_methodology.md](docs/04_Business_Analytics/analytics_methodology.md).
+
+## Business Analytics
+Analytics follows one method for every question, with the same KPI names and formulas everywhere. Learn the method in [docs/04_Business_Analytics/analytics_methodology.md](docs/04_Business_Analytics/analytics_methodology.md), the KPI definitions in [docs/04_Business_Analytics/kpi_definitions.md](docs/04_Business_Analytics/kpi_definitions.md), procurement in [docs/04_Business_Analytics/procurement_analysis.md](docs/04_Business_Analytics/procurement_analysis.md), production in [docs/04_Business_Analytics/production_analysis.md](docs/04_Business_Analytics/production_analysis.md), and sales in [docs/04_Business_Analytics/sales_analysis.md](docs/04_Business_Analytics/sales_analysis.md). Profitability, inventory, outlets and expenses are covered in [docs/04_Business_Analytics/profitability_analysis.md](docs/04_Business_Analytics/profitability_analysis.md), [docs/04_Business_Analytics/inventory_analysis.md](docs/04_Business_Analytics/inventory_analysis.md), [docs/04_Business_Analytics/outlet_analysis.md](docs/04_Business_Analytics/outlet_analysis.md) and [docs/04_Business_Analytics/expense_analysis.md](docs/04_Business_Analytics/expense_analysis.md), with their limits stated.
+
+## Questions and Actual Answers
+Every business question is answered in the same format, with its result and its status. Start at [docs/05_Business_Questions_and_Answers/README.md](docs/05_Business_Questions_and_Answers/README.md), then read the 13 numbered files, from [docs/05_Business_Questions_and_Answers/01_profitability_questions.md](docs/05_Business_Questions_and_Answers/01_profitability_questions.md) to [docs/05_Business_Questions_and_Answers/13_management_recommendations.md](docs/05_Business_Questions_and_Answers/13_management_recommendations.md).
+
+## Business Findings
+The supplied numbers support three findings: rejection is about 1 in 8, fulfilment is incomplete on about 1 in 5 orders, and production output must stay split by unit. Learn them in [docs/06_Business_Findings_and_Impact/executive_summary.md](docs/06_Business_Findings_and_Impact/executive_summary.md) and [docs/06_Business_Findings_and_Impact/key_findings.md](docs/06_Business_Findings_and_Impact/key_findings.md), with profit and loss in [docs/06_Business_Findings_and_Impact/profit_and_loss_insights.md](docs/06_Business_Findings_and_Impact/profit_and_loss_insights.md), operations in [docs/06_Business_Findings_and_Impact/operational_insights.md](docs/06_Business_Findings_and_Impact/operational_insights.md), and limits in [docs/06_Business_Findings_and_Impact/limitations_and_future_analysis.md](docs/06_Business_Findings_and_Impact/limitations_and_future_analysis.md).
+
+## Management Recommendations
+Management should investigate rejection first, then fulfilment, then supply the cost inputs before any profit decision. Learn the actions in [docs/06_Business_Findings_and_Impact/recommendations.md](docs/06_Business_Findings_and_Impact/recommendations.md) and [docs/05_Business_Questions_and_Answers/13_management_recommendations.md](docs/05_Business_Questions_and_Answers/13_management_recommendations.md).
+
+## AI-assisted development
+AI was used as an assistant, with the developer in charge of every decision. Learn the workflow in [docs/07_AI_Assisted_Development/README.md](docs/07_AI_Assisted_Development/README.md), the method in [docs/07_AI_Assisted_Development/development_workflow.md](docs/07_AI_Assisted_Development/development_workflow.md) and [docs/07_AI_Assisted_Development/how_ai_was_used.md](docs/07_AI_Assisted_Development/how_ai_was_used.md), prompts in [docs/07_AI_Assisted_Development/prompt_engineering.md](docs/07_AI_Assisted_Development/prompt_engineering.md), review in [docs/07_AI_Assisted_Development/code_review.md](docs/07_AI_Assisted_Development/code_review.md), debugging in [docs/07_AI_Assisted_Development/debugging_with_ai.md](docs/07_AI_Assisted_Development/debugging_with_ai.md), and testing in [docs/07_AI_Assisted_Development/testing_with_ai.md](docs/07_AI_Assisted_Development/testing_with_ai.md).
+
+## Testing
+Testing has four levels: unit, integration, SQL validation and data quality. Learn the strategy in [docs/09_Testing_and_Validation/testing_strategy.md](docs/09_Testing_and_Validation/testing_strategy.md), unit testing in [docs/09_Testing_and_Validation/unit_testing.md](docs/09_Testing_and_Validation/unit_testing.md), integration in [docs/09_Testing_and_Validation/integration_testing.md](docs/09_Testing_and_Validation/integration_testing.md), SQL validation in [docs/09_Testing_and_Validation/sql_validation.md](docs/09_Testing_and_Validation/sql_validation.md), data quality in [docs/09_Testing_and_Validation/data_quality_checks.md](docs/09_Testing_and_Validation/data_quality_checks.md), and the executed results, none supplied yet, in [docs/09_Testing_and_Validation/test_results.md](docs/09_Testing_and_Validation/test_results.md).
+
+## Debugging
+Debugging follows a fixed 12-step workflow, from observing the error to recording the fix. Learn it in [docs/08_Debugging_and_Troubleshooting/debugging_methodology.md](docs/08_Debugging_and_Troubleshooting/debugging_methodology.md), the real errors in [docs/08_Debugging_and_Troubleshooting/errors_and_fixes.md](docs/08_Debugging_and_Troubleshooting/errors_and_fixes.md), and the log in [docs/08_Debugging_and_Troubleshooting/troubleshooting_log.md](docs/08_Debugging_and_Troubleshooting/troubleshooting_log.md).
+
+## Security
+Security is stated as implemented controls against recommended controls, so a recommendation is never mistaken for a control that exists. Learn the review in [docs/10_Security_and_Reliability/security_review.md](docs/10_Security_and_Reliability/security_review.md), SQL injection prevention in [docs/10_Security_and_Reliability/sql_injection_prevention.md](docs/10_Security_and_Reliability/sql_injection_prevention.md), credentials in [docs/10_Security_and_Reliability/credential_management.md](docs/10_Security_and_Reliability/credential_management.md), access in [docs/10_Security_and_Reliability/access_control.md](docs/10_Security_and_Reliability/access_control.md), and transactions in [docs/10_Security_and_Reliability/transaction_and_data_integrity.md](docs/10_Security_and_Reliability/transaction_and_data_integrity.md).
+
+## Performance
+Performance is judged by measurement, not by feeling. Learn query optimisation in [docs/11_Performance_Optimization/query_optimization.md](docs/11_Performance_Optimization/query_optimization.md), Python optimisation in [docs/11_Performance_Optimization/python_optimization.md](docs/11_Performance_Optimization/python_optimization.md), and pipeline performance in [docs/11_Performance_Optimization/pipeline_performance.md](docs/11_Performance_Optimization/pipeline_performance.md).
+
+## Engineering Decisions
+The decisions record why Python, SQL, PostgreSQL and the three layers were chosen, and what was rejected. Learn them in [docs/12_Engineering_Decisions/README.md](docs/12_Engineering_Decisions/README.md), [docs/12_Engineering_Decisions/python_and_sql_decisions.md](docs/12_Engineering_Decisions/python_and_sql_decisions.md), [docs/12_Engineering_Decisions/database_decisions.md](docs/12_Engineering_Decisions/database_decisions.md), [docs/12_Engineering_Decisions/architecture_decisions.md](docs/12_Engineering_Decisions/architecture_decisions.md) and [docs/12_Engineering_Decisions/rejected_approaches.md](docs/12_Engineering_Decisions/rejected_approaches.md).
+
+## Evidence
+Evidence is the final check. Learn what is implemented in [docs/13_Project_Evidence/implementation_status.md](docs/13_Project_Evidence/implementation_status.md), the query references in [docs/13_Project_Evidence/query_references.md](docs/13_Project_Evidence/query_references.md), the screenshots and reports in [docs/13_Project_Evidence/screenshots_and_reports.md](docs/13_Project_Evidence/screenshots_and_reports.md), and the verification record in [docs/13_Project_Evidence/verification_record.md](docs/13_Project_Evidence/verification_record.md). The full verification and missing-info list is in [VERIFICATION_AND_MISSING_INFO.md](VERIFICATION_AND_MISSING_INFO.md).
+
+## Glossary
+Terms are defined once and used the same way everywhere. See [docs/14_Glossary/business_terms.md](docs/14_Glossary/business_terms.md), [docs/14_Glossary/analytics_terms.md](docs/14_Glossary/analytics_terms.md) and [docs/14_Glossary/technical_terms.md](docs/14_Glossary/technical_terms.md).
+
+## README placement - recommended order, not completed
+Source: the user-supplied "DairyChain - Architecture Diagrams" document (Source 12, 2026-11-11, section 9). This is a recommended order for the README, labelled as a plan, not as completed placement, because most diagram images are missing. Status: PARTIALLY VERIFIED - one image supplied by Source 27 (the architecture whiteboard, `docs/assets/architecture-whiteboard.png`, linked in the Medallion Architecture section above); the other three diagram images are still PENDING EVIDENCE.
+
+Recommended order:
+
+1. Project banner.
+2. Project introduction.
+3. System architecture diagram.
+4. Data-processing pipeline diagram.
+5. Technology stack.
+6. Power BI dashboard screenshots.
+7. Links to detailed architecture documentation.
+
+The database layer and reporting architecture diagrams can appear in the detailed documentation, with optional thumbnails or links in the README. The diagram index, with the intended image filenames and the Mermaid sources, is in [docs/13_Project_Evidence/screenshots_and_reports.md](docs/13_Project_Evidence/screenshots_and_reports.md). Do not add an image link to the README until the exported image exists under `docs/assets/`.
+
+
+## Next step / Related files
+- [docs/README.md](docs/README.md)
+- [VERIFICATION_AND_MISSING_INFO.md](VERIFICATION_AND_MISSING_INFO.md)
+- [docs/00_Project_Overview/project_summary.md](docs/00_Project_Overview/project_summary.md)

@@ -1,0 +1,291 @@
+=== DAX MEASURES FULL ===
+
+--- gold collection_centre_performance :: Total Revenue ---
+
+SUM('gold sales_product_performance'[total_revenue])
+
+--- gold collection_centre_performance :: Total Orders ---
+
+SUM('gold sales_daily_summary'[total_orders])
+
+--- gold collection_centre_performance :: Delivered Orders ---
+
+SUM('gold sales_daily_summary'[delivered_orders])
+
+--- gold collection_centre_performance :: Total Products ---
+
+DISTINCTCOUNT('gold sales_product_performance'[product_id])
+
+--- gold collection_centre_performance :: Total Suppliers ---
+
+DISTINCTCOUNT('gold supplier_performance'[supplier_id])
+
+--- gold collection_centre_performance :: Total Rejected Milk ---
+
+SUM('gold collection_centre_performance'[rejected_milk_litres])
+
+--- gold collection_centre_performance :: Overall Rejection Rate ---
+
+DIVIDE(
+    [Total Rejected Milk],
+    [Total Milk Procured],
+    0
+)
+
+--- dim_collection_centre :: Daily Revenue ---
+
+SUM('gold sales_daily_summary'[total_revenue])
+
+--- dim_collection_centre :: Cancelled Orders ---
+
+SUM('gold sales_daily_summary'[cancelled_orders])
+
+--- dim_collection_centre :: Partially Delivered Orders ---
+
+SUM('gold sales_daily_summary'[partially_delivered_orders])
+
+--- gold procurement_quality_summary :: Total Milk Procured ---
+
+SUM('gold procurement_quality_summary'[quantity_litres])
+
+--- dim_collection_centre :: Average Revenue per Order ---
+
+DIVIDE(
+    [Total Revenue],
+    [Total Orders],
+    0
+)
+
+--- dim_collection_centre :: Short Product Name ---
+
+SWITCH(
+    TRUE(),
+    LEN([product_name]) > 15,
+    LEFT([product_name], 15) & "...",
+    [product_name]
+)
+
+--- dim_collection_centre :: Total Accepted Milk ---
+
+CALCULATE(
+    SUM('gold procurement_quality_summary'[quantity_litres]),
+    'gold procurement_quality_summary'[quality_status] = "Accepted"
+)
+
+--- dim_collection_centre :: Total Production Batches ---
+
+DISTINCTCOUNT('gold production_performance'[production_id])
+
+--- dim_collection_centre :: Total Raw Milk Processed (L) ---
+
+SUM('gold production_performance'[total_raw_milk_litres])
+
+--- dim_collection_centre :: Total Finished Product Output ---
+
+SUM('gold production_performance'[finished_product_quantity])
+
+--- dim_collection_centre :: Finished Output (L) ---
+
+CALCULATE(
+    SUM('gold production_performance'[finished_product_quantity]),
+    'gold production_performance'[unit_of_measure] = "L"
+)
+
+--- dim_collection_centre :: Finished Output (kg) ---
+
+CALCULATE(
+    SUM('gold production_performance'[finished_product_quantity]),
+    'gold production_performance'[unit_of_measure] = "kg"
+)
+
+--- gold sales_product_performance :: Measure ---
+None
+
+--- dim_collection_centre :: Average Production Duration ---
+
+AVERAGE('gold production_performance'[production_duration_minutes])
+
+--- dim_collection_centre :: Total Finished Output ---
+
+SUM('gold production_performance'[finished_product_quantity])
+
+--- dim_collection_centre :: Measure 2 ---
+None
+
+=== DAX TABLES ===
+                                                TableName                                                                                                                                                                                                                                                                                                                                          Expression
+0  DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                                                                                                                                                                                                                                                                                                            Calendar(Date(2015,1,1), Date(2015,1,1))
+1     LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                                                                                                                                                                      Calendar(Date(Year(MIN('gold procurement_quality_summary'[procurement_timestamp])), 1, 1), Date(Year(MAX('gold procurement_quality_summary'[procurement_timestamp])), 12, 31))
+2     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                                                                                                                                                                                          Calendar(Date(Year(MIN('gold production_performance'[production_start])), 1, 1), Date(Year(MAX('gold production_performance'[production_start])), 12, 31))
+3     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                                                                                                                                                                                              Calendar(Date(Year(MIN('gold production_performance'[production_end])), 1, 1), Date(Year(MAX('gold production_performance'[production_end])), 12, 31))
+4                                                dim_date                                                                                                                                                                                                                                   \nCALENDAR(\n    MIN('gold sales_daily_summary'[order_date]),\n    MAX('gold sales_daily_summary'[order_date])\n)
+5     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                                                                                                                                                                                                                                                        Calendar(Date(Year(MIN('dim_date'[Date])), 1, 1), Date(Year(MAX('dim_date'[Date])), 12, 31))
+6                                             dim_product                                                  \nDISTINCT(\n    SELECTCOLUMNS(\n        'gold sales_product_performance',\n        "product_id", 'gold sales_product_performance'[product_id],\n        "product_name", 'gold sales_product_performance'[product_name],\n        "category", 'gold sales_product_performance'[category]\n    )\n)
+7                                            dim_supplier                                                \nDISTINCT(\n    SELECTCOLUMNS(\n        'gold supplier_performance',\n        "supplier_id", 'gold supplier_performance'[supplier_id],\n        "supplier_name", 'gold supplier_performance'[supplier_name],\n        "supplier_district", 'gold supplier_performance'[supplier_district]\n    )\n)
+8                                   dim_collection_centre  \nDISTINCT(\n    SELECTCOLUMNS(\n        'gold collection_centre_performance',\n        "collection_centre_id", 'gold collection_centre_performance'[collection_centre_id],\n        "centre_name", 'gold collection_centre_performance'[centre_name],\n        "centre_district", 'gold collection_centre_performance'[centre_district]\n    )\n)
+9                                                dim_unit                                                                                                                                                                                             \nDISTINCT(\n    SELECTCOLUMNS(\n        'gold production_performance',\n        "Unit", TRIM('gold production_performance'[unit_of_measure])\n    )\n)
+
+=== DAX COLUMNS ===
+                                                 TableName          ColumnName                                                                                                                                                                                                                   Expression
+0   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                Year                                                                                                                                                                                                                 YEAR([Date])
+1   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e             MonthNo                                                                                                                                                                                                                MONTH([Date])
+2   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e               Month                                                                                                                                                                                                       FORMAT([Date], "MMMM")
+3   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e           QuarterNo                                                                                                                                                                                                     INT(([MonthNo] + 2) / 3)
+4   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e             Quarter                                                                                                                                                                                                         "Qtr " & [QuarterNo]
+5   DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                 Day                                                                                                                                                                                                                  DAY([Date])
+6      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                Year                                                                                                                                                                                                                 YEAR([Date])
+7      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7             MonthNo                                                                                                                                                                                                                MONTH([Date])
+8      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7               Month                                                                                                                                                                                                       FORMAT([Date], "MMMM")
+9      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7           QuarterNo                                                                                                                                                                                                     INT(([MonthNo] + 2) / 3)
+10     LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7             Quarter                                                                                                                                                                                                         "Qtr " & [QuarterNo]
+11     LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                 Day                                                                                                                                                                                                                  DAY([Date])
+12     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                Year                                                                                                                                                                                                                 YEAR([Date])
+13     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074             MonthNo                                                                                                                                                                                                                MONTH([Date])
+14     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074               Month                                                                                                                                                                                                       FORMAT([Date], "MMMM")
+15     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074           QuarterNo                                                                                                                                                                                                     INT(([MonthNo] + 2) / 3)
+16     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074             Quarter                                                                                                                                                                                                         "Qtr " & [QuarterNo]
+17     LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                 Day                                                                                                                                                                                                                  DAY([Date])
+18     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                Year                                                                                                                                                                                                                 YEAR([Date])
+19     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83             MonthNo                                                                                                                                                                                                                MONTH([Date])
+20     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83               Month                                                                                                                                                                                                       FORMAT([Date], "MMMM")
+21     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83           QuarterNo                                                                                                                                                                                                     INT(([MonthNo] + 2) / 3)
+22     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83             Quarter                                                                                                                                                                                                         "Qtr " & [QuarterNo]
+23     LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                 Day                                                                                                                                                                                                                  DAY([Date])
+24     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                Year                                                                                                                                                                                                                 YEAR([Date])
+25     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f             MonthNo                                                                                                                                                                                                                MONTH([Date])
+26     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f               Month                                                                                                                                                                                                       FORMAT([Date], "MMMM")
+27     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f           QuarterNo                                                                                                                                                                                                     INT(([MonthNo] + 2) / 3)
+28     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f             Quarter                                                                                                                                                                                                         "Qtr " & [QuarterNo]
+29     LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                 Day                                                                                                                                                                                                                  DAY([Date])
+30                        gold procurement_quality_summary    procurement_date  \nDATE(\n    YEAR('gold procurement_quality_summary'[procurement_timestamp]),\n    MONTH('gold procurement_quality_summary'[procurement_timestamp]),\n    DAY('gold procurement_quality_summary'[procurement_timestamp])\n)
+31                             gold production_performance     production_date                                \nDATE(\n    YEAR('gold production_performance'[production_start]),\n    MONTH('gold production_performance'[production_start]),\n    DAY('gold production_performance'[production_start])\n)
+32                          gold sales_product_performance  Short Product Name                                      \nVAR ProductName = 'gold sales_product_performance'[product_name]\nRETURN\n    IF(\n        LEN(ProductName) > 15,\n        LEFT(ProductName, 15) & "...",\n        ProductName\n    )
+
+=== STATISTICS ===
+                                                  TableName                   ColumnName  Cardinality  Dictionary  HashIndex  DataSize        ModifiedTime StructureModifiedTime
+0    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                         Date            1           0       1133       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+1    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                         Year            1           0       1133       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+2    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                      MonthNo            1           0       1133       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+3    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                        Month            1         147          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+4    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                    QuarterNo            1           0       1133       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+5    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                      Quarter            1         143          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+6    DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e                          Day            1           0       1133       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+7       LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                         Date          730        5880          0      1120 2026-11-09 22:27:35   2026-11-09 22:27:35
+8       LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                         Year            2          48          0       152 2026-11-09 22:27:35   2026-11-09 22:27:35
+9       LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                      MonthNo           12          88          0       512 2026-11-09 22:27:35   2026-11-09 22:27:35
+10      LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                        Month           12         391          0       512 2026-11-09 22:27:35   2026-11-09 22:27:35
+11      LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                    QuarterNo            4          56          0       152 2026-11-09 22:27:35   2026-11-09 22:27:35
+12      LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                      Quarter            4         203          0       152 2026-11-09 22:27:35   2026-11-09 22:27:35
+13      LocalDateTable_35cdc80e-794c-497b-b88a-72fa9e52813f                          Day           31         164          0       632 2026-11-09 22:27:35   2026-11-09 22:27:35
+14      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                         Date          730        5880          0      1120 2026-11-09 21:30:57   2026-11-09 21:30:52
+15      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                         Year            2          48          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+16      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                      MonthNo           12          88          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+17      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                        Month           12         391          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+18      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                    QuarterNo            4          56          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+19      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                      Quarter            4         203          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+20      LocalDateTable_5b9d90e5-3754-4ae3-a9e9-54d5cf624a83                          Day           31         164          0       632 2026-11-09 21:30:57   2026-11-09 21:30:52
+21      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                         Date          730        5880          0      1120 2026-11-09 21:30:57   2026-11-09 21:30:52
+22      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                         Year            2          48          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+23      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                      MonthNo           12          88          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+24      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                        Month           12         391          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+25      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                    QuarterNo            4          56          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+26      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                      Quarter            4         203          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+27      LocalDateTable_6e53440c-360f-404f-876c-795a368ec074                          Day           31         164          0       632 2026-11-09 21:30:57   2026-11-09 21:30:52
+28      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                         Date          730        5880          0      1120 2026-11-09 21:30:57   2026-11-09 21:30:52
+29      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                         Year            2          48          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+30      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                      MonthNo           12          88          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+31      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                        Month           12         391          0       512 2026-11-09 21:30:57   2026-11-09 21:30:52
+32      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                    QuarterNo            4          56          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+33      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                      Quarter            4         203          0       152 2026-11-09 21:30:57   2026-11-09 21:30:52
+34      LocalDateTable_b922017c-0cf1-4ebe-a159-88afc53183c7                          Day           31         164          0       632 2026-11-09 21:30:57   2026-11-09 21:30:52
+35                                    dim_collection_centre         collection_centre_id           20         563          0       160 2026-11-09 22:43:08   2026-11-09 22:43:08
+36                                    dim_collection_centre                  centre_name           20        1485          0       160 2026-11-09 22:43:08   2026-11-09 22:43:08
+37                                    dim_collection_centre              centre_district           15         471          0       160 2026-11-09 22:43:08   2026-11-09 22:43:08
+38                                                 dim_date                         Date          364        2952          0       568 2026-11-10 12:38:50   2026-11-09 22:27:35
+39                                              dim_product                   product_id           12         411          0       152 2026-11-09 22:39:17   2026-11-09 22:39:17
+40                                              dim_product                 product_name           12         679          0       152 2026-11-09 22:39:17   2026-11-09 22:39:17
+41                                              dim_product                     category            5         265          0       152 2026-11-09 22:39:17   2026-11-09 22:39:17
+42                                             dim_supplier                  supplier_id          200        5323          0       352 2026-11-09 22:41:25   2026-11-09 22:41:25
+43                                             dim_supplier                supplier_name          131        6269          0       352 2026-11-09 22:41:25   2026-11-09 22:41:25
+44                                             dim_supplier            supplier_district           15         471          0       248 2026-11-09 22:41:25   2026-11-09 22:41:25
+45                                                 dim_unit                         Unit            2         169          0       152 2026-11-10 19:50:46   2026-11-10 19:50:46
+46                       gold collection_centre_performance         collection_centre_id           20         563          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+47                       gold collection_centre_performance                  centre_name           20        1485          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+48                       gold collection_centre_performance              centre_district           15         471          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+49                       gold collection_centre_performance                total_batches           19           0       1133       168 2026-11-09 22:55:59   2026-11-09 21:30:52
+50                       gold collection_centre_performance            total_milk_litres           20           0       1133       232 2026-11-09 22:55:59   2026-11-09 21:30:52
+51                       gold collection_centre_performance         accepted_milk_litres           20           0       1133       232 2026-11-09 22:55:59   2026-11-09 21:30:52
+52                       gold collection_centre_performance         rejected_milk_litres           20           0       1133       200 2026-11-09 22:55:59   2026-11-09 21:30:52
+53                       gold collection_centre_performance    rejection_rate_percentage           18           0       1133       168 2026-11-09 22:55:59   2026-11-09 21:30:52
+54                       gold collection_centre_performance       average_fat_percentage            8           0       1133       152 2026-11-09 22:55:59   2026-11-09 21:30:52
+55                       gold collection_centre_performance       average_snf_percentage            4           0       1133       152 2026-11-09 22:55:59   2026-11-09 21:30:52
+56                         gold procurement_quality_summary               procurement_id        18000      225810          0     36152 2026-11-09 21:30:52   2026-11-09 21:30:52
+57                         gold procurement_quality_summary                     batch_id        18000      225810          0     36152 2026-11-09 21:30:52   2026-11-09 21:30:52
+58                         gold procurement_quality_summary        procurement_timestamp        17987      143936          0     36152 2026-11-09 21:30:52   2026-11-09 21:30:52
+59                         gold procurement_quality_summary                        shift            2         171          0       304 2026-11-09 21:30:52   2026-11-09 21:30:52
+60                         gold procurement_quality_summary                  supplier_id          200        5323          0     18152 2026-11-09 21:30:52   2026-11-09 21:30:52
+61                         gold procurement_quality_summary                supplier_name          131        6269          0     18152 2026-11-09 21:30:52   2026-11-09 21:30:52
+62                         gold procurement_quality_summary            supplier_district           15         471          0      8928 2026-11-09 21:30:52   2026-11-09 21:30:52
+63                         gold procurement_quality_summary         collection_centre_id           20         563          0      2720 2026-11-09 21:30:52   2026-11-09 21:30:52
+64                         gold procurement_quality_summary                  centre_name           20        1485          0      2720 2026-11-09 21:30:52   2026-11-09 21:30:52
+65                         gold procurement_quality_summary              centre_district           15         471          0      2304 2026-11-09 21:30:52   2026-11-09 21:30:52
+66                         gold procurement_quality_summary              quantity_litres        15751           0     265645     48152 2026-11-09 21:30:52   2026-11-09 21:30:52
+67                         gold procurement_quality_summary      purchase_rate_per_litre         1331           0      32877     28952 2026-11-09 21:30:52   2026-11-09 21:30:52
+68                         gold procurement_quality_summary          total_purchase_cost        17950           0     271549     72152 2026-11-09 21:30:52   2026-11-09 21:30:52
+69                         gold procurement_quality_summary     calculated_purchase_cost        17949           0     271493     72152 2026-11-09 21:30:52   2026-11-09 21:30:52
+70                         gold procurement_quality_summary              cost_difference            3          64          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+71                         gold procurement_quality_summary                  cost_status            2         169          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+72                         gold procurement_quality_summary               fat_percentage          500        4040          0     20720 2026-11-09 21:30:52   2026-11-09 21:30:52
+73                         gold procurement_quality_summary               snf_percentage          242        1976          0     18152 2026-11-09 21:30:52   2026-11-09 21:30:52
+74                         gold procurement_quality_summary                temperature_c          598        4824          0     24152 2026-11-09 21:30:52   2026-11-09 21:30:52
+75                         gold procurement_quality_summary                      acidity          103         864          0     16088 2026-11-09 21:30:52   2026-11-09 21:30:52
+76                         gold procurement_quality_summary               quality_status            2         175          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+77                         gold procurement_quality_summary             rejection_reason            4         313          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+78                         gold procurement_quality_summary                laboratory_id            3         229          0       408 2026-11-09 21:30:52   2026-11-09 21:30:52
+79                         gold procurement_quality_summary             procurement_date          365        2960          0     20720 2026-11-09 22:33:13   2026-11-09 22:35:12
+80                              gold production_performance                production_id         4000       52384          0      6552 2026-11-09 21:30:52   2026-11-09 21:30:52
+81                              gold production_performance                   product_id           12         411          0       640 2026-11-09 21:30:52   2026-11-09 21:30:52
+82                              gold production_performance                 product_name           12         679          0       640 2026-11-09 21:30:52   2026-11-09 21:30:52
+83                              gold production_performance             production_start         4000       32040          0      6552 2026-11-09 21:30:52   2026-11-09 21:30:52
+84                              gold production_performance               production_end         3993       31984          0      6552 2026-11-09 21:30:52   2026-11-09 21:30:52
+85                              gold production_performance  production_duration_minutes           93         784          0      3704 2026-11-09 21:30:52   2026-11-09 21:30:52
+86                              gold production_performance                        shift            3         279          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+87                              gold production_performance            production_status            1         151          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+88                              gold production_performance        total_raw_milk_litres            1          48          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+89                              gold production_performance    finished_product_quantity            8         104          0       416 2026-11-09 21:30:52   2026-11-09 21:30:52
+90                              gold production_performance           byproduct_quantity            8         104          0       416 2026-11-09 21:30:52   2026-11-09 21:30:52
+91                              gold production_performance              unit_of_measure            2         169          0       192 2026-11-09 21:30:52   2026-11-09 21:30:52
+92                              gold production_performance              production_date          365        2960          0      4720 2026-11-09 22:36:09   2026-11-09 22:37:44
+93                                 gold sales_daily_summary                   order_date          364        2952          0       568 2026-11-09 21:30:52   2026-11-09 22:29:28
+94                                 gold sales_daily_summary                 total_orders           31           0       1133       440 2026-11-09 21:30:52   2026-11-09 21:30:52
+95                                 gold sales_daily_summary             delivered_orders           29           0       1133       440 2026-11-09 22:29:21   2026-11-09 21:30:52
+96                                 gold sales_daily_summary   partially_delivered_orders           18         112          0       392 2026-11-09 21:30:52   2026-11-09 21:30:52
+97                                 gold sales_daily_summary             cancelled_orders            5          60          0       160 2026-11-09 21:30:52   2026-11-09 21:30:52
+98                                 gold sales_daily_summary             quantity_ordered          210           0       4221       568 2026-11-09 21:30:52   2026-11-09 21:30:52
+99                                 gold sales_daily_summary           quantity_fulfilled          350           0       8317       880 2026-11-09 21:30:52   2026-11-09 21:30:52
+100                                gold sales_daily_summary               total_discount          359           0       8333      1120 2026-11-09 21:30:52   2026-11-09 21:30:52
+101                                gold sales_daily_summary                total_revenue          363           0       8341      1608 2026-11-09 21:30:52   2026-11-09 21:30:52
+102                          gold sales_product_performance                   product_id           12         411          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+103                          gold sales_product_performance                 product_name           12         679          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+104                          gold sales_product_performance                     category            5         265          0       152 2026-11-09 21:30:52   2026-11-09 21:30:52
+105                          gold sales_product_performance                 total_orders           12           0       1133       160 2026-11-09 22:56:19   2026-11-09 21:30:52
+106                          gold sales_product_performance       total_quantity_ordered           11           0       1133       168 2026-11-09 22:56:19   2026-11-09 21:30:52
+107                          gold sales_product_performance     total_quantity_fulfilled           12           0       1133       184 2026-11-09 22:56:19   2026-11-09 21:30:52
+108                          gold sales_product_performance               total_discount           12           0       1133       200 2026-11-09 22:56:19   2026-11-09 21:30:52
+109                          gold sales_product_performance                total_revenue           12           0       1133       200 2026-11-09 22:56:19   2026-11-09 21:30:52
+110                          gold sales_product_performance        average_selling_price           12           0       1133       168 2026-11-09 22:56:19   2026-11-09 21:30:52
+111                          gold sales_product_performance           Short Product Name           12         647          0       152 2026-11-10 14:12:04   2026-11-10 14:11:53
+112                               gold supplier_performance                  supplier_id          200        5323          0       352 2026-11-09 21:30:52   2026-11-09 21:30:52
+113                               gold supplier_performance                supplier_name          131        6269          0       352 2026-11-09 21:30:52   2026-11-09 21:30:52
+114                               gold supplier_performance            supplier_district           15         471          0       248 2026-11-09 21:30:52   2026-11-09 21:30:52
+115                               gold supplier_performance                total_batches           39           0       1133       312 2026-11-10 12:44:26   2026-11-09 21:30:52
+116                               gold supplier_performance            total_milk_litres          200           0       4245       952 2026-11-10 12:44:26   2026-11-09 21:30:52
+117                               gold supplier_performance         accepted_milk_litres          200           0       4277       952 2026-11-10 12:44:26   2026-11-09 21:30:52
+118                               gold supplier_performance         rejected_milk_litres          200           0       4229       680 2026-11-10 12:44:26   2026-11-09 21:30:52
+119                               gold supplier_performance    rejection_rate_percentage          185           0       4221       472 2026-11-10 12:44:26   2026-11-09 21:30:52
+120                               gold supplier_performance       average_fat_percentage           41           0       1133       312 2026-11-10 12:44:26   2026-11-09 21:30:52
+121                               gold supplier_performance       average_snf_percentage           19           0       1133       280 2026-11-10 12:44:26   2026-11-09 21:30:52
+
+=== TMSCHEMA MODEL ===
+   ID   Name Description StorageLocation  DefaultMode  DefaultDataView Culture Collation        ModifiedTime StructureModifiedTime                                                    DataAccessOptions  DefaultMeasureID  DefaultPowerBIDataSourceVersion  ForceUniqueNames  DiscourageImplicitMeasures  DiscourageReportMeasures  DataSourceVariablesOverrideBehavior  DataSourceDefaultMaxConnections SourceQueryCulture MAttributes  DiscourageCompositeModels AutomaticAggregationOptions  DisableAutoExists  MaxParallelismPerRefresh  MaxParallelismPerQuery  DisableSystemDefaultExpression  DirectLakeBehavior  ValueFilterBehavior  SelectionExpressionBehavior  MetadataAccessPolicy  DefaultDirectLakeIndexingBehavior
+0   1  Model        None            None            0                0   en-US      None 2026-11-09 21:23:18   2026-11-10 19:52:10  {\n  "legacyRedirects": true,\n  "returnErrorValuesAsNull": true\n}                 0                                2                 0                           0                         0                                    0                               10              en-IN        None                          0                        None                 -1                        -1                       0                               0                   0                    1                            0                     0                                  0

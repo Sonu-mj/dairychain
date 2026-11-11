@@ -1,0 +1,93 @@
+DairyChain - pbixray model-data totals (Source 23)
+=================================================
+Source: dairy_chain_project.pbix, read with the open-source pbixray Python library.
+Method: PBIXRay.get_table() for each Gold table, then SUM / COUNT / DISTINCTCOUNT
+computed in Python. Date: 2026-11-11. All totals below were computed from the
+model data and checked against the README; every README total matches exactly.
+Model metadata: Culture en-US, ModifiedTime 2026-11-09 21:23:18,
+StructureModifiedTime 2026-11-10 19:52:10.
+
+gold procurement_quality_summary - 18,000 rows
+  total milk (SUM quantity_litres): 8,758,507.64 L
+  accepted: 7,641,260.29 L, 15,689 batches
+  rejected: 1,117,247.35 L, 2,311 batches
+  batch rejection rate: 2,311 / 18,000 = 12.84 percent
+  volume rejection rate: 1,117,247.35 / 8,758,507.64 = 12.76 percent
+  rejection reasons (rejected rows only): Low SNF (<8.2%) 1,303; Low Fat (<3.2%) 513;
+    High Acidity (>0.17%) 491; High Temperature (>8.5C) 4; total 2,311
+  cost mismatches (cost_status != MATCH): 1 row (MISMATCH 1, MATCH 17,999)
+  procurement_timestamp range: 2025-11-01 to 2026-10-31 (matches intended period)
+  shift values: Morning 9,835 batches, 4,801,175.33 L; Evening 8,165 batches, 3,957,332.31 L
+  rejected by shift: Morning 1,267 (12.88 percent); Evening 1,044 (12.79 percent)
+  no unit_of_measure column in this table
+
+gold sales_daily_summary - 364 rows
+  total revenue (SUM total_revenue): Rs 26,734,294.03
+  total orders: 14,000; delivered 11,166; partially delivered 2,227; cancelled 607
+  quantity ordered: 181,804; quantity fulfilled: 161,036.41; fulfilment 88.58 percent
+  total discount: Rs 250,307.17
+  order_date range: 2025-11-02 to 2026-10-31
+
+gold sales_product_performance - 12 rows
+  total revenue (SUM total_revenue): Rs 26,734,294.03 (matches daily)
+  total_orders SUM: 28,000, NOT 14,000 - PROOF of the warning: do not sum
+    product-level total_orders; an order appears once per product
+  quantity ordered: 181,804; quantity fulfilled: 161,036.41 (matches daily)
+  total discount: Rs 250,307.17 (matches daily)
+  products (name, category, orders, revenue):
+    Full Cream Milk, Liquid Milk, 2,248, Rs 916,687.20
+    Toned Milk, Liquid Milk, 2,394, Rs 796,826.70
+    Double Toned Milk, Liquid Milk, 2,385, Rs 694,144.80
+    Standardised Milk, Liquid Milk, 2,280, Rs 851,256.00
+    Classic Set Curd, Fermented, 2,339, Rs 1,091,328.75
+    Fresh Malai Paneer, Coagulated, 2,341, Rs 5,531,071.00
+    Pure Cow and Buffalo Ghee, Fat Rich, 2,296, Rs 5,986,642.50
+    Pasteurised Table Butter, Fat Rich, 2,370, Rs 5,156,439.08
+    Fresh Dairy Cream, Fat Rich, 2,365, Rs 2,354,907.50
+    Spiced Masala Buttermilk, Beverage, 2,366, Rs 432,450.00
+    Elaichi Flavoured Milk, Beverage, 2,328, Rs 1,799,512.50
+    Probiotic Lassi, Fermented, 2,288, Rs 1,123,028.00
+  revenue by category: Liquid Milk Rs 3,258,914.70 (9,307 orders);
+    Fat Rich Rs 13,497,989.08 (7,031); Fermented Rs 2,214,356.75 (4,627);
+    Coagulated Rs 5,531,071.00 (2,341); Beverage Rs 2,231,962.50 (4,694)
+
+gold production_performance - 4,000 rows
+  total raw milk (SUM total_raw_milk_litres): 2,600,000.0 L
+    litre batches: 1,950,650.0 L; kg batches: 649,350.0 L
+  finished output: Litre 1,484,135.25 L; Kilogram 266,416.65 kg
+  byproduct output: Litre 466,514.75 L; Kilogram 402,413.85 kg
+  litre batches: 3,001; kg batches: 999
+  production_status: Completed 4,000 (all rows)
+  litre side check: finished 1,484,135.25 + byproduct 466,514.75 = 1,950,650.0,
+    exactly the raw milk input for litre batches
+  kg side: finished 266,416.65 + byproduct 402,413.85 = 668,830.50 kg, while the
+    recorded raw milk input for kg batches is 649,350.0 L - different units,
+    so no single yield figure is claimed
+  average production duration: 135.03 minutes (mean 135.02649, min 29.98, max 180.00)
+  shift values: Shift-A (06:00-14:00) 1,095; Shift-B (14:00-22:00) 2,175;
+    Shift-C (22:00-06:00) 730
+  unit_of_measure values in the model data: "Litre" and "Kilogram" (full words)
+  FLAG: the DAX Finished Output (L) and Finished Output (kg) measures filter
+    unit_of_measure = "L" and "kg", but the data holds "Litre" and "Kilogram",
+    so those two measures would return blank unless the filter matches.
+    Flagged to check in Power BI, not called wrong.
+
+gold collection_centre_performance - 20 rows
+  total milk: 8,758,507.64 L; accepted 7,641,260.29 L; rejected 1,117,247.35 L;
+  total batches 18,000 - reconciles with procurement and supplier totals
+
+gold supplier_performance - 200 rows
+  total milk: 8,758,507.64 L; accepted 7,641,260.29 L; rejected 1,117,247.35 L;
+  total batches 18,000 - reconciles with procurement and centre totals
+
+Reconciliation summary
+  All three milk totals agree: procurement, collection-centre, and supplier
+  tables all give 8,758,507.64 L total, 7,641,260.29 L accepted,
+  1,117,247.35 L rejected, 18,000 batches.
+  Product revenue (Rs 26,734,294.03) equals daily revenue (Rs 26,734,294.03).
+  Discounts total Rs 250,307.17 in both the daily and product tables.
+  Product total_orders sums to 28,000 against 14,000 distinct orders.
+
+What this file does NOT prove
+  No dashboard screenshots and no visual values - none were rendered.
+  No Gold SQL, no DDL, no Bronze or Silver row counts.
