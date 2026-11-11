@@ -1,13 +1,64 @@
+![DairyChain](docs/assets/hero-banner.png)
+
 # DairyChain - Dairy Supply Chain Analytics
 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+![PostgreSQL 18](https://img.shields.io/badge/PostgreSQL_18-336791?logo=postgresql&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-F2C811)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+
+> Rejected milk cost Rs 5.99 crore out of Rs 48.19 crore of milk purchased. Low SNF alone cost Rs 3.44 crore, more than half of all rejected milk cost.
+
+## Numbers at a glance
+
+| What | Number |
+|---|---|
+| CSV files | 10 |
+| Total records | 99,584 |
+| Procurement batches | 18,000 |
+| Batch rejection | 12.84 percent |
+| Volume rejection | 12.76 percent |
+| Sales revenue | Rs 26,734,294.03 |
+| Orders | 14,000 |
+| Production batches | 4,000 |
+| Gold tables | 6, with 22,596 rows |
+
+## How to run it
+
+1. Clone the repo: `git clone https://github.com/Sonu-mj/dairychain.git`
+2. Load the CSV files from `data/raw/` into PostgreSQL.
+3. Open `scripts/dairychain.ipynb` to run the Python validation and analysis.
+4. Open `docs/13_Project_Evidence/dairy_chain_project.pbix` in Power BI Desktop to see the 4 report pages.
+
+## Project structure
+
+```
+dairychain/
+├── data/
+│   └── raw/            10 CSV files, 99,584 records
+├── docs/               full documentation, 93 files
+│   ├── assets/         architecture whiteboard, hero banner, digital diagram
+│   └── 13_Project_Evidence/  screenshots, PBIX file, dataset files
+├── scripts/            dairychain.ipynb, the Colab notebook
+├── sql/                notes on the Gold table SQL
+├── tests/              notes on testing
+├── README.md
+└── LICENSE
+```
 
 ## Purpose
 This file is the entry point for DairyChain. It is for a first-time reader who wants to understand the project end to end, in story order, without jumping around. Each section below links to the exact file that covers it, with one line saying what the reader will learn there.
 
 ## In this file
+- Numbers at a glance
+- How to run it
+- Project structure
 - Business Problem
 - Requirements
 - Dashboards
+- Database
 - Medallion Architecture
 - System Design
 - Data Engineering
@@ -60,6 +111,34 @@ Average Production Duration 135.03 minutes, Total Raw Milk Processed 2.60M L, To
 
 Captured with the date filter 01-04-2026 to 06-10-2026 active, so the cards read Total Sales Revenue 13.80M, Total Orders 7K, Quantity Fulfilled 83.90K. These are filtered values for that date range, not the full-period totals.
 
+## Database
+
+PostgreSQL 18.6, database `dairychain`, on localhost port 5432. Three schemas hold the Medallion layers: Bronze 10 tables, Silver 10 tables, Gold 6 tables, 26 tables in total.
+
+### Connection and schemas
+
+![PostgreSQL connection and schemas](docs/13_Project_Evidence/postgresql-connection-and-schemas.png)
+
+The psql connection to the `dairychain` database, with the bronze, gold, and silver schemas listed.
+
+### Table inventory
+
+![PostgreSQL table inventory](docs/13_Project_Evidence/postgresql-table-inventory.png)
+
+All 26 tables: 10 in Bronze, 10 in Silver, 6 in Gold.
+
+### Gold row counts
+
+![PostgreSQL Gold row counts](docs/13_Project_Evidence/postgresql-gold-row-counts.png)
+
+Row counts from a COUNT(*) query on the 6 Gold tables, 22,596 rows in total.
+
+### Power BI model view
+
+![Power BI model view](docs/13_Project_Evidence/powerbi-model-view-relationships.png)
+
+Power BI model view as shown in Power BI Desktop.
+
 ## Medallion Architecture
 
 ### Data Engineering Pipeline Using the Medallion Architecture
@@ -77,6 +156,10 @@ Bronze, Silver, and Gold are three schemas inside ONE large PostgreSQL database,
 ![Architecture whiteboard](docs/assets/architecture-whiteboard.png)
 
 The image above is the user-supplied architecture whiteboard (Source 27, 2026-11-11). It is an illustration of the intended pipeline. The whiteboard picture names load_bronze.py, SQLAlchemy + psycopg, read_csv, and connection validation. The build described here uses the Colab notebook and the CSV files.
+
+The same flow as a clean diagram:
+
+![Medallion architecture diagram](docs/assets/medallion-architecture.png)
 
 DairyChain uses the Medallion Architecture: Bronze, then Silver, then Gold. Data is refined one layer at a time, and each layer has a different job.
 
