@@ -35,4 +35,3 @@ The brief also named NumPy, PyArrow, CSV and Parquet as part of the project cont
 ## Next step / Related files
 - [System architecture](../02_System_Architecture/system_architecture.md)
 - [Data ingestion](../03_Data_Engineering/data_ingestion.md)
-- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

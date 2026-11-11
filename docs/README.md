@@ -56,4 +56,3 @@ All numbers below come only from the user-supplied README, 2026-11-11, not indep
 - Intended period: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
 ## Next step / Related files
 - Root README](../README.md)
-- Check file](../VERIFICATION_AND_MISSING_INFO.md)

@@ -24,4 +24,3 @@ This file answers what was assumed, what limits the project, and what would chan
 ## Next step / Related files
 - Objectives and scope](../00_Project_Overview/objectives_and_scope.md)
 - Implementation status](../13_Project_Evidence/implementation_status.md)
-- Check file](../../VERIFICATION_AND_MISSING_INFO.md)

@@ -250,7 +250,7 @@ Performance is judged by measurement, not by feeling. Learn query optimisation i
 The decisions record why Python, SQL, PostgreSQL and the three layers were chosen, and what was rejected. Learn them in [docs/12_Engineering_Decisions/README.md](docs/12_Engineering_Decisions/README.md), [docs/12_Engineering_Decisions/python_and_sql_decisions.md](docs/12_Engineering_Decisions/python_and_sql_decisions.md), [docs/12_Engineering_Decisions/database_decisions.md](docs/12_Engineering_Decisions/database_decisions.md), [docs/12_Engineering_Decisions/architecture_decisions.md](docs/12_Engineering_Decisions/architecture_decisions.md) and [docs/12_Engineering_Decisions/rejected_approaches.md](docs/12_Engineering_Decisions/rejected_approaches.md).
 
 ## Evidence
-Evidence is the final check. Learn what is implemented in [docs/13_Project_Evidence/implementation_status.md](docs/13_Project_Evidence/implementation_status.md), the query references in [docs/13_Project_Evidence/query_references.md](docs/13_Project_Evidence/query_references.md), the screenshots and reports in [docs/13_Project_Evidence/screenshots_and_reports.md](docs/13_Project_Evidence/screenshots_and_reports.md), and the check record in [docs/13_Project_Evidence/verification_record.md](docs/13_Project_Evidence/verification_record.md). The full source list is in [VERIFICATION_AND_MISSING_INFO.md](VERIFICATION_AND_MISSING_INFO.md).
+Evidence is the final check. Learn what is implemented in [docs/13_Project_Evidence/implementation_status.md](docs/13_Project_Evidence/implementation_status.md), the query references in [docs/13_Project_Evidence/query_references.md](docs/13_Project_Evidence/query_references.md), the screenshots and reports in [docs/13_Project_Evidence/screenshots_and_reports.md](docs/13_Project_Evidence/screenshots_and_reports.md), and the check record in [docs/13_Project_Evidence/verification_record.md](docs/13_Project_Evidence/verification_record.md).
 
 ## Glossary
 Terms are defined once and used the same way everywhere. See [docs/14_Glossary/business_terms.md](docs/14_Glossary/business_terms.md), [docs/14_Glossary/analytics_terms.md](docs/14_Glossary/analytics_terms.md) and [docs/14_Glossary/technical_terms.md](docs/14_Glossary/technical_terms.md).
@@ -273,5 +273,4 @@ The database layer and reporting architecture diagrams can appear in the detaile
 
 ## Next step / Related files
 - [docs/README.md](docs/README.md)
-- [VERIFICATION_AND_MISSING_INFO.md](VERIFICATION_AND_MISSING_INFO.md)
 - [docs/00_Project_Overview/project_summary.md](docs/00_Project_Overview/project_summary.md)

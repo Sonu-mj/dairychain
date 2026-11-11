@@ -23,4 +23,3 @@ This file answers what quality limits DairyChain must meet, such as correctness,
 ## Next step / Related files
 - Assumptions and constraints](assumptions_and_constraints.md)
 - Testing strategy](../09_Testing_and_Validation/testing_strategy.md)
-- Check file](../../VERIFICATION_AND_MISSING_INFO.md)

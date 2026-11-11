@@ -17,4 +17,3 @@ Each approach above was left out because it would make a number look stronger th
 ## Next step / Related files
 - Architecture decisions](architecture_decisions.md)
 - Limitations](../06_Business_Findings_and_Impact/limitations_and_future_analysis.md)
-- Check file](../../VERIFICATION_AND_MISSING_INFO.md)

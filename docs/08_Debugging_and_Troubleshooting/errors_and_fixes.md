@@ -129,4 +129,3 @@ For each new error, add: the error message, the file and line, the input, the ca
 ## Next step / Related files
 - [Debugging methodology](debugging_methodology.md)
 - [Troubleshooting log](troubleshooting_log.md)
-- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

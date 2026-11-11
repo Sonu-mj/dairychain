@@ -28,5 +28,4 @@ These limitations should be explained rather than hidden by creating relationshi
 
 ## Next step / Related files
 - [Executive summary](executive_summary.md)
-- [check file](../../VERIFICATION_AND_MISSING_INFO.md)
 - [Implementation status](../13_Project_Evidence/implementation_status.md)

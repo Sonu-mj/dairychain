@@ -142,4 +142,3 @@ Do not back-fill this file with invented tasks. Add a task only when its prompt,
 - [AI task log README](README.md)
 - [How AI was used](../how_ai_was_used.md)
 - [Architecture decisions](../../12_Engineering_Decisions/architecture_decisions.md)
-- [check file](../../../VERIFICATION_AND_MISSING_INFO.md)

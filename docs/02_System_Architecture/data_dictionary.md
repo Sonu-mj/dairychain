@@ -761,4 +761,3 @@ Use this file as a column-name, type, grain, count, and business-purpose referen
 - [Database design](database_design.md)
 - [KPI definitions](../04_Business_Analytics/kpi_definitions.md)
 - [Analytics methodology](../04_Business_Analytics/analytics_methodology.md)
-- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

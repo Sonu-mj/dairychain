@@ -25,4 +25,3 @@ The choice is shown as a README statement.
 ## Next step / Related files
 - Architecture decisions](architecture_decisions.md)
 - System architecture](../02_System_Architecture/system_architecture.md)
-- Check file](../../VERIFICATION_AND_MISSING_INFO.md)

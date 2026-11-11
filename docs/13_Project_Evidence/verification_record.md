@@ -1,10 +1,10 @@
 # Source record
 
 ## Purpose
-This file records each source used in these docs: what it was, when it arrived, and what it added. It is the per-source record behind the source list in [VERIFICATION_AND_MISSING_INFO.md](../../VERIFICATION_AND_MISSING_INFO.md). Every number in the docs traces to one of these sources.
+This file records each source used in these docs: what it was, when it arrived, and what it added. Every number in the docs traces to one of these sources.
 
 ## In this file
-- Sources 1 to 28
+- Sources 1 to 29
 
 ## Sources
 
@@ -40,6 +40,5 @@ This file records each source used in these docs: what it was, when it arrived, 
 - Source 29 - Business Questions and SQL Solutions PDF `DairyChain_Business_Questions_and_SQL_Solutions.pdf`, 2026-11-11, at `~/workspace/user/files/DairyChain_Business_Questions_and_SQL_Solutions.pdf`, 12 pages. 15 business questions, each with a PostgreSQL query, an answer calculated from the CSV files with Python and Pandas, a business interpretation, and a limitation. The PDF states the SQL examples are reproducible PostgreSQL queries and are not represented as executed database output. The PDF is in `docs/13_Project_Evidence/`, and the questions are written up in full in `docs/05_Business_Questions_and_Answers/business_questions_and_sql_solutions.md`.
 
 ## Next step / Related files
-- [Source list](../../VERIFICATION_AND_MISSING_INFO.md)
 - [What the project holds](implementation_status.md)
 - [Screenshots and reports](screenshots_and_reports.md)

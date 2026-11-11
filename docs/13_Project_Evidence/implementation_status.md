@@ -30,7 +30,6 @@ The .pbix file (Source 22) holds 4 pages named Page 1 to Page 4, 63 visuals (17,
 The notebook validation checks are listed in `docs/09_Testing_and_Validation/test_results.md`, with cell numbers and stored-output results (Source 15). The dataset validation report (Source 28) lists 29 checks, all PASS: 10 primary-key uniqueness checks, 10 foreign-key checks, and 9 business-rule checks. Four real errors from the notebook work are logged as BUG-001 to BUG-004 in `docs/08_Debugging_and_Troubleshooting/troubleshooting_log.md`, all fixed: BUG-001 KeyError `quantity_liters` (fixed in cell 36), BUG-002 FileNotFoundError `collection_centers.csv` (fixed in cell 65), BUG-003 KeyError `By-product/residual` (fixed in cells 88-89), BUG-004 a PowerShell psql command pasted as a Python cell (fixed by running the command in PowerShell, Source 17).
 
 ## Next step / Related files
-- [Source list](../../VERIFICATION_AND_MISSING_INFO.md)
 - [Source record](verification_record.md)
 - [Test results](../09_Testing_and_Validation/test_results.md)
 - [Debugging log](../08_Debugging_and_Troubleshooting/troubleshooting_log.md)
