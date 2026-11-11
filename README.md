@@ -11,13 +11,22 @@
 
 > Rejected milk cost Rs 5.99 crore out of Rs 48.19 crore of milk purchased. Low SNF alone cost Rs 3.44 crore, more than half of all rejected milk cost.
 
-## For recruiters - the 30-second view
+## Quick overview
 
-- 99,584 records across 10 CSV files in [data/raw](data/raw).
-- PostgreSQL Medallion layers: Bronze 10 tables, Silver 10 tables, Gold 6 tables. See the [Database](#database) screenshots.
-- 4 Power BI pages with 63 visuals and 21 DAX measures. See [Dashboards](#dashboards).
-- Rejected milk cost Rs 5.99 crore out of Rs 48.19 crore purchased, with Low SNF at Rs 3.44 crore.
-- A Colab notebook with 148 code cells in [scripts/dairychain.ipynb](scripts/dairychain.ipynb).
+### The problem
+A dairy business buys milk from 200 suppliers through 20 collection centres, processes it into 12 products, and sells it to customers. But it could not see where the money was going, which suppliers and centres were losing milk, or which products and orders were performing. The data existed in 10 separate files, but nobody had turned it into answers a manager could act on.
+
+### What we solved
+The project turns 99,584 records into answers. Fifteen business questions are answered, from supplier spend and quality to production yield and order fulfilment. The headline finding is that rejected milk cost Rs 5.99 crore out of Rs 48.19 crore purchased, and Low SNF alone cost Rs 3.44 crore. The answers also show one supplier taking the largest spend because it supplies the most milk, the best-quality supplier costing only about Rs 0.86 more per litre, one cost record wrong by Rs 6,657.17, and 2,834 of 14,000 orders not fully fulfilled.
+
+### How we solved it
+The 10 CSV files were cleaned with Python and Pandas into Bronze, Silver, and Gold layers in PostgreSQL, then 4 Power BI pages with 21 DAX measures were built on the Gold tables. Each of the 15 questions has a PostgreSQL query in the docs so the answer can be reproduced from the Silver tables, and each answer is calculated from the project's own data.
+
+### How to check it
+- The CSVs in [data/raw](data/raw).
+- The database screenshots in the [Database](#database) section.
+- The dashboards and the animated preview in the [Dashboards](#dashboards) section.
+- The full questions file at [docs/05_Business_Questions_and_Answers/business_questions_and_sql_solutions.md](docs/05_Business_Questions_and_Answers/business_questions_and_sql_solutions.md).
 
 ## What this shows
 
@@ -56,7 +65,7 @@
 dairychain/
 ├── data/
 │   └── raw/            10 CSV files, 99,584 records
-├── docs/               full documentation, 93 files
+├── docs/               full documentation, 94 files
 │   ├── assets/         architecture whiteboard, hero banner, digital diagram
 │   └── 13_Project_Evidence/  screenshots, PBIX file, dataset files
 ├── scripts/            dairychain.ipynb, the Colab notebook
@@ -75,7 +84,7 @@ This file is the entry point for DairyChain. It is for a first-time reader who w
 - Project structure
 - Business Problem
 - Requirements
-- For recruiters - the 30-second view
+- Quick overview
 - What this shows
 - Dashboards
 - Database

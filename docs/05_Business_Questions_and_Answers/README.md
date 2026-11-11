@@ -2,7 +2,7 @@
 
 
 ## Purpose
-This file is the index for the 13 question files in this folder. It is for a reader who wants to find one question, read its method and result without reading the whole set.
+This file is the index for the 13 question files in this folder, plus the 15-question SQL solutions file. It is for a reader who wants to find one question, read its method and result without reading the whole set.
 
 ## In this file
 - How each file is structured
@@ -26,6 +26,7 @@ Every question follows the same order: business question, business context, data
 11. [11_energy_and_operations.md](11_energy_and_operations.md) - Energy and operational analysis.
 12. [12_anomaly_and_irregularity_findings.md](12_anomaly_and_irregularity_findings.md) - Anomaly and unusual-pattern analysis.
 13. [13_management_recommendations.md](13_management_recommendations.md) - Management recommendations.
+14. [business_questions_and_sql_solutions.md](business_questions_and_sql_solutions.md) - 15 business questions with PostgreSQL queries, answers from the dataset, and business meaning (Source 29).
 ## The 20 business questions (Source 13)
 Source: the user-supplied "DairyChain - Business Questions and Analytical Requirements" document (Source 13, 2026-11-11, 12 sections). It defines 20 business questions to be answered from the PostgreSQL database and Power BI model. Each question names a business objective, required information, relevant database table, expected output, business interpretation, and calculation considerations. Query results are now from the model data (Source 23) for PR-01, PR-04, PR-05, QL-01, QL-04, PRD-01, PRD-02, PRD-03, PRD-04, S-01, S-02, S-03, S-04, S-05. PR-03 comes from the Page 2 screenshot (Source 24, district ranking only, exact litres not readable) and S-06 comes from the Page 1 and Page 4 screenshots (Source 24, trend shape only).
 
