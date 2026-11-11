@@ -11,6 +11,24 @@
 
 > Rejected milk cost Rs 5.99 crore out of Rs 48.19 crore of milk purchased. Low SNF alone cost Rs 3.44 crore, more than half of all rejected milk cost.
 
+## For recruiters - the 30-second view
+
+- 99,584 records across 10 CSV files in [data/raw](data/raw).
+- PostgreSQL Medallion layers: Bronze 10 tables, Silver 10 tables, Gold 6 tables. See the [Database](#database) screenshots.
+- 4 Power BI pages with 63 visuals and 21 DAX measures. See [Dashboards](#dashboards).
+- Rejected milk cost Rs 5.99 crore out of Rs 48.19 crore purchased, with Low SNF at Rs 3.44 crore.
+- A Colab notebook with 148 code cells in [scripts/dairychain.ipynb](scripts/dairychain.ipynb).
+
+## What this shows
+
+| Skill | Proof in this repo |
+|---|---|
+| Python and Pandas | [scripts/dairychain.ipynb](scripts/dairychain.ipynb) |
+| SQL and PostgreSQL | The database screenshots and the 26 tables in [Database](#database) |
+| DAX and Power BI | The 4 dashboard pages in [Dashboards](#dashboards) |
+| Data engineering | The Medallion layers and the CSV pipeline in [Medallion Architecture](#medallion-architecture) |
+| Business analysis | The 20 business questions with answers in [docs/05_Business_Questions_and_Answers/](docs/05_Business_Questions_and_Answers/) |
+
 ## Numbers at a glance
 
 | What | Number |
@@ -57,6 +75,8 @@ This file is the entry point for DairyChain. It is for a first-time reader who w
 - Project structure
 - Business Problem
 - Requirements
+- For recruiters - the 30-second view
+- What this shows
 - Dashboards
 - Database
 - Medallion Architecture
@@ -84,6 +104,8 @@ This is the material fact a reader must know first. The data is synthetic, not r
 - Intended period: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
 
 ## Dashboards
+
+![All 4 report pages](docs/assets/dashboards-preview.gif)
 
 Four Power BI report pages, screenshots taken in Power BI Desktop on 2026-11-11. Pages 1 to 3 show full-period values. Page 4 was captured with a date filter active (01-04-2026 to 06-10-2026), so its cards are filtered values, not full-period totals. Full-period sales are Rs 26,734,294.03 across 14,000 orders.
 
