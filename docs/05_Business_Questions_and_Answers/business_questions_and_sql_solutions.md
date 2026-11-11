@@ -48,8 +48,12 @@ ORDER BY validated_spend_inr DESC
 LIMIT 10;
 ```
 
-### Answer from the dataset
-Ganesh Jadhav Dairy (SUP-0132) ranks first: 112 procurement records, 57,396.83 litres, and Rs 3,175,190.94 (about Rs 31.75 lakh) in recalculated spend. It is also the highest-volume supplier in this dataset.
+### Answer
+
+> **Answer**
+>
+> - **Ganesh Jadhav Dairy (SUP-0132)** ranks first: 112 procurement records, 57,396.83 litres, Rs 3,175,190.94 (about Rs 31.75 lakh) in recalculated spend.
+> - It is also the highest-volume supplier in this dataset.
 
 ### What it means
 This supplier contributes the largest total procurement spend mainly because it supplies the largest volume. This does not mean it has the highest purchase rate per litre; Question 2 checks that separately. Spend is recalculated from quantity multiplied by rate. Procurement record PRC-001000 contains a recorded-cost error, so summing the uncorrected total_purchase_cost column would overstate spend by Rs 6,657.17.
@@ -84,8 +88,15 @@ SELECT ROUND(
 FROM silver.milk_procurement;
 ```
 
-### Answer from the dataset
-Yes. Transaction rates range from Rs 47.59 to Rs 64.00 per litre. Supplier-level average rates range from Rs 54.40 to Rs 55.84. Ganesh Reddy Dairy (SUP-0183) has the highest supplier average (Rs 55.84/L); Suresh Verma Dairy (SUP-0010) has the lowest (Rs 54.40/L). The overall quantity-weighted rate is about Rs 55.02/L.
+### Answer
+
+> **Answer**
+>
+> - Transaction rates range from Rs 47.59 to Rs 64.00 per litre.
+> - Supplier-level average rates range from Rs 54.40 to Rs 55.84.
+> - Highest supplier average: Ganesh Reddy Dairy (SUP-0183), Rs 55.84/L.
+> - Lowest supplier average: Suresh Verma Dairy (SUP-0010), Rs 54.40/L.
+> - Overall quantity-weighted rate: about Rs 55.02/L.
 
 ### What it means
 The dataset records real variation in the rate field, but the spread between supplier averages is much narrower than the spread between individual transactions. Check contract terms, fat and SNF incentives, timing, and collection conditions before calling a rate difference unfair. Rate comparisons should ideally control for milk quality, season, supplier agreement, and transaction date. This query is descriptive, not a causal explanation.
@@ -124,8 +135,12 @@ ORDER BY acceptance_pct DESC, avg_rate ASC
 LIMIT 10;
 ```
 
-### Answer from the dataset
-Nitin Jadhav Dairy (SUP-0131) has the highest acceptance rate among suppliers with at least 30 tests: 88 accepted out of 91 tests (96.70%), at an average rate of Rs 55.26/L. For comparison, the lowest-average-rate supplier, Suresh Verma Dairy, averages Rs 54.40/L but has an 89.02% acceptance rate (73 of 82 tests).
+### Answer
+
+> **Answer**
+>
+> - **Nitin Jadhav Dairy (SUP-0131)**: 88 accepted out of 91 tests, 96.70% acceptance, at Rs 55.26/L.
+> - For comparison, Suresh Verma Dairy averages Rs 54.40/L but has an 89.02% acceptance rate (73 of 82 tests).
 
 ### What it means
 The top-quality supplier costs about Rs 0.86/L more than the lowest-average-rate supplier, but its observed acceptance rate is about 7.68 percentage points higher. This is a useful supplier-review comparison, not proof that paying more causes better quality. What counts as best value depends on how the business values accepted milk, rejected milk, testing costs, and supplier reliability. This question uses acceptance percentage as the primary quality measure and displays average rate beside it.
@@ -161,8 +176,14 @@ ORDER BY ABS(
 ) DESC;
 ```
 
-### Answer from the dataset
-One mismatch was found: PRC-001000. Quantity = 510.03 L; rate = Rs 52.21/L; calculated cost = Rs 26,628.67; recorded cost = Rs 33,285.84; overstatement = Rs 6,657.17. The other 17,999 records match within the one-paise tolerance.
+### Answer
+
+> **Answer**
+>
+> - One mismatch found: **PRC-001000**.
+> - Quantity 510.03 L, rate Rs 52.21/L.
+> - Calculated cost Rs 26,628.67, recorded cost Rs 33,285.84, overstatement Rs 6,657.17.
+> - The other 17,999 records match within the one-paise tolerance.
 
 ### What it means
 Do not silently overwrite the source cost. Preserve the original value, store the calculated value, and flag the exception for review. The row belongs to supplier Rajesh Rathod Dairy (SUP-0155). A finance or procurement owner should confirm which value is authoritative before correcting the official record.
@@ -188,8 +209,12 @@ SELECT
 FROM validated_spend;
 ```
 
-### Answer from the dataset
-Validated spend across all procurement records is Rs 481,919,772.07 (about Rs 48.19 crore). A 2% reduction would represent approximately Rs 9,638,395.44 (about Rs 96.38 lakh) over the dataset period.
+### Answer
+
+> **Answer**
+>
+> - Validated spend across all procurement records: **Rs 481,919,772.07** (about Rs 48.19 crore).
+> - A 2% reduction would represent approximately **Rs 9,638,395.44** (about Rs 96.38 lakh) over the dataset period.
 
 ### What it means
 This gives management a scale for prioritising rate negotiations, quality improvement, and supplier consolidation discussions. It is not a guaranteed saving. The main figure includes rejected procurement records because the dataset records a cost for them. If rejected milk is not paid for under the real commercial policy, the accepted-only baseline is Rs 422,004,105.05 and 2% of that is Rs 8,440,082.10. The reporting rule must be confirmed.
@@ -216,8 +241,12 @@ GROUP BY rejection_reason
 ORDER BY rejected_tests DESC;
 ```
 
-### Answer from the dataset
-There are 2,311 rejected tests (12.84% of 18,000 tests). Reasons: Low SNF = 1,303 (56.38%); Low Fat = 513 (22.20%); High Acidity = 491 (21.25%); High Temperature = 4 (0.17%).
+### Answer
+
+> **Answer**
+>
+> - **2,311 rejected tests** (12.84% of 18,000 tests).
+> - Low SNF = 1,303 (56.38%), Low Fat = 513 (22.20%), High Acidity = 491 (21.25%), High Temperature = 4 (0.17%).
 
 ### What it means
 Low SNF is the largest recorded reason and should be the first investigation priority. Review supplier-level SNF patterns, sampling, storage, and test procedures before deciding on corrective action. These percentages are based on rejection records, not rejected litres. A volume-weighted reason analysis could produce a different ranking.
@@ -252,8 +281,15 @@ ORDER BY rejection_pct DESC, rejected_tests DESC
 LIMIT 10;
 ```
 
-### Answer from the dataset
-Dinesh Pawar Dairy (SUP-0087) ranks highest among suppliers with at least 30 tests: 21 rejected out of 84 (25.00%). Next are Rajesh Jadhav Dairy (SUP-0024), 22/93 (23.66%); Ganesh Reddy Dairy (SUP-0038), 18/83 (21.69%); Anil Verma Dairy (SUP-0003), 17/81 (20.99%); and Vikram Singh Dairy (SUP-0083), 20/97 (20.62%).
+### Answer
+
+> **Answer**
+>
+> - **Dinesh Pawar Dairy (SUP-0087)**: 21 rejected out of 84, 25.00%.
+> - Rajesh Jadhav Dairy (SUP-0024): 22/93, 23.66%.
+> - Ganesh Reddy Dairy (SUP-0038): 18/83, 21.69%.
+> - Anil Verma Dairy (SUP-0003): 17/81, 20.99%.
+> - Vikram Singh Dairy (SUP-0083): 20/97, 20.62%.
 
 ### What it means
 These suppliers are sensible candidates for a focused quality review, including SNF and fat trends, collection handling, and repeat testing. Review the cause before changing supplier terms. The ranking is based on test counts rather than volume-weighted rejection. The 30-test threshold is a screening choice to reduce small-sample noise, not a universal standard.
@@ -286,8 +322,11 @@ SELECT
 FROM supplier_metrics;
 ```
 
-### Answer from the dataset
-Across 200 suppliers, the Pearson correlation is approximately -0.0608.
+### Answer
+
+> **Answer**
+>
+> - Across 200 suppliers, the Pearson correlation is approximately **-0.0608**.
 
 ### What it means
 This is an extremely weak negative linear relationship. In this dataset, supplying more litres is not meaningfully associated with a higher acceptance percentage. Supplier volume should not be used as a substitute for quality monitoring. Correlation does not establish cause and can hide differences in season, supplier type, centre, or the number of tests per supplier.
@@ -320,8 +359,12 @@ GROUP BY c.collection_centre_id, c.centre_name
 ORDER BY rejection_by_volume_pct DESC;
 ```
 
-### Answer from the dataset
-Boriavi Milk Collection Centre (CC-002) is highest: 60,816.91 rejected litres out of 442,288.44 received, a 13.75% volume rejection rate. Umreth is next at 13.60%. Bakrol is lowest at 10.98%.
+### Answer
+
+> **Answer**
+>
+> - **Boriavi Milk Collection Centre (CC-002)**: 60,816.91 rejected litres out of 442,288.44 received, a 13.75% volume rejection rate.
+> - Umreth is next at 13.60%. Bakrol is lowest at 10.98%.
 
 ### What it means
 Boriavi is the first centre to investigate for milk handling, chilling, time-to-testing, and supplier mix. Compare its processes with lower-rejection centres before deciding what to change. This is a volume-weighted rate. The overall volume rejection rate is 12.76%, while the record-count rejection rate is 12.84%; these are different metrics.
@@ -347,8 +390,12 @@ SELECT
 FROM rejected_volume;
 ```
 
-### Answer from the dataset
-Current rejected volume is 1,117,247.35 litres. A 10% relative reduction would represent 111,724.74 litres of additional potentially accepted milk.
+### Answer
+
+> **Answer**
+>
+> - Current rejected volume: **1,117,247.35 litres**.
+> - A 10% relative reduction would represent **111,724.74 litres** of additional potentially accepted milk.
 
 ### What it means
 This gives a practical improvement target for the quality programme. Prioritising the dominant low-SNF reason and the highest-rejection suppliers and centres may help focus the investigation. The calculation assumes the recovered volume becomes acceptable and usable. It does not automatically translate into revenue or finished product; capacity, product mix, and commercial acceptance rules also matter.
@@ -400,8 +447,13 @@ GROUP BY product_name, unit_of_measure
 ORDER BY yield_pct DESC;
 ```
 
-### Answer from the dataset
-All 4,000 production batches are marked Completed. Each batch uses 650.00 litres of raw milk. Primary output is consistent within each product: liquid milk products produce 633.75 L per batch (97.50%); flavoured milk 630.50 L (97.00%); buttermilk/lassi 611.00 L (94.00%); paneer 120.51 kg (18.00% of the 669.5 kg input-mass basis); ghee 29.25 L (4.50%); cream 32.50 L (5.00%); butter 30.13 kg (about 4.50%); curd 649.41 kg (about 97.00%).
+### Answer
+
+> **Answer**
+>
+> - All 4,000 production batches are marked Completed. Each batch uses 650.00 litres of raw milk.
+> - Liquid milk products: 633.75 L per batch (97.50%). Flavoured milk: 630.50 L (97.00%). Buttermilk/lassi: 611.00 L (94.00%).
+> - Paneer: 120.51 kg (18.00% of the 669.5 kg input-mass basis). Ghee: 29.25 L (4.50%). Cream: 32.50 L (5.00%). Butter: 30.13 kg (about 4.50%). Curd: 649.41 kg (about 97.00%).
 
 ### What it means
 The batch outputs follow a consistent product-specific conversion pattern in the supplied data. Use the yield table for comparisons within the same product and unit, not to compare litres directly with kilograms. Only primary product output is used in the yield metric; the by-product and residual output is kept separate. The 1.03 kg per litre conversion is a dataset modelling assumption, not a universal dairy-process constant.
@@ -455,8 +507,12 @@ WHERE sd_yield > 0
 ORDER BY ABS((yield_ratio - avg_yield) / NULLIF(sd_yield, 0)) DESC;
 ```
 
-### Answer from the dataset
-No production-yield outlier was identified after comparing like products with the correct unit conversion and rounding. Within each product, the observed primary yield is the same across its batches to four decimal places.
+### Answer
+
+> **Answer**
+>
+> - **No production-yield outlier was identified** after comparing like products with the correct unit conversion and rounding.
+> - Within each product, the observed primary yield is the same across its batches to four decimal places.
 
 ### What it means
 There is no batch-level yield variation in this dataset to investigate. This is a limitation of the available data: it cannot support realistic process-variation or anomaly-monitoring conclusions. A first unadjusted comparison of kilograms against litres can create false anomalies. Always align units and compare a batch only with the same product.
@@ -490,8 +546,12 @@ GROUP BY pr.product_id, pr.product_name
 ORDER BY avg_raw_milk_litres_per_batch DESC;
 ```
 
-### Answer from the dataset
-No product uses more raw milk per batch in this dataset: every one of the 4,000 completed batches consumes 650.00 litres. Total input differs only because some products have 334 batches and others 333. Overall raw-milk input is 2,600,000 litres.
+### Answer
+
+> **Answer**
+>
+> - No product uses more raw milk per batch: every one of the 4,000 completed batches consumes **650.00 litres**.
+> - Overall raw-milk input is **2,600,000 litres**. Total input differs only because some products have 334 batches and others 333.
 
 ### What it means
 This question reveals that the model applies a fixed 650-litre input to each batch. To compare recipe intensity in a real factory, input quantities for all ingredients and actual batch outputs would be needed. Do not rank products by total input alone: a product with one additional batch will have a larger total even though its per-batch requirement is identical.
@@ -518,8 +578,12 @@ GROUP BY pr.product_id, pr.product_name
 ORDER BY net_sales_revenue_inr DESC;
 ```
 
-### Answer from the dataset
-Total net sales revenue is Rs 26,734,294.03. The top products are Pure Cow & Buffalo Ghee (Rs 5,986,642.50; 22.39% of total), Fresh Malai Paneer (Rs 5,531,071.00), and Pasteurised Table Butter (Rs 5,156,439.08).
+### Answer
+
+> **Answer**
+>
+> - Total net sales revenue: **Rs 26,734,294.03**.
+> - Pure Cow & Buffalo Ghee: Rs 5,986,642.50 (22.39% of total). Fresh Malai Paneer: Rs 5,531,071.00. Pasteurised Table Butter: Rs 5,156,439.08.
 
 ### What it means
 These products contribute the largest recorded sales value and may deserve attention in pricing, demand planning, and availability reviews. Revenue does not equal profit. The dataset has no complete product-level cost-of-goods-sold or margin calculation in these tables. High revenue alone does not prove high profitability.
@@ -556,8 +620,13 @@ GROUP BY o.order_status
 ORDER BY o.order_status;
 ```
 
-### Answer from the dataset
-There are 2,834 orders not fully fulfilled: 2,227 Partially Delivered and 607 Cancelled. The remaining 11,166 are Delivered and fully fulfilled. Among 13,393 non-cancelled orders with an actual delivery date, 0 are later than the expected date; all are recorded on the expected date.
+### Answer
+
+> **Answer**
+>
+> - **2,834 orders not fully fulfilled**: 2,227 Partially Delivered and 607 Cancelled.
+> - The remaining 11,166 are Delivered and fully fulfilled.
+> - Among 13,393 non-cancelled orders with an actual delivery date, **0 are later than the expected date**; all are recorded on the expected date.
 
 ### What it means
 The primary issue is fulfilment completeness, not recorded delivery lateness. Investigate the 2,227 partially delivered orders separately from the 607 cancelled orders because their operational causes may differ. "On time" is measured only from the date fields provided. The date fields do not reveal delivery time-of-day, partial quantities at each drop, or the reason an order was cancelled.
