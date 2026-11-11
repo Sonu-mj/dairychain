@@ -4,7 +4,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 
 ## Master data
 
-### `suppliers.csv` — 200 rows
+### `suppliers.csv` - 200 rows
 | Column | Meaning |
 |---|---|
 | `supplier_id` | Supplier primary key (`SUP-####`). |
@@ -15,7 +15,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `status` | Supplier status; one deliberately lowercase value is included. |
 | `contact_reference` | Synthetic non-contact reference token. |
 
-### `collection_centres.csv` — 20 rows
+### `collection_centres.csv` - 20 rows
 | Column | Meaning |
 |---|---|
 | `collection_centre_id` | Collection-centre primary key (`CC-###`). |
@@ -24,7 +24,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `opening_time`, `closing_time` | Local operating hours. |
 | `status` | Centre operating status. |
 
-### `products.csv` — 12 rows
+### `products.csv` - 12 rows
 | Column | Meaning |
 |---|---|
 | `product_id` | Product primary key (`PRD-###`). |
@@ -37,7 +37,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 
 ## Procurement and quality
 
-### `milk_procurement.csv` — 18,000 rows
+### `milk_procurement.csv` - 18,000 rows
 | Column | Meaning |
 |---|---|
 | `procurement_id` | Procurement primary key (`PRC-######`). |
@@ -50,7 +50,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `total_purchase_cost` | Extended purchase cost in INR; one intentional 25% mismatch is included. |
 | `acceptance_status` | Accepted or Rejected based on quality thresholds. |
 
-### `quality_tests.csv` — 18,000 rows
+### `quality_tests.csv` - 18,000 rows
 | Column | Meaning |
 |---|---|
 | `test_id` | Quality-test primary key (`QCT-######`). |
@@ -64,7 +64,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 
 ## Production
 
-### `production_batches.csv` — 4,000 rows
+### `production_batches.csv` - 4,000 rows
 | Column | Meaning |
 |---|---|
 | `production_id` | Production batch primary key (`PRD-B-#####`). |
@@ -74,7 +74,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `production_status` | Batch status; all generated runs are Completed. |
 | `supervisor_id` | Synthetic supervisor identifier. |
 
-### `production_inputs.csv` — generated row count in manifest
+### `production_inputs.csv` - generated row count in manifest
 | Column | Meaning |
 |---|---|
 | `production_input_id` | Production-input primary key (`PIN-######`). |
@@ -84,7 +84,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `input_quantity`, `unit_of_measure` | Consumed quantity and unit. Each completed batch consumes 650 L in total. |
 | `input_timestamp` | Timestamp at which the material is consumed; source receipt is at or before this time. |
 
-### `production_outputs.csv` — 8,000 rows
+### `production_outputs.csv` - 8,000 rows
 | Column | Meaning |
 |---|---|
 | `output_id` | Production-output primary key (`POU-######`). |
@@ -96,7 +96,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 
 ## Sales
 
-### `sales_orders.csv` — 14,000 rows
+### `sales_orders.csv` - 14,000 rows
 | Column | Meaning |
 |---|---|
 | `order_id` | Sales-order primary key (`ORD-######`). |
@@ -106,7 +106,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `expected_delivery_date`, `actual_delivery_date` | Expected and simulated actual delivery dates. |
 | `payment_status` | Paid, Pending, Partially Paid or Void. |
 
-### `sales_order_lines.csv` — 28,000 rows
+### `sales_order_lines.csv` - 28,000 rows
 | Column | Meaning |
 |---|---|
 | `order_line_id` | Sales-order-line primary key (`ORL-######`). |
