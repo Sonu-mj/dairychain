@@ -23,7 +23,7 @@ Row counts were shown by the main agent on 2026-11-11 by recounting the CSVs aft
 
 ## Intentional data-quality scenarios
 
-Five data-quality problems were deliberately built into the data, so the cleaning and validation work can be shown against known faults. They are documented in `data/manifests/manifest.json` and in the validation report at `data/validation_report.txt`:
+Five data-quality problems were deliberately built into the data, so the cleaning and validation work can be shown against known faults. They are documented in the validation report at `data/validation_report.txt`:
 
 - DQ-01: suppliers SUP-0015, lowercase status value (`active`).
 - DQ-02: suppliers SUP-0042, leading and trailing whitespace in village (` Boriavi `).
@@ -33,7 +33,6 @@ Five data-quality problems were deliberately built into the data, so the cleanin
 
 ## Supporting files
 
-- `data/manifests/manifest.json` - row counts, file sizes, keys, DQ scenarios, and validation results for all 10 files.
 - `data/validation_report.txt` - 29 checks.
 - `data/DATA_DICTIONARY.md` - column meanings for all 10 files.
 - `data/SHA256SUMS.txt` - checksums for all 10 files.

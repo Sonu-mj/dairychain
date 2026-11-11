@@ -101,7 +101,7 @@ This file is the entry point for DairyChain. It is for a first-time reader who w
 
 ## Numbers used in this file
 All numbers below come from the user-supplied README, 2026-11-11, and the supplied CSV files (Source 28), recounted and checksum-shown on 2026-11-11.
-- Source: 10 CSV files, 99,584 total records, now in `data/raw/`: suppliers 200, collection_centres 20, products 12, milk_procurement 18,000, quality_tests 18,000, production_batches 4,000, production_inputs 9,352, production_outputs 8,000, sales_orders 14,000, sales_order_lines 28,000. The manifest, data dictionary, validation report (29 checks), and checksums are in `data/`, and the original ZIP is in `docs/13_Project_Evidence/DairyChain_dataset_full.zip`.
+- Source: 10 CSV files, 99,584 total records, now in `data/raw/`: suppliers 200, collection_centres 20, products 12, milk_procurement 18,000, quality_tests 18,000, production_batches 4,000, production_inputs 9,352, production_outputs 8,000, sales_orders 14,000, sales_order_lines 28,000. The data dictionary, validation report (29 checks), and checksums are in `data/`, and the original ZIP is in `docs/13_Project_Evidence/DairyChain_dataset_full.zip`.
 
 ## The data is synthetic
 

@@ -8,7 +8,6 @@ This folder contains 10 related CSV datasets for a synthetic Indian dairy factor
 - `data/raw/procurement/`: milk procurement and quality tests
 - `data/raw/production/`: production batches, inputs and outputs
 - `data/raw/sales/`: sales orders and order lines
-- `data/manifests/manifest.json`: actual row counts, file sizes, keys, DQ scenarios and validation results
 
 ## Important modeling assumptions
 
@@ -17,7 +16,7 @@ This folder contains 10 related CSV datasets for a synthetic Indian dairy factor
 - The second production output is a combined coproduct/residual amount to make the simplified input/output quantity balance explicit.
 - Orders are processed chronologically and fulfilled quantities are capped by finished goods available by the order timestamp.
 - Customer codes are external references; no customer master table is included in this 10-table starter scope.
-- Five intentional data-quality scenarios are documented in the manifest.
+- Five intentional data-quality scenarios are documented in the data dictionary.
 
 ## Start here
 

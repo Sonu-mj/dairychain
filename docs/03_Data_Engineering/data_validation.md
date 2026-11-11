@@ -33,7 +33,7 @@ Useful checks from the pipeline document include:
 
 ## Intentional data-quality scenarios - Source 28
 
-The dataset contains 5 deliberate data-quality faults, so the cleaning and validation work can be shown against known faults. They are documented in the manifest (`data/manifests/manifest.json`) and in the zip data dictionary, and each one was confirmed present in the supplied CSVs on 2026-11-11:
+The dataset contains 5 deliberate data-quality faults, so the cleaning and validation work can be shown against known faults. They are documented in the zip data dictionary, and each one was confirmed present in the supplied CSVs on 2026-11-11:
 
 - DQ-01: suppliers SUP-0015, status value `active` in lowercase. The other suppliers use `Active` or `Inactive`.
 - DQ-02: suppliers SUP-0042, village with leading and trailing whitespace (` Boriavi `).

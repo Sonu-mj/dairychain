@@ -74,7 +74,7 @@ All data is synthetic. IDs are stable business keys within this generated datase
 | `production_status` | Batch status; all generated runs are Completed. |
 | `supervisor_id` | Synthetic supervisor identifier. |
 
-### `production_inputs.csv` - generated row count in manifest
+### `production_inputs.csv` - generated row count
 | Column | Meaning |
 |---|---|
 | `production_input_id` | Production-input primary key (`PIN-######`). |
