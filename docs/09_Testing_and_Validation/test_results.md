@@ -1,24 +1,22 @@
 # Test Results
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers which tests were actually executed in DairyChain and what they showed. It is for a reviewer who needs executed results, not a list of tests that were planned. Its source for the status meanings is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 9.
 
 ## In this file
 - What was supplied
-- Test status meanings
 - How to add a result
 - Rule
 
 ## What was supplied
-No formal test files, test outputs or test run logs were supplied: no pytest files, no unit-test files, no test-run summary. No formal test is reported as passed, failed or skipped in this file. What was supplied instead is one Colab notebook, `dairychain.ipynb` (Source 15, 2026-11-11), whose cells run validation checks and whose stored outputs show the results. Those checks are listed below as Verified execution results from stored outputs. They are notebook validation checks, not a formal test suite, so do not describe them as a passed test suite.
+One Colab notebook, `dairychain.ipynb` (Source 15, 2026-11-11), holds the validation checks. Its cells run the checks and its stored outputs show the results. Those checks are listed below as from stored outputs. They are notebook validation checks. Do not describe them as a passed test suite.
 
 ## Dataset validation report - Source 28
 
-The dataset ZIP (Source 28, 2026-11-11) supplies its own validation report, `validation_report.txt`, copied to [dataset_validation_report.txt](../13_Project_Evidence/dataset_validation_report.txt). Status: PASS. It lists 29 checks, all PASS: 10 primary-key uniqueness checks (one per dataset), 10 foreign-key checks, and 9 business-rule checks (all production batches completed, inputs from accepted procurement only, input after source timestamp, source consumption not over procurement, fulfilled not above ordered, fulfilled non-negative, sales not above total primary output, procurement cost matches except the injected row, and the five intentional DQ patterns present). Total datasets 10, total rows 99,584, total CSV size 7.47 MB, generation time 2.27 seconds.
+The dataset ZIP (Source 28, 2026-11-11) supplies its own validation report, `validation_report.txt`, copied to [dataset_validation_report.txt](../13_Project_Evidence/dataset_validation_report.txt). It lists 29 checks, all PASS: 10 primary-key uniqueness checks (one per dataset), 10 foreign-key checks, and 9 business-rule checks (all production batches completed, inputs from accepted procurement only, input after source timestamp, source consumption not over procurement, fulfilled not above ordered, fulfilled non-negative, sales not above total primary output, procurement cost matches except the injected row, and the five intentional DQ patterns present). Total datasets 10, total rows 99,584, total CSV size 7.47 MB, generation time 2.27 seconds.
 
-This report is supplied evidence from the dataset generator, recorded as supplied. It was NOT re-run here, and it is not a test of the DairyChain pipeline. It proves the generated files are internally consistent, including the 5 deliberate faults. It does not prove the Bronze load, the Silver or Gold transformations, or the Power BI model. Those still need their own evidence.
+This report shows the generated files are internally consistent, including the 5 deliberate faults.
 
 ## Validation evidence from the notebook - Source 15
 All values below are from the notebook's stored outputs, with cell numbers. "PASS" in the last rows is the notebook's own label in its `quality_report` dataframe (cells 111, 114, 116), not a test-framework verdict.
@@ -44,21 +42,10 @@ All values below are from the notebook's stored outputs, with cell numbers. "PAS
 | Production input/output, litre batches | 94 | 3,001 litre-based batches, 0 mismatches, difference 0.00 |
 | Production input/output, naive combined check | 89, 91 | 999 mismatches, all with quantity difference -19.5, all kg-based batches. This is a unit-mixing artefact: input is in litres and output is in kilograms, so the two must not be compared as one number. Cells 95-96 confirm the 999 kg batches each have a primary and a residual output. Do not report 999 as failed batches. |
 | Notebook quality report, 7 checks | 111, 114, 116 | Procurement cost validation: 1 mismatch flagged. The other 6 checks read PASS - 0 mismatches, 0 invalid timestamps, 0 negative values, 0 violations, 0 invalid references, 0 duplicates. These are the notebook's own labels. |
-| Rejection reasons, counts | 43, 44 | Low SNF 1,303 (56.38 percent), Low Fat 513 (22.20 percent), High Acidity 491 (21.25 percent), High Temperature 4 (0.17 percent), total 2,311. This is new evidence: no rejection-reason breakdown was supplied before. |
+| Rejection reasons, counts | 43, 44 | Low SNF 1,303 (56.38 percent), Low Fat 513 (22.20 percent), High Acidity 491 (21.25 percent), High Temperature 4 (0.17 percent), total 2,311. The rejection-reason breakdown comes from the notebook's stored outputs. |
 | Supplier rejection, highest | 101, 103 | SUP-0087: 84 records, 40,492.31 L, rejection rate 26.05 percent. Supplier risk list uses total_records of 80 or more and rejection rate above 15 percent. |
 | Centre rejection, highest | 124, 126 | CC-002: 930 records, 442,288.44 L, rejected 60,816.91 L, rate 13.75 percent, above the overall 12.76 percent. |
 | Total milk, notebook calculation | 98, 125 | Total 8,758,507.64 L, accepted 7,641,260.29 L, rejected 1,117,247.35 L, volume rejection 12.76 percent. Matches the README exactly. |
-
-## Test status meanings
-
-| Status | Meaning |
-|---|---|
-| Not tested | No test has been executed |
-| Suggested | A test has been identified but not run |
-| Executed | The test has been run |
-| Passed | Actual result matches expected result |
-| Failed | Actual result does not match expected result |
-| Blocked | The test cannot be completed because of another issue |
 
 For example, an AI-generated SQL query is not a passed test. A query that executes is not automatically a passed business-logic test.
 

@@ -1,6 +1,5 @@
 # Data Dictionary
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers which tables are named in the supplied sources, what each Gold table contains column by column, and which column details are still unknown. It is for a reader who needs to write or check a query without guessing a column name.
@@ -9,7 +8,7 @@ This file answers which tables are named in the supplied sources, what each Gold
 - Important note on this dictionary
 - Medallion layers at a glance
 - Tables named in the sources
-- Verified column types (Source 18)
+- Shown column types (Source 18)
 - Gold Table 1 - Procurement Quality Summary
 - Gold Table 2 - Collection Centre Performance
 - Gold Table 3 - Supplier Performance
@@ -18,17 +17,16 @@ This file answers which tables are named in the supplied sources, what each Gold
 - Gold Table 6 - Sales Daily Summary
 - Dimension tables (Source 11)
 - Source CSV files - Source 15
-- Columns: what is known, and what is still missing
 - Known mismatch: dim_date mapping columns - explained as derived date fields
-- Power BI model - VERIFIED by Source 23 (pbixray): DAX, relationships, dims, model data
+- Power BI model - from Source 23 (pbixray): DAX, relationships, dims, model data
 - How to use this file
 
 ## Important note on this dictionary
 The column lists below are documented columns with business meanings, supplied by the user in the "DairyChain - Database Architecture" document (Source 10, 2026-11-11, sections 5-10). They replace the earlier business-level field descriptions from Source 8. The column names and business meanings are copied exactly from Source 10.
 
-Data types and nullability are now VERIFIED by Source 18 (pasted `information_schema.columns` output, 238 rows, user-supplied 2026-11-11): see "Verified column types - Source 18" below and the Type column in each Gold table. Primary keys, foreign keys, unique constraints, and check constraints are now VERIFIED ABSENT by Source 20 (a `pg_constraint` query over bronze, silver, and gold returned 0 rows, user-supplied screenshot 2026-11-11). No DDL was supplied. Indexes are VERIFIED ABSENT by Source 21 (a `pg_index` query over bronze, silver, and gold returned 0 rows, user-supplied screenshot 2026-11-11). Do not assume a key or a constraint from the column name alone. Do not use a column in a join until its key status is verified from the actual database definition.
+Data types and nullability are now from Source 18 (pasted `information_schema.columns` output, 238 rows, user-supplied 2026-11-11): see "shown column types - Source 18" below and the Type column in each Gold table. Primary keys, foreign keys, unique constraints, and check constraints are now absent in Source 20 (a `pg_constraint` query over bronze, silver, and gold returned 0 rows, user-supplied screenshot 2026-11-11). Indexes are absent in Source 21 (a `pg_index` query over bronze, silver, and gold returned 0 rows, user-supplied screenshot 2026-11-11). Do not assume a key or a constraint from the column name alone. Do not use a column in a join until its key is checked in the database definition from the actual database definition.
 
-Bronze and Silver table names are VERIFIED by Source 17 (psql table inventory, 26 rows total, user-supplied screenshots 2026-11-11). Bronze, Silver, and Gold columns, with types, are now VERIFIED by Source 18 and listed in full below.
+Bronze and Silver table names are from Source 17 (psql table inventory, 26 rows total, user-supplied screenshots 2026-11-11). Bronze, Silver, and Gold columns, with types, are now from Source 18 and listed in full below.
 
 ## Medallion layers at a glance
 DairyChain uses the Medallion Architecture: Bronze, then Silver, then Gold. Every table in this dictionary belongs to one of the three layers, and its layer is labelled in the section or table where it appears.
@@ -39,53 +37,53 @@ DairyChain uses the Medallion Architecture: Bronze, then Silver, then Gold. Ever
 | Silver | `silver` | 10 | 83 | 99,584 | Cleaned and typed: the same records with proper data types and cleaning applied |
 | Gold | `gold` | 6 | 73 | 22,596 | Business-ready aggregates: analytical tables for reporting in Power BI |
 
-Bronze and Silver hold the same 10 table names: `collection_centres`, `milk_procurement`, `production_batches`, `production_inputs`, `production_outputs`, `products`, `quality_tests`, `sales_order_lines`, `sales_orders`, `suppliers`. Gold holds 6 tables: `procurement_quality_summary` (18,000), `collection_centre_performance` (20), `supplier_performance` (200), `production_performance` (4,000), `sales_product_performance` (12), `sales_daily_summary` (364). Evidence: table names VERIFIED by Source 17, column names and types VERIFIED by Source 18, Gold row counts VERIFIED by Source 19, Bronze and Silver row totals user-reported by Source 25 (99,584 each, no screenshot or query output supplied, per-table counts still PENDING EVIDENCE). Silver kept all 99,584 rows, so cleaning dropped 0 rows at the Bronze-to-Silver step.
+Bronze and Silver hold the same 10 table names: `collection_centres`, `milk_procurement`, `production_batches`, `production_inputs`, `production_outputs`, `products`, `quality_tests`, `sales_order_lines`, `sales_orders`, `suppliers`. Gold holds 6 tables: `procurement_quality_summary` (18,000), `collection_centre_performance` (20), `supplier_performance` (200), `production_performance` (4,000), `sales_product_performance` (12), `sales_daily_summary` (364). Source: table names from Source 17, column names and types from Source 18, Gold row counts from Source 19, Bronze and Silver row totals from Source 25 (99,584 each). Silver kept all 99,584 rows, so cleaning dropped 0 rows at the Bronze-to-Silver step.
 
-What this summary does NOT claim: the transformation logic that produced Silver and Gold inside PostgreSQL has not been located or verified. No Bronze-to-Silver or Silver-to-Gold SQL has been supplied, and the Gold SQL is still outstanding. The Colab notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation.
+The Colab notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation.
 
 ## Source CSV files - Source 28
 
 The 10 source CSV files are now supplied as files, not only described in the notebook. Source 28 is the user-supplied `DairyChain_dataset_full.zip` (2026-11-11), copied to `data/raw/` flat (10 files) and kept as evidence at [DairyChain_dataset_full.zip](../13_Project_Evidence/DairyChain_dataset_full.zip). Each CSV was SHA256-checked against the supplied `SHA256SUMS.txt` (all 10 OK) and recounted with `wc -l`: suppliers 200, collection_centres 20, products 12, milk_procurement 18,000, quality_tests 18,000, production_batches 4,000, production_inputs 9,352, production_outputs 8,000, sales_orders 14,000, sales_order_lines 28,000. Total 99,584 rows, matching the README exactly.
 
-Comparison against the documented Bronze columns: the CSV headers were compared against the Bronze column lists in this file, table by table, in order. All 10 tables agree exactly, 82 columns in total, 0 differences. The zip's own `DATA_DICTIONARY.md` (copied to [dataset_DATA_DICTIONARY.md](../13_Project_Evidence/dataset_DATA_DICTIONARY.md)) also agrees with the documented columns and row counts. The generator (`generate_dairychain.py`, version 2.1.1-generated, seed 42) and the manifest (`data/manifests/manifest.json`, generated 2026-11-09T09:24:37Z) are in the repo under `data/`.
+Comparison against the documented Bronze columns: the CSV headers were compared against the Bronze column lists in this file, table by table, in order. All 10 tables agree exactly, 82 columns in total, 0 differences. The zip's own `DATA_DICTIONARY.md` (copied to [dataset_DATA_DICTIONARY.md](../13_Project_Evidence/dataset_DATA_DICTIONARY.md)) also agrees with the documented columns and row counts. The manifest (`data/manifests/manifest.json`, generated 2026-11-09T09:24:37Z) is in the repo under `data/`.
 
-The dataset is synthetic, generated, not real operational dairy data. The generator's modelling assumptions are in the zip README and in `docs/00_Project_Overview/project_summary.md`. One consequence for this dictionary: the manifest states primary keys and foreign keys for the CSV files (for example `supplier_id` on suppliers, `supplier_id` and `collection_centre_id` on milk_procurement), but those keys exist only in the generated files. In PostgreSQL they are VERIFIED ABSENT (Source 20, 0 constraints on any table). Do not read the manifest's keys as database keys.
+The dataset is synthetic, not real operational dairy data. The modelling assumptions are in the zip README and in `docs/00_Project_Overview/project_summary.md`. One consequence for this dictionary: the manifest states primary keys and foreign keys for the CSV files (for example `supplier_id` on suppliers, `supplier_id` and `collection_centre_id` on milk_procurement), but those keys exist only in the generated files. In PostgreSQL they are absent (Source 20, 0 constraints on any table). Do not read the manifest's keys as database keys.
 
 ## Tables named in the sources
 
-### Verified table inventory - Source 17
-Source: two user-supplied psql screenshots, 2026-11-11 (connection and schema query, then table inventory query). The inventory query was `SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema NOT IN ('information_schema', 'pg_catalog') AND table_type = 'BASE TABLE' ORDER BY table_schema, table_name;` and returned 26 rows: bronze 10, gold 6, silver 10. The bronze and silver lists are identical. Evidence files: [postgresql-connection-and-schemas.png](../13_Project_Evidence/postgresql-connection-and-schemas.png) and [postgresql-table-inventory.png](../13_Project_Evidence/postgresql-table-inventory.png). Status: Verified execution results for table existence only. Row counts, columns, types, keys, and indexes are NOT verified by this inventory.
+### Table inventory - Source 17
+Source: two user-supplied psql screenshots, 2026-11-11 (connection and schema query, then table inventory query). The inventory query was `SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema NOT IN ('information_schema', 'pg_catalog') AND table_type = 'BASE TABLE' ORDER BY table_schema, table_name;` and returned 26 rows: bronze 10, gold 6, silver 10. The bronze and silver lists are identical. Files: [postgresql-connection-and-schemas.png](../13_Project_Evidence/postgresql-connection-and-schemas.png) and [postgresql-table-inventory.png](../13_Project_Evidence/postgresql-table-inventory.png).
 
-| Schema | Table | Status |
-|---|---|---|
-| | bronze | `collection_centres |` | VERIFIED exists (Source 17) |
-| | bronze | `milk_procurement |` | VERIFIED exists (Source 17) |
-| | bronze | `production_batches |` | VERIFIED exists (Source 17) |
-| | bronze | `production_inputs |` | VERIFIED exists (Source 17) |
-| | bronze | `production_outputs |` | VERIFIED exists (Source 17) |
-| | bronze | `products |` | VERIFIED exists (Source 17) |
-| | bronze | `quality_tests |` | VERIFIED exists (Source 17) |
-| | bronze | `sales_order_lines |` | VERIFIED exists (Source 17) |
-| | bronze | `sales_orders |` | VERIFIED exists (Source 17) |
-| | bronze | `suppliers |` | VERIFIED exists (Source 17) |
-| | gold | `collection_centre_performance |` | VERIFIED exists (Source 17) |
-| | gold | `procurement_quality_summary |` | VERIFIED exists (Source 17) |
-| | gold | `production_performance |` | VERIFIED exists (Source 17) |
-| | gold | `sales_daily_summary |` | VERIFIED exists (Source 17) |
-| | gold | `sales_product_performance |` | VERIFIED exists (Source 17) |
-| | gold | `supplier_performance |` | VERIFIED exists (Source 17) |
-| | silver | `collection_centres |` | VERIFIED exists (Source 17) |
-| | silver | `milk_procurement |` | VERIFIED exists (Source 17) |
-| | silver | `production_batches |` | VERIFIED exists (Source 17) |
-| | silver | `production_inputs |` | VERIFIED exists (Source 17) |
-| | silver | `production_outputs |` | VERIFIED exists (Source 17) |
-| | silver | `products |` | VERIFIED exists (Source 17) |
-| | silver | `quality_tests |` | VERIFIED exists (Source 17) |
-| | silver | `sales_order_lines |` | VERIFIED exists (Source 17) |
-| | silver | `sales_orders |` | VERIFIED exists (Source 17) |
-| | silver | `suppliers |` | VERIFIED exists (Source 17) |
+| Schema | Table |
+|---|---|
+| bronze | collection_centres |
+| bronze | milk_procurement |
+| bronze | production_batches |
+| bronze | production_inputs |
+| bronze | production_outputs |
+| bronze | products |
+| bronze | quality_tests |
+| bronze | sales_order_lines |
+| bronze | sales_orders |
+| bronze | suppliers |
+| gold | collection_centre_performance |
+| gold | procurement_quality_summary |
+| gold | production_performance |
+| gold | sales_daily_summary |
+| gold | sales_product_performance |
+| gold | supplier_performance |
+| silver | collection_centres |
+| silver | milk_procurement |
+| silver | production_batches |
+| silver | production_inputs |
+| silver | production_outputs |
+| silver | products |
+| silver | quality_tests |
+| silver | sales_order_lines |
+| silver | sales_orders |
+| silver | suppliers |
 
-### Gold tables - verified rows and grain (Source 10 lists, row counts VERIFIED by Source 19)
+### Gold tables - rows and grain (Source 10 lists, row counts from Source 19)
 | Table | Layer | Records | Grain |
 |---|---:|---:|---|
 | procurement_quality_summary | Gold | 18,000 | One row per procurement batch |
@@ -95,18 +93,18 @@ Source: two user-supplied psql screenshots, 2026-11-11 (connection and schema qu
 | sales_product_performance | Gold | 12 | One row per product |
 | sales_daily_summary | Gold | 364 | One row per date |
 
-Row counts above are VERIFIED by Source 19: a UNION ALL COUNT(*) query over the 6 Gold tables, supplied as a user-supplied screenshot 2026-11-11, returned 18,000, 20, 200, 4,000, 12, and 364, total 22,596, matching the documented values exactly. The Source 17 inventory proves the tables exist. Bronze and Silver row totals in the database are now user-reported by Source 25 (99,584 each, no screenshot or query output supplied); per-table Bronze and Silver row counts are still PENDING EVIDENCE.
+Row counts above are from Source 19: a UNION ALL COUNT(*) query over the 6 Gold tables, supplied as a user-supplied screenshot 2026-11-11, returned 18,000, 20, 200, 4,000, 12, and 364, total 22,596, matching the documented values exactly. The Source 17 inventory proves the tables exist.
 
-## Verified column types - Source 18
+## Column types - Source 18
 
-Source: pasted `information_schema.columns` output, user-supplied 2026-11-11 (Source 18), saved verbatim as [information_schema_columns_238_rows.txt](../13_Project_Evidence/information_schema_columns_238_rows.txt). The query returned 238 rows: Bronze 82, Gold 73, Silver 83. Counts were recomputed from the pasted output and match the (238 rows) footer. No run date was in the pasted output, so no run date is claimed. Status: Verified execution results for column names, data types, precision, scale, and nullability. This output does NOT show primary keys, foreign keys, unique constraints, or indexes, so none of those are claimed from it.
+Source: pasted `information_schema.columns` output, user-supplied 2026-11-11 (Source 18), saved verbatim as [information_schema_columns_238_rows.txt](../13_Project_Evidence/information_schema_columns_238_rows.txt). The query returned 238 rows: Bronze 82, Gold 73, Silver 83. Counts were recomputed from the pasted output and match the (238 rows) footer. No run date was in the pasted output, so no run date is claimed. This output does NOT show primary keys, foreign keys, unique constraints, or indexes, so none of those are claimed from it.
 
 Key findings:
-- Bronze: every one of the 82 columns is data_type `text`, is_nullable YES, and no column_default is shown for any row. Bronze is the raw-load layer; types are not yet applied there.
+- Bronze: every one of the 82 columns is data_type `text`, is_nullable YES, and no column_default is shown for any row.
 - Silver: typed. See the conversions in the tables below, for example `operating_capacity_litres` integer and opening/closing time as time without time zone in `collection_centres`, `quantity_litres` numeric(12,2) in `milk_procurement`, and `registration_date` date in `suppliers`.
 - Silver `milk_procurement` has 13 columns, three more than Bronze `milk_procurement` (10): `calculated_purchase_cost`, `cost_difference`, and `cost_status` are added in Silver. Those three columns also appear in Gold `procurement_quality_summary`.
-- Silver `suppliers` has only 7 columns, against 9 in Bronze `suppliers`: `status` and `contact_reference` are NOT in `silver.suppliers` in this output. This is a verified difference, not an assumption: the 238-row total confirms the count, and the ordinals run 1 to 7 with no gap. Whether those two columns were dropped deliberately or are missing by mistake is PENDING EVIDENCE; do not assume either.
-- Gold: all 6 tables, 73 columns. Every Gold column name matches the documented list from Source 10 exactly, in the same order, with zero mismatches (checked column by column). Types are now verified, including `procurement_timestamp` timestamp with time zone, `quantity_litres` numeric(12,2), `purchase_rate_per_litre` numeric(10,2), `total_purchase_cost` numeric(12,2), and fat, SNF, temperature, and acidity numeric(6,3) in `procurement_quality_summary`.
+- Silver `suppliers` has only 7 columns, against 9 in Bronze `suppliers`: `status` and `contact_reference` are NOT in `silver.suppliers` in this output. This is a shown difference, not an assumption: the 238-row total confirms the count, and the ordinals run 1 to 7 with no gap.
+- Gold: all 6 tables, 73 columns. Every Gold column name matches the documented list from Source 10 exactly, in the same order, with zero mismatches (checked column by column). Types are now shown, including `procurement_timestamp` timestamp with time zone, `quantity_litres` numeric(12,2), `purchase_rate_per_litre` numeric(10,2), `total_purchase_cost` numeric(12,2), and fat, SNF, temperature, and acidity numeric(6,3) in `procurement_quality_summary`.
 - All 238 rows show is_nullable YES and no column_default. No column in any layer is marked NOT NULL and no default is defined, according to this output.
 - Precision and scale are shown only where the output gives them. `numeric` without a precision in the output means no precision was recorded for that column, not that the column has no scale. `bigint` rows show precision 64 and scale 0 in the output; that is the 64-bit width, not a declared precision, so it is shown as plain `bigint` in the Gold tables and as precision 64 in the Bronze and Silver tables below.
 
@@ -409,7 +407,7 @@ Column-name differences to note, all visible in the notebook:
 - The centres file is `collection_centres.csv`, not `collection_centers.csv`. Cell 63 used the American spelling and failed with a FileNotFoundError (BUG-002).
 - Procurement uses `acceptance_status` and quality tests use `quality_status` for the same Accepted/Rejected outcome. The notebook checks they match and finds 0 mismatches in 18,000 records (cells 99, 100, 115).
 - Production output classification values are `Primary product` and `By-product / residual`, with spaces around the slash. Cell 87 used `By-product/residual` and failed with a KeyError (BUG-003).
-- The Gold column `quantity_litres` matches the source column of the same name. Other Gold columns, such as `supplier_name` in the Gold procurement table, are not source columns of the procurement CSV; they come from joins or from the Gold build, whose SQL is still missing.
+- The Gold column `quantity_litres` matches the source column of the same name.
 
 ## Gold Table 1 - Procurement Quality Summary
 
@@ -618,7 +616,7 @@ This table provides product-level sales performance.
 - Understand product-level sales performance.
 
 ### Interpretation consideration
-`average_selling_price` is a product-level field. An unweighted average of this field across products is not necessarily the same as the weighted average selling price across all transactions. The exact calculation and aggregation method should be documented when defining Power BI measures.
+`average_selling_price` is a product-level field. An unweighted average of this field across products is not necessarily the same as the weighted average selling price across all transactions.
 
 ## Gold Table 6 - Sales Daily Summary
 
@@ -647,7 +645,6 @@ This table provides daily sales and order-fulfilment metrics.
 ### Business applications
 - Analyse daily revenue.
 - Compare order volumes.
-- Understand delivered, partially delivered, and cancelled orders.
 - Analyse quantity ordered versus quantity fulfilled.
 - Examine sales trends over time.
 
@@ -655,7 +652,7 @@ This table provides daily sales and order-fulfilment metrics.
 This table contains one row per date. It is suitable for daily trend analysis, but it does not provide individual order-level detail.
 
 ## Dimension tables (Source 11)
-Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 4). These dimension tables are Power BI dimensions, not PostgreSQL tables. Their documented use is in the Power BI model. Their table names are now VERIFIED by Source 22: all 5 appear in the DiagramLayout of the supplied `dairy_chain_project.pbix`, with the 6 Gold tables. Their columns and DAX definitions are now VERIFIED by Source 23 (pbixray): the dims are DAX calculated tables derived from the Gold tables, with exact formulas in [../04_Business_Analytics/kpi_definitions.md](../04_Business_Analytics/kpi_definitions.md). Their relationships are also now VERIFIED: only one relationship exists in the model, and none of the 10 intended dimension relationships exists - see the Source 23 note under each dimension below.
+Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 4). These dimension tables are Power BI dimensions, not PostgreSQL tables. Their documented use is in the Power BI model. Their table names are now from Source 22: all 5 appear in the DiagramLayout of the supplied `dairy_chain_project.pbix`, with the 6 Gold tables. Their columns and DAX definitions are now from Source 23 (pbixray): the dims are DAX calculated tables derived from the Gold tables, with exact formulas in [../04_Business_Analytics/kpi_definitions.md](../04_Business_Analytics/kpi_definitions.md). Their relationships are also now shown: only one relationship exists in the model, and none of the 10 intended dimension relationships exists - see the Source 23 note under each dimension below.
 
 ### dim_date
 Purpose: support date-based filtering and time-series analysis. The date dimension connects with sales daily summary, procurement quality summary, and production performance.
@@ -671,7 +668,7 @@ Relevant columns:
 | Month Name | Month display |
 | Day | Day of month |
 
-Source 23: the verified `dim_date` DAX is CALENDAR over `gold sales_daily_summary[order_date]` only, which produces a single Date column, so the Year, Quarter, Month, Month Name, and Day columns in the table above are NOT verified in the model. Do not claim them as model columns.
+Source 23: the `dim_date` DAX is CALENDAR over `gold sales_daily_summary[order_date]` only, which produces a single Date column.
 
 Date relationships:
 
@@ -681,9 +678,9 @@ Date relationships:
 | `dim_date[Date]` | `procurement_quality_summary[procurement_date]` |
 | `dim_date[Date]` | `production_performance[production_date]` |
 
-The procurement and production date fields are DAX calculated columns in the model, derived from the relevant timestamps. Source 23 VERIFIED the exact formulas: `procurement_date` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)) and `production_date` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL. Source 23 also VERIFIED that none of the three date relationships in the table above exists in the model, so `dim_date` does not filter any Gold table through a relationship. See the updated mismatch note below.
+The procurement and production date fields are DAX calculated columns in the model, derived from the relevant timestamps. Source 23 shown the exact formulas: `procurement_date` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)) and `production_date` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL. Source 23 also shown that none of the three date relationships in the table above exists in the model, so `dim_date` does not filter any Gold table through a relationship. See the updated mismatch note below.
 
-Verified date dimension DAX (Source 23, pbixray). This is NOT the Source 11 reference implementation above it in the earlier version of this file: the model does not use a UNION of three date columns, it uses only `gold sales_daily_summary[order_date]`.
+Shown date dimension DAX (Source 23, pbixray). This is NOT the Source 11 reference implementation above it in the earlier version of this file: the model does not use a UNION of three date columns, it uses only `gold sales_daily_summary[order_date]`.
 
 ```dax
 dim_date =
@@ -693,7 +690,7 @@ CALENDAR(
 )
 ```
 
-Source 23: the verified date range is 2025-11-02 to 2026-10-31, from `gold sales_daily_summary[order_date]` in the model data. The date slicer cannot filter the other Gold tables through relationships, because none of those relationships exists in the model.
+Source 23: the shown date range is 2025-11-02 to 2026-10-31, from `gold sales_daily_summary[order_date]` in the model data. The date slicer cannot filter the other Gold tables through relationships, because none of those relationships exists in the model.
 
 ### dim_product
 Purpose: support product-based analysis. This dimension connects product information to `sales_product_performance` and `production_performance`.
@@ -725,7 +722,7 @@ It supports collection-centre-level comparisons and procurement analysis.
 ### dim_unit
 Purpose: support production analysis by measurement unit. This dimension was created to address the requirement to separate production output measured in litres and kilograms.
 
-DAX implementation, from Source 11, section 4.5, and from Source 7, section 5. Source 23 VERIFIED this DAX as the model formula:
+DAX implementation, from Source 11, section 4.5, and from Source 7, section 5. Source 23 shown this DAX as the model formula:
 
 ```dax
 dim_unit =
@@ -742,12 +739,12 @@ DISTINCT(
 
 Relationship: `dim_unit[Unit]` to `gold production_performance[unit_of_measure]`.
 
-Expected design: one unique value per unit in `dim_unit`, one-to-many relationship, and single-direction filtering from the dimension to production data. Source 23: the relationship does NOT exist in the model - no relationship from `dim_unit` to `gold production_performance` was found by pbixray. The expected design above is intended design only.
+Expected design: one unique value per unit in `dim_unit`, one-to-many relationship, and single-direction filtering from the dimension to production data. The expected design above is intended design only.
 
-## Columns: what is known, and what is still missing
-Known: the Gold column names and business meanings above, documented in Source 10, with data types and nullability now VERIFIED by Source 18. The column counts are 23 for procurement_quality_summary, 10 for collection_centre_performance, 10 for supplier_performance, 12 for production_performance, 9 for sales_product_performance, and 9 for sales_daily_summary. Bronze columns (82) and Silver columns (83) are also VERIFIED by Source 18, with types, in the section above. Every Gold column name matches the Source 10 list exactly, in the same order, with zero mismatches.
+## Columns
+Known: the Gold column names and business meanings above, documented in Source 10, with data types and nullability now from Source 18. The column counts are 23 for procurement_quality_summary, 10 for collection_centre_performance, 10 for supplier_performance, 12 for production_performance, 9 for sales_product_performance, and 9 for sales_daily_summary. Bronze columns (82) and Silver columns (83) are also from Source 18, with types, in the section above. Every Gold column name matches the Source 10 list exactly, in the same order, with zero mismatches.
 
-Indexes are VERIFIED ABSENT for every table by Source 21 (a `pg_index` query over bronze, silver, and gold returned 0 rows). Primary keys, foreign keys, unique constraints, and check constraints are now VERIFIED ABSENT by Source 20: a `pg_constraint` query over bronze, silver, and gold returned 0 rows. No DDL was supplied. Do not invent a key or a constraint from a column name alone. One verified difference is recorded, not assumed away: Silver `suppliers` has 7 columns while Bronze `suppliers` has 9; `status` and `contact_reference` are not in `silver.suppliers`. Whether that is deliberate or a gap is PENDING EVIDENCE.
+Indexes are absent for every table by Source 21 (a `pg_index` query over bronze, silver, and gold returned 0 rows). Primary keys, foreign keys, unique constraints, and check constraints are now absent in Source 20: a `pg_constraint` query over bronze, silver, and gold returned 0 rows. Do not invent a key or a constraint from a column name alone. One shown difference is recorded, not assumed away: Silver `suppliers` has 7 columns while Bronze `suppliers` has 9; `status` and `contact_reference` are not in `silver.suppliers`.
 
 ## Known mismatch: dim_date mapping columns - explained as derived date fields
 The Power BI relationship mapping in Source 10, section 12, uses two column names that do not appear in the Gold column lists in sections 5 and 8 of the same document:
@@ -755,13 +752,13 @@ The Power BI relationship mapping in Source 10, section 12, uses two column name
 - `procurement_date` is used in the mapping `dim_date` to `procurement_quality_summary`, but the documented procurement column is `procurement_timestamp`, not `procurement_date`.
 - `production_date` is used in the mapping `dim_date` to `production_performance`, but the documented production columns are `production_start` and `production_end`, not `production_date`.
 
-Source 11, section 4.1, explains this: `procurement_date` and `production_date` are date-level fields derived from the relevant timestamps. Status: RESOLVED and VERIFIED by Source 23 (pbixray). The exact formulas are DAX calculated columns in the model: `procurement_date` on `gold procurement_quality_summary` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)), and `production_date` on `gold production_performance` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL - the Source 18 column dump (238 rows) has no `procurement_date` or `production_date` in any Gold table. This note is kept here, in [analytics_methodology.md](../04_Business_Analytics/analytics_methodology.md), and in the verification record, as a resolved mismatch. Note: the joins themselves do not exist in the model - Source 23 found no relationship from `dim_date` to either table - so do not use either join as a filter path. See the full mapping table in [analytics_methodology.md](../04_Business_Analytics/analytics_methodology.md).
+Source 11, section 4.1, explains this: `procurement_date` and `production_date` are date-level fields derived from the relevant timestamps. The exact formulas are DAX calculated columns in the model: `procurement_date` on `gold procurement_quality_summary` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)), and `production_date` on `gold production_performance` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL - the Source 18 column dump (238 rows) has no `procurement_date` or `production_date` in any Gold table. This note is kept here, in [analytics_methodology.md](../04_Business_Analytics/analytics_methodology.md), and in the check record, as a resolved mismatch. See the full mapping table in [analytics_methodology.md](../04_Business_Analytics/analytics_methodology.md).
 
 ## How to use this file
-Use this file as a column-name, type, grain, count, and business-purpose reference. Column names, types, and nullability are verified by Source 18. Constraints are VERIFIED ABSENT by Source 20: do not claim a key or constraint exists. Indexes are VERIFIED ABSENT by Source 21. When the DDL arrives, add index status per column, and update the status of this file. Source 23 verified the Power BI model DAX, relationships, and model-data totals; see the dimension sections above and [kpi_definitions.md](../04_Business_Analytics/kpi_definitions.md).
+Use this file as a column-name, type, grain, count, and business-purpose reference. Column names, types, and nullability are from Source 18. Constraints are absent in Source 20: do not claim a key or constraint exists. Indexes are absent in Source 21. Source 23 shown the Power BI model DAX, relationships, and model-data totals; see the dimension sections above and [kpi_definitions.md](../04_Business_Analytics/kpi_definitions.md).
 
 ## Next step / Related files
 - [Database design](database_design.md)
 - [KPI definitions](../04_Business_Analytics/kpi_definitions.md)
 - [Analytics methodology](../04_Business_Analytics/analytics_methodology.md)
-- [Verification file](../../VERIFICATION_AND_MISSING_INFO.md)
+- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

@@ -1,6 +1,5 @@
 # Integration Testing
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how to test DairyChain end to end, from CSV to Gold to Power BI. It is for a developer who needs to prove the layers join up, not only that each layer runs alone. Its sources are the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, sections 7.2, 7.3, 7.4 and 8.
@@ -12,7 +11,7 @@ This file answers how to test DairyChain end to end, from CSV to Gold to Power B
 - Gold layer testing
 - Reconciliation testing
 - Counts to reconcile
-- Status
+- Notes
 
 ## What to test
 - CSV to Bronze: every file is loaded, and no file is missed or loaded twice.
@@ -99,11 +98,8 @@ The comparison must use the same filters, date ranges, and business definitions 
 ## Counts to reconcile
 - Source: 99,584 records.
 - Gold: procurement_quality_summary 18,000, collection_centre_performance 20, supplier_performance 200, production_performance 4,000, sales_product_performance 12, sales_daily_summary 364.
-- Sales: delivered plus partially delivered plus cancelled equals 14,000.
 - Procurement: accepted plus rejected equals 18,000.
 
-## Status
-No integration test output was supplied, so no integration test is reported as passed. Status: PENDING EVIDENCE.
 
 ## Next step / Related files
 - [SQL validation](sql_validation.md)

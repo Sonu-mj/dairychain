@@ -1,6 +1,5 @@
 # Python and SQL Decisions
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers why Python and SQL split the work in DairyChain the way they do. It is for a developer who needs to know which tool to use for a new task.

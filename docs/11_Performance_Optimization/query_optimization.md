@@ -1,6 +1,5 @@
 # Query Optimization
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how to make DairyChain SQL fast without changing what it returns. It is for an analyst who needs a query that is both correct and quick enough to run in a report.
@@ -17,7 +16,7 @@ This file answers how to make DairyChain SQL fast without changing what it retur
 - Avoid repeated database queries for the same result. Cache a Gold result instead of re-running the same aggregation for every visual.
 
 ## Indexes
-Indexes may improve access patterns, such as looking up a batch, a supplier, a product or a day. Source 21 verified that no index exists on any table in bronze, silver, or gold (a `pg_index` query returned 0 rows, user-supplied screenshot 2026-11-11), so indexes are a future improvement, not current state. The right index depends on the actual queries and the actual schema. Do not list an index as implemented until its DDL can be shown.
+Indexes may improve access patterns, such as looking up a batch, a supplier, a product or a day. Source 21 shown that no index exists on any table in bronze, silver, or gold (a `pg_index` query returned 0 rows, user-supplied screenshot 2026-11-11), so indexes are a future improvement, not current state. The right index depends on the actual queries and the actual schema. Do not list an index as implemented until its DDL can be shown.
 
 ## What not to claim
 No performance benchmark, timing or measured improvement was supplied, so none is claimed. A faster query is a claim that needs a before-and-after timing, not a feeling.

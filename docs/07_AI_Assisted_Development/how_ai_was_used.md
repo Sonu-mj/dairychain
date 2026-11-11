@@ -1,6 +1,5 @@
 # How AI Was Used
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers where AI helped in DairyChain and where the developer stayed in charge. It is for a reviewer who needs the AI contribution stated plainly, without overstating it. Its source is sections 1, 2, 3 and 11 of the user-supplied AI-Assisted Development Methodology, 2026-11-11.
@@ -11,12 +10,12 @@ This file answers where AI helped in DairyChain and where the developer stayed i
 - How AI was integrated, by stage
 - The 13 uses from the brief
 - Key learning
-- Status
+- Notes
 
 ## Purpose of AI use
 DairyChain was developed using a combination of the developer's technical knowledge and AI-assisted development. The objective was not to make AI build the entire project independently. AI was used as a development assistant to improve speed, explore implementation approaches, understand errors, and reduce repetitive work. The developer remained responsible for understanding the business requirements, deciding what the system needed to do, reviewing the suggested logic, running the code, checking the outputs, and determining whether the implementation was correct.
 
-> AI helped accelerate development. Technical decisions, execution, verification, and responsibility remained with me.
+> AI helped accelerate development. Technical decisions, execution, check, and responsibility remained with me.
 
 ## Project context and processing flow
 DairyChain is a dairy supply chain analytics project that brings together procurement, milk quality, production, and sales information. The documented processing flow is:
@@ -60,12 +59,12 @@ The Master Project Brief lists 13 uses of AI assistance. They are consistent wit
 What each use means in practice: clarification and task breakdown turn a business question into a small, testable task. Schema review checks that a draft uses the real tables and columns, not a guessed name. Code drafting and SQL construction save time, but the draft is not trusted until it runs and its output is checked. Explanation, error investigation and debugging help the developer understand a failure, not hide it. Refactoring, test preparation, security review and performance work are checked the same way: run it, measure it, record it.
 
 ## Key learning
-Working with AI changed how the developer approached development tasks. Instead of treating programming as only writing code, the focus moved to understanding the problem, selecting an appropriate implementation, reviewing the logic, investigating errors, and validating the outcome. Python and SQL remained important because the developer needed to understand what the code was doing. AI helped reduce the time spent exploring solutions and investigating issues, but it could not replace technical understanding or independent verification.
+Working with AI changed how the developer approached development tasks. Instead of treating programming as only writing code, the focus moved to understanding the problem, selecting an appropriate implementation, reviewing the logic, investigating errors, and validating the outcome. Python and SQL remained important because the developer needed to understand what the code was doing. AI helped reduce the time spent exploring solutions and investigating issues, but it could not replace technical understanding or independent check.
 
 > Using AI effectively is not just about generating code faster. It is about being able to understand, evaluate, debug, test, and take responsibility for the code it helps produce.
 
-## Status
-The method above is PARTIALLY VERIFIED as a user-supplied methodology document. No task log was supplied, so no specific AI task in DairyChain can be listed as completed here. See [ai_task_log/actual_development_tasks.md](ai_task_log/actual_development_tasks.md). Status for the task record: PENDING EVIDENCE.
+## Notes
+The method above is as a user-supplied methodology document. See [ai_task_log/actual_development_tasks.md](ai_task_log/actual_development_tasks.md).
 
 ## Next step / Related files
 - [Development workflow](development_workflow.md)

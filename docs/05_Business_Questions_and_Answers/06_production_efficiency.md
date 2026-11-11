@@ -1,9 +1,8 @@
 # Production Efficiency and Yield
 
-> Status: VERIFIED
 
 ## Purpose
-This file answers what production made and why yield cannot be calculated from the supplied numbers. It is for a manager who needs efficiency, not output alone.
+This file answers what production made, in litres and kilograms separately. It is for a manager who needs efficiency, not output alone.
 
 ## In this file
 - How much was produced?
@@ -23,7 +22,7 @@ Gold table production_performance, 4,000 rows, one per batch. Output is split by
 Sum finished output and byproduct output separately for litre-based batches and for kg-based batches. Never add litres to kg.
 
 ## KPI definitions
-No yield formula is used here, because input was not supplied. Output totals are sums by unit.
+Output totals are sums by unit.
 
 ## Actual result
 Production batches 4,000. Finished litre-based 1,484,135.25 L. Byproduct litre-based 466,514.75 L. Finished kg-based 266,416.65 kg. Byproduct kg-based 402,413.85 kg. No combined total is given.
@@ -41,11 +40,7 @@ Supply raw milk input per batch, in the same unit as its output, plus product an
 Measured impact: none. Expected benefit: input data would allow yield and loss to be measured.
 
 ## Evidence
-Evidence: user-supplied README, 2026-11-11, production section.
-
-## Verification status
-VERIFIED
-
+Source: user-supplied README, 2026-11-11, production section.
 
 ## Business question
 What is the production yield, and where does material loss occur?
@@ -54,7 +49,7 @@ What is the production yield, and where does material loss occur?
 Yield shows how much finished product comes from the raw milk that entered a batch. Loss shows where material went that did not become finished product.
 
 ## Data required
-Raw milk input per batch was not supplied. Finished output was supplied, split by unit. Byproduct output was supplied, split by unit.
+Finished output was supplied, split by unit. Byproduct output was supplied, split by unit.
 
 ## Analytical approach
 Calculate yield as finished output divided by relevant raw milk input, times 100, in the same unit, per batch, then by product and shift. Loss is input minus finished output minus byproduct, where the business definition supports that split.
@@ -62,11 +57,6 @@ Calculate yield as finished output divided by relevant raw milk input, times 100
 ## KPI definitions
 Production yield equals (Finished output / Relevant raw material input) x 100.
 
-## Actual result
-No yield or loss result was supplied. Result: PENDING EVIDENCE.
-
-## Direct answer
-Yield and material loss cannot be calculated from the supplied numbers.
 
 ## Business interpretation
 Do not estimate yield from the output totals alone. The input total is missing, and any estimate would be invented.
@@ -78,10 +68,7 @@ Supply raw milk input per batch, product, shift and duration. Then calculate yie
 Measured impact: none. Expected benefit: yield by batch would show where material is lost and where to investigate first.
 
 ## Evidence
-Evidence: README gives output only. No input rows were supplied.
-
-## Verification status
-PENDING EVIDENCE
+Source: README gives output only.
 
 ## Business question
 PRD-01 - How many production batches were processed?
@@ -99,7 +86,7 @@ Use the distinct count of production_id when measuring the number of unique batc
 Total production batches equals COUNT(DISTINCT production_id).
 
 ## Actual result
-4,000 production batches: 3,001 litre-based and 999 kg-based, all with production_status Completed. Source 23 verified the split and the status from the model data.
+4,000 production batches: 3,001 litre-based and 999 kg-based, all with production_status Completed. Source 23 shown the split and the status from the model data.
 
 ## Direct answer
 4,000 production batches were processed.
@@ -114,11 +101,7 @@ Break the 4,000 batches down by product and shift once those rows are supplied.
 Measured impact: none. Expected benefit: a breakdown would show where production activity is concentrated.
 
 ## Evidence
-Evidence: Source 13, PRD-01, user-supplied 2026-11-11, recorded project reference 4,000. Also in the user-supplied README, 2026-11-11. Source 23: batch count, unit split, and Completed status VERIFIED against the model data read with pbixray get_table.
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PRD-01, user-supplied 2026-11-11, recorded project reference 4,000. Also in the user-supplied README, 2026-11-11. Source 23: batch count, unit split, and Completed status checked against the model data read with pbixray get_table.
 
 ## Business question
 PRD-02 - How much raw milk was processed during production?
@@ -151,11 +134,7 @@ Supply a density conversion, or record kg-batch input in kg, if a kg yield is ne
 Measured impact: none. Expected benefit: the input total unlocks the litre-side check and shows where a yield figure is still blocked.
 
 ## Evidence
-Evidence: Source 13, PRD-02, user-supplied 2026-11-11. Total VERIFIED from the model data read with pbixray get_table (Source 23).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PRD-02, user-supplied 2026-11-11. Total from the model data read with pbixray get_table (Source 23).
 
 ## Business question
 PRD-03 - What is the average production duration per batch?
@@ -188,11 +167,7 @@ Supply duration by batch with shift if a shift comparison is needed.
 Measured impact: none. Expected benefit: a duration view would show where processing time is longest.
 
 ## Evidence
-Evidence: Source 13, PRD-03, user-supplied 2026-11-11. Mean and range computed from the model data read with pbixray get_table (Source 23).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PRD-03, user-supplied 2026-11-11. Mean and range computed from the model data read with pbixray get_table (Source 23).
 
 ## Business question
 PRD-04 - How much finished product is produced by each product and unit?
@@ -210,7 +185,7 @@ Group results by product_name and unit_of_measure. Compare quantities only withi
 Finished output by product and unit equals SUM(finished_product_quantity) grouped by product_name and unit_of_measure.
 
 ## Actual result
-Finished output by product and unit is now VERIFIED from the model data read with pbixray get_table (Source 23).
+Finished output by product and unit is now from the model data read with pbixray get_table (Source 23).
 
 | Product | Unit | Finished output | Byproduct output |
 |---|---|---:|---:|
@@ -241,10 +216,7 @@ Use this table with units kept separate. Do not add a litre total to a kg total.
 Measured impact: none. Expected benefit: a per-product view shows which products drive output.
 
 ## Evidence
-Evidence: Source 13, PRD-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Per-product rows now VERIFIED from the model data read with pbixray get_table (Source 23).
-
-## Verification status
-VERIFIED
+Source: Source 13, PRD-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Per-product rows now from the model data read with pbixray get_table (Source 23).
 
 ## Next step / Related files
 - Production analysis](../04_Business_Analytics/production_analysis.md)

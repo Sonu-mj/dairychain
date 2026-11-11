@@ -1,6 +1,5 @@
 # Recommendations
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers what management should do next, in priority order, with each action tied to the evidence that supports it. It is for a manager who needs a short action list, not a wish list.

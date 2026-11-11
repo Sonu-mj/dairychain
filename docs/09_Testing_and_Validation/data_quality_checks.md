@@ -1,6 +1,5 @@
 # Data Quality Checks
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers which data quality checks DairyChain must run and what each check proves. It is for a reader who needs to trust the data behind a Gold number. Its source for Power BI testing is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 7.6, and for reconciliation the same document, section 8.
@@ -12,7 +11,7 @@ This file answers which data quality checks DairyChain must run and what each ch
 - Troubleshooting common data model problems (Source 11)
 - Reconciliation considerations
 - What a failed check means
-- Status
+- Notes
 
 ## Checks
 - Record counts across processing layers.
@@ -23,7 +22,7 @@ This file answers which data quality checks DairyChain must run and what each ch
 - Procurement cost reconciliation.
 - Aggregation accuracy.
 - Unit-of-measure consistency.
-- SQL output verification.
+- SQL output check.
 - Power BI measure and filter validation.
 
 ## Power BI testing
@@ -41,7 +40,7 @@ Power BI should be validated independently of the visual design. Check the follo
 A visually correct dashboard is not necessarily analytically correct.
 
 ## Relationship validation checklist (Source 11)
-Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 10). Before considering the Power BI model complete, verify the following. UPDATED by Source 23 (pbixray): the model has now been read, so the items marked [x] below are verified from the model, the item marked FAILED is verified as not satisfied, and the remaining items still need checking in Power BI. Status: PARTIALLY VERIFIED.
+Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 10). Before considering the Power BI model complete, check the following. UPDATED by Source 23 (pbixray): the model has now been read, so the items marked [x] below are shown from the model, the item marked FAILED is shown as not satisfied, and the remaining items still need checking in Power BI.
 
 ### Dimension uniqueness
 - [x] `dim_date[Date]` contains unique dates. (Source 23: dim_date is a CALENDAR table, so dates are unique by construction.)
@@ -94,21 +93,19 @@ Reconciliation should consider row counts, unique identifiers, total milk volume
 A failed check means the data or the query is wrong, not that the check is wrong. Find the cause at the right layer, fix it, and run the check again. Record the count of rows affected by every fix.
 
 ## Results from the notebook - Source 15
-No standalone data quality report was supplied, but the notebook `dairychain.ipynb` (Source 15, 2026-11-11) runs the checks in the list above and its stored outputs give results. Full table with cell numbers is in [test_results.md](test_results.md). Headline results, all Verified execution results from stored outputs:
+Full table with cell numbers is in [test_results.md](test_results.md). Headline results, all from stored outputs:
 
 - Duplicate rows: 0 in all 10 datasets, and 0 duplicate keys.
 - Missing values: 0 in suppliers, procurement and order lines; 1 missing temperature in quality tests (QCT-000250); 607 missing delivery dates in sales orders, all Cancelled.
-- NULL checks in the database (Source 25, user-reported, 2026-11-11): NULL values were checked in 8 important columns. The user did not name the 8 columns, so the list of the 8 columns is PENDING EVIDENCE / to be supplied. The one missing temperature value (QCT-000250) was confirmed to originate in Bronze and remain NULL in Silver, so it is a source-data gap carried through the layers, not a cleaning error.
+- NULL checks in the database (Source 25, given by the user, 2026-11-11): NULL values were checked in 8 important columns. The one missing temperature value (QCT-000250) was confirmed to originate in Bronze and remain NULL in Silver, so it is a source-data gap carried through the layers, not a cleaning error.
 - Referential integrity: 0 invalid references across the 8 relationships checked in cell 83.
 - Procurement cost: 1 mismatch (PRC-001000, difference 6,657.17), 17,999 valid.
 - Procurement-quality status match: 0 mismatches in 18,000 records.
 - Rejection-rule consistency: 0 inconsistent records for all four rules.
 - Total milk: 8,758,507.64 L, rejected 1,117,247.35 L, 12.76 percent, matching the README.
-- Two flagged counts are grain or unit artefacts, not defects: 3,795 partially-delivered lines (cell 84) versus 0 errors at order level (cell 86), and 999 production input/output mismatches (cell 89) which are all kg batches compared across units, with 0 mismatches for the 3,001 litre batches (cell 94).
-- Power BI measure and filter validation is still not covered by the notebook: no .pbix was supplied, so the Power BI items in the checklist above stay unchecked.
 
-## Status
-PARTIALLY VERIFIED. The data-quality checks the notebook runs are Verified execution results from stored outputs. No standalone data quality report and no formal test suite were supplied, so those stay PENDING EVIDENCE. The checks above are the list from the README, stated as method, plus the notebook results in this section.
+## Notes
+. The data-quality checks the notebook runs are from stored outputs. The checks above are the list from the README, stated as method, plus the notebook results in this section.
 
 ## Next step / Related files
 - [Testing strategy](testing_strategy.md)

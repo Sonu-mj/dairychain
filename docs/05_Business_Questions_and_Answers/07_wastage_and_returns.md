@@ -1,6 +1,5 @@
 # Wastage and Returns
 
-> Status: NOT IMPLEMENTED
 
 ## Purpose
 This file answers what DairyChain can say about wastage and returns, which is that neither is described in the supplied README scope. It is for a reader who needs the method kept ready, without an invented answer.
@@ -24,8 +23,6 @@ When wastage data exists: sum wastage quantity by product, batch, category and r
 ## KPI definitions
 Wastage rate equals (Wastage quantity / Appropriate total quantity basis) x 100.
 
-## Actual result
-No wastage result was supplied. Result: NOT IMPLEMENTED.
 
 ## Direct answer
 No wastage amount, rate or value can be given for DairyChain.
@@ -40,11 +37,7 @@ Supply wastage records with quantity, unit, category, reason, product, batch and
 Measured impact: none. Expected benefit: a wastage view would show which stage to investigate first.
 
 ## Evidence
-Evidence: none supplied. README scope is procurement, quality, production and sales.
-
-## Verification status
-NOT IMPLEMENTED
-
+README scope is procurement, quality, production and sales.
 
 ## Business question
 How do returns affect net revenue?
@@ -53,7 +46,7 @@ How do returns affect net revenue?
 Returns reduce net revenue, create handling cost and affect inventory. Not every returned item is a complete loss, because some stock may be recoverable.
 
 ## Data required
-No returns table, quantity, value, reason or recoverable amount was named in the README. Sales returns as a field were not supplied.
+No returns table, quantity, value, reason or recoverable amount was named in the README.
 
 ## Analytical approach
 When returns data exists: separate returned sales value, refund value, recoverable inventory and actual loss. Calculate the return rate as returned quantity divided by relevant sold quantity, times 100. Do not double-count a return as both lost revenue and lost stock.
@@ -61,8 +54,6 @@ When returns data exists: separate returned sales value, refund value, recoverab
 ## KPI definitions
 Return rate equals (Returned quantity / Relevant sold quantity) x 100. Net revenue equals Gross sales minus Discounts minus Sales returns.
 
-## Actual result
-No returns result was supplied. Result: NOT IMPLEMENTED.
 
 ## Direct answer
 No returns impact can be given for DairyChain.
@@ -76,11 +67,6 @@ Supply returns records with product, quantity, value, reason, refund and recover
 ## Business impact
 Measured impact: none. Expected benefit: a returns view would show which products or operations need attention.
 
-## Evidence
-Evidence: none supplied.
-
-## Verification status
-NOT IMPLEMENTED
 
 ## Next step / Related files
 - Sales analysis](../04_Business_Analytics/sales_analysis.md)

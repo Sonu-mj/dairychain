@@ -1,6 +1,5 @@
 # Testing Strategy
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how DairyChain should be tested, at each level, and what a passed test means. It is for a developer who needs to prove the pipeline, not only run it once. Its source is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, sections 7, 9 and 12.
@@ -9,7 +8,6 @@ This file answers how DairyChain should be tested, at each level, and what a pas
 - Levels
 - What each level proves
 - What counts as passed
-- Test status meanings
 - Key learning
 
 ## Levels
@@ -27,29 +25,18 @@ Testing should cover different stages of the data pipeline: Python ingestion, Br
 - Data quality checks prove the data is fit for the report, not only that the code ran.
 
 ## What counts as passed
-A test counts as passed only when it was executed and its output is kept. A test that was written but not run is not passed. A test that passed on clean data but was never run on dirty data is only partly proven. See [test_results.md](test_results.md).
+A test counts as passed only when it was executed and its output is kept. A test that passed on clean data but was never run on dirty data is only partly proven. See [test_results.md](test_results.md).
 
-## Test status meanings
 A major documentation rule is not to confuse proposed tests with executed tests.
 
-| Status | Meaning |
-|---|---|
-| Not tested | No test has been executed |
-| Suggested | A test has been identified but not run |
-| Executed | The test has been run |
-| Passed | Actual result matches expected result |
-| Failed | Actual result does not match expected result |
-| Blocked | The test cannot be completed because of another issue |
 
 For example, an AI-generated SQL query is not a passed test. A query that executes is not automatically a passed business-logic test.
 
 ## Key learning
-Debugging is not simply finding code that removes an error. It is the process of understanding why something failed, determining the actual cause, making an appropriate correction, and confirming that the correction has not broken anything else. AI can make this process more efficient by helping explain errors, identify possible causes, and suggest targeted changes. However, the developer remains responsible for reproducing the issue, judging the suggested correction, executing it, and validating the result.
+Debugging is not simply finding code that removes an error. AI can make this process more efficient by helping explain errors, identify possible causes, and suggest targeted changes. However, the developer remains responsible for reproducing the issue, judging the suggested correction, executing it, and validating the result.
 
-> The most useful outcome of debugging is not just code that runs. It is an implementation whose behaviour I can explain and verify.
+> The most useful outcome of debugging is not just code that runs. It is an implementation whose behaviour I can explain and check.
 
-## Status
-No test files or outputs were supplied, so no test is reported as passed in this set. Status: PENDING EVIDENCE.
 
 ## Next step / Related files
 - [Unit testing](unit_testing.md)

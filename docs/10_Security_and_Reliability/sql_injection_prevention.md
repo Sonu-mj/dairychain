@@ -1,6 +1,5 @@
 # SQL Injection Prevention
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how DairyChain must prevent SQL injection and why parameterised queries are the rule. It is for a developer who writes any query that takes input from outside the code. Its sources are the Master Project Brief and section 4.2 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5).

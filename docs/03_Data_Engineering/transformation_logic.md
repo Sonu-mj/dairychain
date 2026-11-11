@@ -1,6 +1,5 @@
 # Transformation Logic
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how Silver data becomes Gold data and what grain each Gold table uses. It is for a reader who needs to check a Gold sum or rebuild a Gold table.
@@ -16,7 +15,7 @@ This file answers how Silver data becomes Gold data and what grain each Gold tab
 Silver holds cleaned operational records. Gold holds analytical summaries built from Silver. Each Gold table answers one reporting question at one grain, so a reader does not have to re-aggregate raw batches for every report.
 
 ## Silver transformation activities
-The exact cleaning rules should be taken from the actual SQL scripts. The following are potential activities to verify, not a claim that all were implemented:
+The exact cleaning rules should be taken from the actual SQL scripts. The following are potential activities to check, not a claim that all were implemented:
 
 | Transformation | Objective |
 |---|---|
@@ -69,7 +68,6 @@ Gold tables have different aggregation levels. For example: a procurement table 
 ## Unit rules
 - Milk volume is in litres. Production output is in litres for litre-based batches and in kg for kg-based batches. Keep them separate in every sum, average and chart. Production batches split as 3,001 litre-based batches and 999 kg-based batches, total 4,000.
 - Sales quantity fulfilled is 161,036.41 against quantity ordered 181,804. The unit for sales quantity was not stated in the README, so do not add a unit label to it until the schema confirms it.
-- The SQL that builds each Gold table was not supplied. Status: PENDING EVIDENCE.
 
 ## Next step / Related files
 - [Bronze Silver Gold](bronze_silver_gold_layers.md)

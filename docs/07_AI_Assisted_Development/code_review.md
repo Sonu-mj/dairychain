@@ -1,6 +1,5 @@
 # Code Review
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how to review AI-suggested code before it is trusted in DairyChain. It is for a developer who needs a checklist that catches wrong fields, double-counting and unsafe SQL. Its sources are the Master Project Brief checklist, section 8 of the user-supplied AI-Assisted Development Methodology, 2026-11-11, and sections 1, 2, 8, 9 and 11 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5).
@@ -16,12 +15,12 @@ This file answers how to review AI-suggested code before it is trusted in DairyC
 - Key learning
 - How to use it
 - What a failed review means
-- Status
+- Notes
 
 ## Core principle
 AI can help generate code quickly, but generated code is not automatically correct, secure, or suitable for an existing project. During DairyChain development, it was important to distinguish between code that merely executes and code that correctly implements the intended business requirement.
 
-> Code should be understood, reviewed, executed, and verified before it is trusted.
+> Code should be understood, reviewed, executed, and shown before it is trusted.
 
 This document distinguishes between recommended engineering practices and controls that must be confirmed in the actual project code. It does not claim that every security measure below has already been implemented.
 
@@ -74,17 +73,13 @@ These are review criteria, not a claim that every listed security control has al
 Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 6. This is a representative prompt template, not a claim that these exact words were used in a particular review session.
 
 > Review the following SQL query for the DairyChain analytics project.
->
 > Check:
->
 > 1. Whether the joins could duplicate records.
 > 2. Whether the aggregation level is correct.
 > 3. Whether NULL values could affect the calculation.
 > 4. Whether the filters match the business requirement.
 > 5. Whether the query uses the correct unit of measurement.
->
 > Explain each potential issue separately.
->
 > Do not assume that a query is correct just because it executes successfully.
 
 Why this matters: a SQL query can execute successfully and still return incorrect results. For example, joining two tables with multiple matching rows can multiply records and inflate a SUM calculation. The developer must understand the relationship between the tables and the intended level of aggregation.
@@ -93,22 +88,16 @@ Why this matters: a SQL query can execute successfully and still return incorrec
 Source: "Code Review and Security Practices", section 8. AI can be asked to review code using a focused prompt. This is a representative review prompt, not a claim that these exact words were used.
 
 > Review this code from the DairyChain project.
->
 > Act as a Python, SQL, and data engineering code reviewer.
->
 > Identify:
->
 > 1. Possible logical errors.
 > 2. Security weaknesses.
 > 3. Incorrect SQL joins or aggregations.
 > 4. Missing error handling.
 > 5. Data-quality risks.
 > 6. Performance and maintainability concerns.
->
 > For every issue, explain why it is a problem and identify the affected code.
->
 > Classify issues as critical, high, medium, or low priority.
->
 > Suggest the smallest practical correction. Do not claim that the code is secure or correct without sufficient evidence.
 
 AI review should be treated as an additional review aid, not a security audit or guarantee.
@@ -128,23 +117,23 @@ A small fix should not unintentionally change unrelated transformations or calcu
 
 A correction should also be checked for security, data consistency, and maintainability.
 
-**4. Can I verify it independently?**
+**4. Can I check it independently?**
 
 The correction should be executed and tested against an appropriate expected result.
 
 ## Key learning
-Source: "Code Review and Security Practices", section 11. AI-assisted code development requires more than checking whether a program runs. It requires understanding the data, business logic, database structure, application configuration, and possible security risks. During DairyChain development, the important lesson was that faster code generation is useful only when it is supported by careful review and verification.
+Source: "Code Review and Security Practices", section 11. AI-assisted code development requires more than checking whether a program runs. It requires understanding the data, business logic, database structure, application configuration, and possible security risks. During DairyChain development, the important lesson was that faster code generation is useful only when it is supported by careful review and check.
 
-> AI can suggest an implementation. The developer must be able to explain why it is appropriate, identify what could go wrong, and verify that it works as intended.
+> AI can suggest an implementation. The developer must be able to explain why it is appropriate, identify what could go wrong, and check that it works as intended.
 
 ## How to use it
-Review the draft against the schema first, then against the business rule, then against the edge cases. Run the code and check the output against a second method. A draft that passes the checklist in words but fails on a real input has not passed review.
+Review the draft against the schema first, then against the business rule, then against the edge cases. Run the code and check the output against a second method.
 
 ## What a failed review means
 A failed review is not a reason to accept a weaker draft. It is a reason to fix the field, the JOIN grain, the NULL handling or the transaction, and review again. The fix and the re-check are recorded in the debugging log.
 
-## Status
-The criteria and checklist above are PARTIALLY VERIFIED as user-supplied method. No code review record was supplied, so no review outcome for a specific DairyChain file can be reported here. Status for review evidence: PENDING EVIDENCE.
+## Notes
+The criteria and checklist above are as user-supplied method.
 
 ## Next step / Related files
 - [Debugging with AI](debugging_with_ai.md)

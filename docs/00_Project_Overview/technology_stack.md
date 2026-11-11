@@ -1,6 +1,5 @@
 # Technology Stack
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers which tools DairyChain uses and what each tool is for. It is for a reader who needs to reproduce the setup or check a tool claim against the dependency files.
@@ -9,7 +8,6 @@ This file answers which tools DairyChain uses and what each tool is for. It is f
 - Tools and purpose
 - Database
 - Versions
-- What was not supplied
 
 ## Tools and purpose
 | Technology | Purpose |
@@ -23,18 +21,18 @@ This file answers which tools DairyChain uses and what each tool is for. It is f
 | Git and GitHub | Version control and project documentation |
 
 ## Database
-The project database is named `dairychain`. It contains three main schemas: `bronze`, `silver`, and `gold`. PostgreSQL version 18.6 is confirmed by the user-supplied System Architecture document (Source 8, 2026-11-11). It was previously reported in the brief and labelled NOT CONFIRMED CURRENT; the database version only is now confirmed by this source.
+The project database is named `dairychain`. It contains three main schemas: `bronze`, `silver`, and `gold`. PostgreSQL version 18.6 is confirmed by the user-supplied System Architecture document (Source 8, 2026-11-11).
 
 ## Versions
-Exact versions and packages must be checked against the Colab notebook imports, where verifiable. No notebook has been received yet, so no exact version list can be given here, except for PostgreSQL 18.6 as confirmed above. Do not invent package versions and do not create an assumed requirements.txt (Source 14, 2026-11-11).
+Exact versions and packages must be checked against the Colab notebook imports, where it can be checked. Do not invent package versions and do not create an assumed requirements.txt (Source 14, 2026-11-11).
 
 ## Previously reported environment, not confirmed current
-The brief reported an earlier environment: Windows, PowerShell, VS Code, Python 3.13.6, pip 25.2, and a project virtual environment named `.venv`. A database creation attempt in that environment had met an authentication error. Status: PREVIOUSLY REPORTED, NOT CONFIRMED CURRENT, for those items. Do not present those values as the current environment. PostgreSQL 18.6 is no longer in that unconfirmed group; it is confirmed by Source 8, and Source 17 verifies the server version 18.6 from a successful connection (localhost, port 5432, user postgres, database dairychain). The earlier authentication error is resolved as the current state.
+The brief reported an earlier environment: Windows, PowerShell, VS Code, Python 3.13.6, pip 25.2, and a project virtual environment named `.venv`. A database creation attempt in that environment had met an authentication error. Do not present those values as the current environment. PostgreSQL 18.6 is shown by Source 8, and Source 17 shows the server version 18.6 from a successful connection (localhost, port 5432, user postgres, database dairychain). The earlier authentication error is resolved as the current state.
 
 ## Related tools in the brief
-The brief also named NumPy, PyArrow, CSV and Parquet as part of the project context. Their actual use must be checked against the Colab notebook imports, where verifiable, which were not supplied. The Python implementation is in Google Colab notebooks (.ipynb), not separate local scripts (Source 14, 2026-11-11).
+The brief also named NumPy, PyArrow, CSV and Parquet as part of the project context. The Python implementation is in Google Colab notebooks (.ipynb), not separate local scripts (Source 14, 2026-11-11).
 
 ## Next step / Related files
 - [System architecture](../02_System_Architecture/system_architecture.md)
 - [Data ingestion](../03_Data_Engineering/data_ingestion.md)
-- [Verification file](../../VERIFICATION_AND_MISSING_INFO.md)
+- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

@@ -1,6 +1,5 @@
 # SQL Validation
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how to check a DairyChain SQL query before its output is trusted. It is for an analyst who needs to catch JOIN duplication, wrong grain and bad aggregation before the report is built. Its source for business-metric testing is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 7.5.
@@ -10,7 +9,7 @@ This file answers how to check a DairyChain SQL query before its output is trust
 - JOIN and grain
 - Aggregation
 - Business-metric testing
-- Status
+- Notes
 
 ## Checks for every query
 - The tables and columns named in the query exist in the schema.
@@ -41,8 +40,8 @@ Important metrics should be checked independently. These are reference values fr
 
 The recorded project reference is Rs 26,734,294.03.
 
-## Status
-No project SQL files were supplied, so no query can be validated here from source. Status: PENDING EVIDENCE. The illustrative queries are in [../07_AI_Assisted_Development/sql_development.md](../07_AI_Assisted_Development/sql_development.md).
+## Notes
+The illustrative queries are in [../07_AI_Assisted_Development/sql_development.md](../07_AI_Assisted_Development/sql_development.md).
 
 ## Next step / Related files
 - [Data quality checks](data_quality_checks.md)

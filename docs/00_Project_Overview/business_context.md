@@ -1,6 +1,5 @@
 # Business Context
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers why a dairy business needs DairyChain and how milk moves from supplier to sale. It is for a reader who needs the business workflow before the technical design.

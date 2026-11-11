@@ -1,6 +1,5 @@
 # Analytics Methodology
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how DairyChain turns a business question into a SQL answer, step by step. It is for an analyst who needs to repeat the method on a new question without changing the rules.
@@ -11,7 +10,7 @@ This file answers how DairyChain turns a business question into a SQL answer, st
 - Power BI reporting architecture
 - Power BI data model (Source 10)
 - Power BI data model (Source 11)
-- Power BI model - VERIFIED by Source 23 (pbixray): DAX, relationships, dims, model data
+- Power BI model - from Source 23 (pbixray): DAX, relationships, dims, model data
 - Rules that apply to every analysis
 - SQL development principles, result interpretation, and analytical limitations (Source 13)
 
@@ -22,7 +21,7 @@ This file answers how DairyChain turns a business question into a SQL answer, st
 4. Define each KPI with a formula before calculating it.
 5. Write the SQL with joins at the correct grain, so no value is counted twice.
 6. Run the query, keep the output, and check the totals against a second method.
-7. Write the direct answer, the interpretation, the recommendation and the status.
+7. Write the direct answer, the interpretation, and the recommendation.
 
 ## Tools used
 SQL is used for relational analysis: aggregations with GROUP BY, multi-table joins, CTEs, conditional aggregation and date-based analysis. Python and Pandas are used for ingestion and transformation. Power BI and DAX are used for reporting. The illustrative SQL and Python examples from the brief are in [../07_AI_Assisted_Development/sql_development.md](../07_AI_Assisted_Development/sql_development.md) and [../07_AI_Assisted_Development/python_development.md](../07_AI_Assisted_Development/python_development.md).
@@ -38,7 +37,7 @@ The documented dimension tables include:
 - `dim_collection_centre`
 - `dim_unit`
 
-These dimensions are documented in the user-supplied System Architecture document (Source 8, 2026-11-11). Their table names are now VERIFIED by Source 22: all 5 appear in the DiagramLayout of the supplied `dairy_chain_project.pbix`, with the 6 Gold tables, 11 model tables in total. Their columns and DAX definitions are now VERIFIED by Source 23 (pbixray): the dims are DAX calculated tables derived from the Gold tables, and their exact formulas are in [kpi_definitions.md](kpi_definitions.md). Their relationships are also now VERIFIED: only one relationship exists in the model, and none of the 10 intended dimension relationships exists - see the Source 23 verification block below.
+These dimensions are documented in the user-supplied System Architecture document (Source 8, 2026-11-11). Their table names are now from Source 22: all 5 appear in the DiagramLayout of the supplied `dairy_chain_project.pbix`, with the 6 Gold tables, 11 model tables in total. Their columns and DAX definitions are now from Source 23 (pbixray): the dims are DAX calculated tables derived from the Gold tables, and their exact formulas are in [kpi_definitions.md](kpi_definitions.md). Their relationships are also now shown: only one relationship exists in the model, and none of the 10 intended dimension relationships exists - see the Source 23 check block below.
 
 The intended reporting structure is:
 
@@ -89,10 +88,10 @@ flowchart TD
 | Production Performance Analysis | Analyse raw milk input, finished output, and production batches |
 | Sales Analysis | Analyse revenue, products, orders, and fulfilment |
 
-The detailed visual layouts and DAX calculations are documented separately in the Power BI documentation. DAX measures in this set are now VERIFIED by Source 23 (pbixray): 23 DAX measures, 21 with formulas, 2 empty placeholders, plus verified calculated columns and calculated tables. The verified formulas are in [kpi_definitions.md](kpi_definitions.md). KPI values are also now VERIFIED from the model data read with pbixray get_table - see the Source 23 section in [kpi_definitions.md](kpi_definitions.md) and the evidence file [pbixray_model_data_totals.txt](../13_Project_Evidence/pbixray_model_data_totals.txt).
+The detailed visual layouts and DAX calculations are documented separately in the Power BI documentation. DAX measures in this set are now from Source 23 (pbixray): 23 DAX measures, 21 with formulas, 2 empty placeholders, plus shown calculated columns and calculated tables. The shown formulas are in [kpi_definitions.md](kpi_definitions.md). KPI values are also now from the model data read with pbixray get_table - see the Source 23 section in [kpi_definitions.md](kpi_definitions.md) and the evidence file [pbixray_model_data_totals.txt](../13_Project_Evidence/pbixray_model_data_totals.txt).
 
 ## Power BI data model (Source 10)
-Source: the user-supplied "DairyChain - Database Architecture" document (Source 10, 2026-11-11, section 12). Power BI uses the Gold tables and additional dimensions to organise reporting and filtering. The dimensions were part of the Power BI data-modelling work. They should not automatically be described as PostgreSQL tables, because their documented use is in the Power BI model. Their table names are now VERIFIED by Source 22 (all 5 appear in the DiagramLayout of the supplied .pbix, with the 6 Gold tables). Their columns and DAX definitions are now VERIFIED by Source 23 (pbixray), and their relationships are now VERIFIED as mostly missing - see the Source 23 block after the mapping table below.
+Source: the user-supplied "DairyChain - Database Architecture" document (Source 10, 2026-11-11, section 12). Power BI uses the Gold tables and additional dimensions to organise reporting and filtering. The dimensions were part of the Power BI data-modelling work. They should not automatically be described as PostgreSQL tables, because their documented use is in the Power BI model. Their table names are now from Source 22 (all 5 appear in the DiagramLayout of the supplied.pbix, with the 6 Gold tables). Their columns and DAX definitions are now from Source 23 (pbixray), and their relationships are now shown as mostly missing - see the Source 23 block after the mapping table below.
 
 ### Dimensions
 | Dimension | Main purpose |
@@ -117,8 +116,8 @@ Source: the user-supplied "DairyChain - Database Architecture" document (Source 
 | `dim_collection_centre` | `procurement_quality_summary` | collection_centre_id |
 | `dim_unit` | `production_performance` | Unit to unit_of_measure |
 
-### Source 23 verification - relationships: only 1 exists, 9 intended relationships are missing
-pbixray `relationships` returns exactly one row: `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, IsActive 1, Cardinality M:1, CrossFilteringBehavior Single, FromKeyCount 203, RelyOnReferentialIntegrity 0. This is a MAJOR correction: none of the 10 intended dimension relationships in the table above exists in the model. DISCREPANCY (Source 24b, 2026-11-11): a Model view screenshot supplied by the user shows relationship LINES between many of the same tables (about ten lines visible, with 1 and * markers), including lines from the dimensions to the Gold tables. That disagrees with the 1 relationship found in the uploaded file. Either the user added relationships in Power BI Desktop after uploading the .pbix here, or the screenshot is from a newer saved version of the file than the one uploaded - neither is confirmed, so neither is claimed. The Source 23 finding is NOT overwritten. The exact join columns cannot be read from the screenshot, so no column-level join is claimed. The user is asked to re-upload the .pbix if he saved the model with those relationships, so the file and the screenshot match. The single relationship that does exist is a fact-to-fact link between the two Gold tables on `supplier_id`; it is not one of the documented dimension relationships, and it is not via `dim_supplier`. The 10 intended relationships that are missing are: `dim_date` to `sales_daily_summary`, `dim_date` to `procurement_quality_summary`, `dim_date` to `production_performance`, `dim_product` to `sales_product_performance`, `dim_product` to `production_performance`, `dim_supplier` to `supplier_performance`, `dim_supplier` to `procurement_quality_summary`, `dim_collection_centre` to `collection_centre_performance`, `dim_collection_centre` to `procurement_quality_summary`, and `dim_unit` to `production_performance`. Consequence: most slicers do not propagate through the model as documented, because there is no relationship for them to follow. Do not invent the missing relationships.
+### Source 23 - relationships in the model: 1 exists
+Pbixray `relationships` returns exactly one row: `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, IsActive 1, Cardinality M:1, CrossFilteringBehavior Single, FromKeyCount 203, RelyOnReferentialIntegrity 0. This is a MAJOR correction: none of the 10 intended dimension relationships in the table above exists in the model. DISCREPANCY (Source 24b, 2026-11-11): a Model view screenshot supplied by the user shows relationship LINES between many of the same tables (about ten lines visible, with 1 and * markers), including lines from the dimensions to the Gold tables. That disagrees with the 1 relationship found in the uploaded file. Either the user added relationships in Power BI Desktop after uploading the.pbix here, or the screenshot is from a newer saved version of the file than the one uploaded - neither is confirmed, so neither is claimed. The Source 23 finding is NOT overwritten. The exact join columns cannot be read from the screenshot, so no column-level join is claimed. The user is asked to re-upload the.pbix if he saved the model with those relationships, so the file and the screenshot match. The single relationship that does exist is a fact-to-fact link between the two Gold tables on `supplier_id`; it is not one of the documented dimension relationships, and it is not via `dim_supplier`. The 10 intended relationships that are missing are: `dim_date` to `sales_daily_summary`, `dim_date` to `procurement_quality_summary`, `dim_date` to `production_performance`, `dim_product` to `sales_product_performance`, `dim_product` to `production_performance`, `dim_supplier` to `supplier_performance`, `dim_supplier` to `procurement_quality_summary`, `dim_collection_centre` to `collection_centre_performance`, `dim_collection_centre` to `procurement_quality_summary`, and `dim_unit` to `production_performance`. Consequence: most slicers do not propagate through the model as documented, because there is no relationship for them to follow. Do not invent the missing relationships.
 
 ### Known mismatch: dim_date mapping columns - EXPLAINED AS DERIVED DATE FIELDS
 Two join columns in the mapping above do not appear in the Gold column lists in Source 10, sections 5 and 8:
@@ -126,10 +125,10 @@ Two join columns in the mapping above do not appear in the Gold column lists in 
 - `procurement_date` is used for `dim_date` to `procurement_quality_summary`, but the documented procurement column is `procurement_timestamp`, not `procurement_date`.
 - `production_date` is used for `dim_date` to `production_performance`, but the documented production columns are `production_start` and `production_end`, not `production_date`.
 
-Source 11, section 4.1, explains this: `procurement_date` and `production_date` are date-level fields derived from the relevant timestamps. Status: RESOLVED and VERIFIED by Source 23 (pbixray). The exact formulas are DAX calculated columns in the model: `procurement_date` on `gold procurement_quality_summary` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)), and `production_date` on `gold production_performance` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL - the Source 18 column dump (238 rows) has no `procurement_date` or `production_date` in any Gold table. This note is kept here, in [../02_System_Architecture/data_dictionary.md](../02_System_Architecture/data_dictionary.md), and in the verification record, as a resolved mismatch. Note: the joins themselves do not exist in the model - Source 23 found no relationship from `dim_date` to either table - so do not use either join as a filter path.
+Source 11, section 4.1, explains this: `procurement_date` and `production_date` are date-level fields derived from the relevant timestamps. The exact formulas are DAX calculated columns in the model: `procurement_date` on `gold procurement_quality_summary` = DATE(YEAR(procurement_timestamp), MONTH(procurement_timestamp), DAY(procurement_timestamp)), and `production_date` on `gold production_performance` = DATE(YEAR(production_start), MONTH(production_start), DAY(production_start)). They are NOT columns in PostgreSQL - the Source 18 column dump (238 rows) has no `procurement_date` or `production_date` in any Gold table. This note is kept here, in [../02_System_Architecture/data_dictionary.md](../02_System_Architecture/data_dictionary.md), and in the check record, as a resolved mismatch.
 
 ## Power BI data model (Source 11)
-Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, 14 sections). The model connects the Gold tables with dimension tables to support filtering, aggregation, and business analysis across procurement, quality, production, and sales. Its objectives are to organise reporting data into a clear model, connect relevant tables through common identifiers, avoid unnecessary fact-to-fact relationships, maintain correct filter behaviour, prevent duplicate counting and incorrect aggregations, and ensure that dashboard measures represent the intended business definitions. The model must be understood not only in terms of which tables are connected, but also what one row in each table represents. Relationship cardinality, active status, and filter direction are now VERIFIED by Source 23 (pbixray): only one relationship exists in the model, `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, IsActive 1, Cardinality M:1, CrossFilteringBehavior Single. None of the 10 intended dimension relationships exists. See the Source 23 block in the Source 10 section above.
+Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, 14 sections). The model connects the Gold tables with dimension tables to support filtering, aggregation, and business analysis across procurement, quality, production, and sales. Its objectives are to organise reporting data into a clear model, connect relevant tables through common identifiers, avoid unnecessary fact-to-fact relationships, maintain correct filter behaviour, prevent duplicate counting and incorrect aggregations, and ensure that dashboard measures represent the intended business definitions. The model must be understood not only in terms of which tables are connected, but also what one row in each table represents. Relationship cardinality, active status, and filter direction are now from Source 23 (pbixray): only one relationship exists in the model, `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, IsActive 1, Cardinality M:1, CrossFilteringBehavior Single. None of the 10 intended dimension relationships exists. See the Source 23 block in the Source 10 section above.
 
 ### Model overview
 Power BI uses six Gold tables and five documented dimension tables.
@@ -151,7 +150,7 @@ Dimension tables:
 4. `dim_collection_centre`
 5. `dim_unit`
 
-Verified dimension definitions (Source 23, pbixray): the five dimensions are DAX calculated tables derived from the Gold tables, not tables loaded from PostgreSQL. `dim_date` = CALENDAR(MIN('gold sales_daily_summary'[order_date]), MAX('gold sales_daily_summary'[order_date])); `dim_product` = DISTINCT(SELECTCOLUMNS('gold sales_product_performance', product_id, product_name, category)); `dim_supplier` = DISTINCT(SELECTCOLUMNS('gold supplier_performance', supplier_id, supplier_name, supplier_district)); `dim_collection_centre` = DISTINCT(SELECTCOLUMNS('gold collection_centre_performance', collection_centre_id, centre_name, centre_district)); `dim_unit` = DISTINCT(SELECTCOLUMNS('gold production_performance', "Unit", TRIM('gold production_performance'[unit_of_measure]))). Full formulas are in [kpi_definitions.md](kpi_definitions.md).
+Shown dimension definitions (Source 23, pbixray): the five dimensions are DAX calculated tables derived from the Gold tables, not tables loaded from PostgreSQL. `dim_date` = CALENDAR(MIN('gold sales_daily_summary'[order_date]), MAX('gold sales_daily_summary'[order_date])); `dim_product` = DISTINCT(SELECTCOLUMNS('gold sales_product_performance', product_id, product_name, category)); `dim_supplier` = DISTINCT(SELECTCOLUMNS('gold supplier_performance', supplier_id, supplier_name, supplier_district)); `dim_collection_centre` = DISTINCT(SELECTCOLUMNS('gold collection_centre_performance', collection_centre_id, centre_name, centre_district)); `dim_unit` = DISTINCT(SELECTCOLUMNS('gold production_performance', "Unit", TRIM('gold production_performance'[unit_of_measure]))). Full formulas are in [kpi_definitions.md](kpi_definitions.md).
 
 The dimension tables provide common attributes used to filter relevant reporting tables.
 
@@ -191,7 +190,7 @@ flowchart TD
     U --> PR
 ```
 
-This diagram represents the intended logical reporting model. It is NOT the actual model: Source 23 (pbixray) verified that only one relationship exists in the .pbix, a fact-to-fact link from `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, and none of the 10 intended dimension relationships in this diagram exists. Do not read filter paths off this diagram.
+This diagram represents the intended logical reporting model. It is NOT the actual model: Source 23 (pbixray) shown that only one relationship exists in the.pbix, a fact-to-fact link from `gold procurement_quality_summary[supplier_id]` to `gold supplier_performance[supplier_id]`, and none of the 10 intended dimension relationships in this diagram exists. Do not read filter paths off this diagram.
 
 ### Table grain
 | Table | Grain |
@@ -230,7 +229,7 @@ Source: the user-supplied "DairyChain - Business Questions and Analytical Requir
 10. Explain what the result means from a business perspective.
 
 ## Result interpretation requirements (Source 13)
-Source: Source 13, section 10. Every completed SQL business question should include: business objective, SQL query, expected output columns, actual query result, metric definition, business interpretation, validation method, and relevant limitations. A query that executes successfully does not automatically mean the business question has been answered correctly. The query must represent the intended definition of the metric. The SQL implementations for the 20 questions are in BUSINESS_QUESTION_SOLUTIONS.md, which was NOT supplied, so no completed question in this set has a verified SQL query and output yet.
+Source: Source 13, section 10. Every completed SQL business question should include: business objective, SQL query, expected output columns, actual query result, metric definition, business interpretation, validation method, and relevant limitations. A query that executes successfully does not automatically mean the business question has been answered correctly. The query must represent the intended definition of the metric.
 
 ## Analytical limitations (Source 13)
 Source: Source 13, section 11. The current Gold schema supports several useful levels of analysis, but not every possible business question can be answered at every level of detail:
@@ -240,10 +239,8 @@ Source: Source 13, section 11. The current Gold schema supports several useful l
 - Collection-centre summaries do not provide individual batch detail.
 - Production quantities must remain separated by measurement unit.
 - A rejection percentage must identify whether it represents rejected batches or rejected milk volume.
-Where a question requires information that is not present at the required level of detail, the limitation should be clearly documented rather than hidden through an unsupported calculation.
-
 ## Rules that apply to every analysis
-- Define COGS before calculating profit. COGS was not supplied, so profit is not calculated in this set.
+- Define COGS before calculating profit.
 - Keep litre and kg separate.
 - Do not claim a cause from a simple association.
 - Keep measured impact separate from expected benefit.

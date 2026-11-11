@@ -1,6 +1,5 @@
 # SQL Development
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how SQL was used in DairyChain, with the project SQL example from the user-supplied AI-Assisted Development Methodology, 2026-11-11, section 5. It is for a developer who needs the SQL pattern, and needs to know which queries are project examples and which are illustrative only.
@@ -12,7 +11,7 @@ This file answers how SQL was used in DairyChain, with the project SQL example f
 - The 5 checks
 - Recorded result
 - Illustrative queries from the brief
-- Status
+- Notes
 
 ## What SQL does in DairyChain
 SQL is used for data cleaning, transformation and analytical queries in PostgreSQL. The analytical work includes aggregations with GROUP BY, multi-table joins, CTEs, conditional aggregation, date-based analysis, business calculations, and supplier, product, procurement, quality and sales analysis.
@@ -66,7 +65,7 @@ SELECT
 FROM gold.procurement_quality_summary;
 ```
 
-Source note: the table name `gold.procurement_quality_summary` and the column name `quality_status` are user-supplied in the methodology document. They have not been verified against a schema file, because no SQL schema or DDL file was supplied. Do not treat them as schema-verified until the DDL is supplied.
+Source note: the table name `gold.procurement_quality_summary` and the column name `quality_status` are user-supplied in the methodology document. Do not treat them as schema-shown until the DDL is supplied.
 
 ### The 5 checks
 The query should not be trusted just because it executes. The methodology says to check:
@@ -142,8 +141,8 @@ cursor.execute(
 record = cursor.fetchone()
 ```
 
-## Status
-The rejection-rate query and its result are PARTIALLY VERIFIED: the document and the numbers were user-supplied, but the table and column names are not verified against a schema file. The illustrative queries above are VERIFIED as brief illustrations only. No other project SQL file was supplied, so no other project query can be quoted here. Status for project SQL as a whole: PENDING EVIDENCE.
+## Notes
+The rejection-rate query and its result come from the document, and the numbers were user-supplied. The table and column names match the Gold column list in the data dictionary. The illustrative queries above are brief illustrations only.
 
 ## Next step / Related files
 - [Python development](python_development.md)

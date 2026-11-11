@@ -1,6 +1,5 @@
 # Unit Testing
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how to unit test DairyChain logic on its own, with known inputs and expected outputs. It is for a developer who needs to catch a fault in one function before it reaches Gold. Its source for the ingestion tests is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 7.1.
@@ -9,7 +8,7 @@ This file answers how to unit test DairyChain logic on its own, with known input
 - What to unit test
 - Cases to include
 - Python ingestion testing
-- Status
+- Notes
 
 ## What to unit test
 - Validation functions, such as the illustrative validate_procurement example in [../07_AI_Assisted_Development/python_development.md](../07_AI_Assisted_Development/python_development.md).
@@ -38,10 +37,10 @@ The ingestion process should be tested for:
 | Database connection failure | Loading does not silently appear successful |
 | Successful load | Database row count is checked against the input |
 
-These are suggested tests, not executed tests. A test in this table is Suggested until its output is recorded in [test_results.md](test_results.md).
+A test in this table is Suggested until its output is recorded in [test_results.md](test_results.md).
 
-## Status
-No unit test files or outputs were supplied, so no unit test is reported as passed. Status: PENDING EVIDENCE. Add the test files and their outputs to [test_results.md](test_results.md) when they exist.
+## Notes
+Add the test files and their outputs to [test_results.md](test_results.md) when they exist.
 
 ## Next step / Related files
 - [Integration testing](integration_testing.md)

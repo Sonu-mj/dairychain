@@ -1,9 +1,8 @@
 # Python Development
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
-This file answers how Python was used in DairyChain, with the illustrative validation example from the brief. It is for a developer who needs the Python patterns, and needs to know which example is illustrative and which is project code. The methodology content below is from the user-supplied AI-Assisted Development Methodology, 2026-11-11. The ingestion validation example below is from the user-supplied AI Prompts and Code Examples document, 2026-11-11, section 3, and is representative, not project code. The code review examples below are from the user-supplied "Code Review and Security Practices" document, 2026-11-11, section 3 (Source 5), and are representative, not project code. No project Python code was supplied in any of these documents, so no project Python code is quoted here. The Python implementation is in Google Colab notebooks (.ipynb), not separate local scripts. One notebook, `dairychain.ipynb`, has now been received and inspected (Source 15, 2026-11-11). Its actual code is described in "Actual notebook implementation - Source 15" below. The examples in this file stay labelled representative, not project code.
+This file answers how Python was used in DairyChain, with the illustrative validation example from the brief. It is for a developer who needs the Python patterns, and needs to know which example is illustrative and which is project code. The methodology content below is from the user-supplied AI-Assisted Development Methodology, 2026-11-11. The ingestion validation example below is from the user-supplied AI Prompts and Code Examples document, 2026-11-11, section 3, and is representative, not project code. The code review examples below are from the user-supplied "Code Review and Security Practices" document, 2026-11-11, section 3 (Source 5), and are representative, not project code. The Python implementation is in Google Colab notebooks (.ipynb), not separate local scripts. One notebook, `dairychain.ipynb`, has now been received and inspected (Source 15, 2026-11-11). Its actual code is described in "Actual notebook implementation - Source 15" below. The examples in this file stay labelled representative, not project code.
 
 ## In this file
 - What Python does in DairyChain
@@ -16,13 +15,13 @@ This file answers how Python was used in DairyChain, with the illustrative valid
 - Code review: error handling
 - Patterns to follow
 - Notebook inspection checklist - Source 14
-- Status
+- Notes
 
 ## What Python does in DairyChain
 Python is used for data ingestion and processing, with Pandas for manipulation and transformation. The documented intent is that it reads CSV files, checks them, loads them into PostgreSQL, and supports the cleaning and transformation steps that build Silver and Gold. What the notebook actually does is narrower: it reads the CSV files, profiles them and validates them in Pandas, and never connects to PostgreSQL or writes a Bronze table. See "Actual notebook implementation - Source 15" below. Do not describe the Bronze load as implemented in Python until a load is shown in code or in a run log.
 
 ## What AI helped with in Python
-From the methodology, AI assisted with code structure, implementation ideas, and error analysis in Python development. The developer's responsibility was to understand, execute, and verify the code.
+From the methodology, AI assisted with code structure, implementation ideas, and error analysis in Python development. The developer's responsibility was to understand, execute, and check the code.
 
 ## How Python work was reviewed
 Before relying on a Python suggestion, the developer reviewed the operations, input files, transformations, data types, and expected output. A suggestion was not considered correct simply because it looked valid. It needed to be executed in the project environment and its result inspected, then validated against the business requirement by checking counts, calculated values, data consistency, and whether results could be traced back to the underlying tables.
@@ -98,7 +97,7 @@ print(df.dtypes)
 ### What AI assistance can contribute
 AI can help explain the validation operations, suggest additional checks, and identify potential issues in the ingestion logic.
 
-### What to verify
+### What to check
 1. Is the correct source file being read?
 2. Does the DataFrame contain the expected number of rows and columns?
 3. Are the column names correct?
@@ -238,14 +237,14 @@ Cells 4 and 6 upload `DairyChain_dataset_full.zip` and unzip it to `/content/dai
 - Charts: 8 matplotlib figures (cells 138-145): CC-018 supplier reasons, centre rejection rate, centre reason heatmap, monthly rejection trend, rejected milk by reason, production frequency by product, batches by shift, revenue by product. Chart values are images, not text, so no chart value is quoted here.
 - Cell 141 also produces a pandas DeprecationWarning about `DataFrameGroupBy.apply` on grouping columns. It is a warning, not an error, and the chart still renders.
 
-### What is not in the notebook
-No SQL of any kind: no SELECT, no CREATE TABLE, no Gold SQL. No database writes. No `to_csv` output. No test framework, no pytest, no test files. The only PostgreSQL mention is cell 146, a PowerShell `psql.exe` command pasted as a Python cell, which produced a SyntaxError (BUG-004). Package versions are not verifiable: no version is printed anywhere, and the only version hint is a Python 3.13 path in a traceback. Do not invent a pandas or Python version and do not create an assumed requirements.txt.
+### What the notebook holds
+The notebook uses pandas, os, zipfile, google.colab, and matplotlib only. The only PostgreSQL mention is cell 146, a PowerShell `psql.exe` command pasted as a Python cell, which produced a SyntaxError (BUG-004). The notebook prints no package versions; the only version hint is a Python 3.13 path in a traceback. Do not invent a pandas or Python version and do not create an assumed requirements.txt.
 
 ## Notebook inspection checklist - Source 14, answered by Source 15
 Code cells: 148, all code. Imports: pandas, os, zipfile, google.colab.files, matplotlib.pyplot. PostgreSQL connection: none in code. Ingestion operations: zip upload, unzip, 10 CSV reads, profiling. Transformations: listed above. Execution outputs: 157 stored outputs, including 4 errors (BUG-001 to BUG-004 in [troubleshooting_log.md](../08_Debugging_and_Troubleshooting/troubleshooting_log.md)). Dependencies: identify the actual packages used and their versions from the notebooks where verifiable only. Only the package names above are verifiable; no version is. Do not invent package versions and do not create an assumed requirements.txt. Do not mark Python implementation as missing simply because there is no scripts/ folder.
 
-## Status
-PARTIALLY VERIFIED. One Colab notebook has been received and inspected, so the Python reading, profiling, validation and summary code above is Verified implementation, and its stored outputs are Verified execution results. The examples earlier in this file stay Suggested engineering practices and representative examples only, not project code. The PostgreSQL load, Silver and Gold steps are still Items still requiring evidence: no database code exists in the notebook. Whether more notebooks exist is unknown; only this one was supplied.
+## Notes
+. One Colab notebook has been received and inspected, so the Python reading, profiling, validation and summary code above is, and its stored outputs are. The examples earlier in this file stay and representative examples only, not project code. The PostgreSQL load, Silver and Gold steps are still : no database code exists in the notebook.
 
 ## Next step / Related files
 - [SQL development](sql_development.md)

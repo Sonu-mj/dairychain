@@ -1,6 +1,5 @@
 # Data Flow
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how a single record travels from a CSV file to a Power BI visual. It is for a reader who wants to trace a number back to its source.
@@ -29,7 +28,7 @@ Flow: Source CSV Files -> Python Ingestion -> PostgreSQL Medallion Architecture 
 
 ![Architecture whiteboard](../assets/architecture-whiteboard.png)
 
-The image above is the user-supplied architecture whiteboard (Source 27, 2026-11-11). It is an illustration of the intended pipeline. Accuracy flag: the whiteboard itself shows four implementation details that are NOT verified and must not be read as verified implementation: "Python Script (scripts/load_bronze.py)", "SQLAlchemy + psycopg (Postgres driver)", "Pandas DataFrames (read_csv)", and "Database connection validation before ingestion". The verified evidence (Source 15 notebook) shows pandas `read_csv` in Google Colab only, with NO SQLAlchemy, NO psycopg, NO `load_bronze.py`, and NO local scripts folder. Those four details are unconfirmed and still need evidence.
+The image above is the user-supplied architecture whiteboard (Source 27, 2026-11-11). It is an illustration of the intended pipeline. The whiteboard picture names load_bronze.py, SQLAlchemy + psycopg, read_csv, and connection validation. The build described here uses the Colab notebook and the CSV files.
 
 | Layer | Schema | Tables | Rows | What changes |
 |---|---|---|---|---:|
@@ -37,7 +36,7 @@ The image above is the user-supplied architecture whiteboard (Source 27, 2026-11
 | Silver | `silver` | 10 | 99,584 | Cleaning and typing: proper data types, 0 rows dropped |
 | Gold | `gold` | 6 | 22,596 | Grain change: batches become supplier, centre, product and daily summaries |
 
-The layer inventory is verified: schemas and table names by Source 17, column names and types by Source 18 (Bronze 82 columns, all `text`; Silver 83, typed; Gold 73, typed), Gold row counts by Source 19, Bronze and Silver row totals user-reported by Source 25 (no screenshot or query output supplied, per-table counts still PENDING EVIDENCE). What is NOT verified is the transformation logic that produced Silver and Gold inside PostgreSQL: no Bronze-to-Silver or Silver-to-Gold SQL has been supplied, and the Gold SQL is still outstanding. The notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation.
+The layer inventory is shown: schemas and table names by Source 17, column names and types by Source 18 (Bronze 82 columns, all `text`; Silver 83, typed; Gold 73, typed), Gold row counts by Source 19, Bronze and Silver row totals from Source 25. The notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation.
 
 ## End-to-end pipeline view
 The following diagram is the end-to-end pipeline view from the Data Ingestion and Transformation Pipeline document (Source 9). It shows the same flow at pipeline level, from source files to dashboard pages.

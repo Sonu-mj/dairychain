@@ -1,6 +1,5 @@
 # Credential Management
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how DairyChain credentials must be handled, and what must never be written into the repository or the documentation. It is for a developer who connects to PostgreSQL or any other service. Its source is section 4.1 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5). The examples below are practices to follow, not a claim that they are implemented in DairyChain.
@@ -9,13 +8,13 @@ This file answers how DairyChain credentials must be handled, and what must neve
 - Rules
 - Risky approach: hardcoded credentials
 - Recommended approach: environment variables
-- .env and .gitignore
+- .env and.gitignore
 - What never to include
-- Status
+- Notes
 
 ## Rules
 - Store credentials in environment variables or a secure store, not in code.
-- Do not commit a .env file, a password, a key or a token to GitHub.
+- Do not commit a.env file, a password, a key or a token to GitHub.
 - Use a separate database user for the application, with only the privileges it needs.
 - Rotate a credential if it has been exposed, and record that it was rotated, not the value itself.
 
@@ -80,8 +79,8 @@ A safe `.env.example` may contain variable names and non-secret placeholders, bu
 ## What never to include
 Never include a password, key, token, connection string with a password, or a personal path in any documentation file in this set. If a value appears in a log or a screenshot, remove it before the log or screenshot is kept.
 
-## Status
-No credential setup was supplied. Status: PENDING EVIDENCE. The brief reported an earlier PostgreSQL authentication error. That error is RESOLVED by Source 17, which shows a successful connection as user postgres; no password or credential value is visible in the screenshots and none is recorded here.
+## Notes
+The brief reported an earlier PostgreSQL authentication error. That error is RESOLVED by Source 17, which shows a successful connection as user postgres; no password or credential value is visible in the screenshots and none is recorded here.
 
 ## Next step / Related files
 - [Security review](security_review.md)

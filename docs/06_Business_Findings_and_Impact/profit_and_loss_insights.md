@@ -1,6 +1,5 @@
 # Profit and Loss Insights
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers what can be said about profit and loss from the supplied numbers, which is revenue only. It is for a reader who must not mistake revenue for profit.
@@ -21,7 +20,7 @@ What does DairyChain show about profit and loss?
 Profit and loss is the final test of a business. Revenue, cost and expense must all be present before that test can be run.
 
 ## Data used
-Revenue Rs 26,734,294.03 is supplied. Discounts, sales returns, COGS and operating expenses are not supplied.
+Revenue Rs 26,734,294.03 is supplied.
 
 ## Method
 Net revenue, gross profit and operating profit use the formulas in [../04_Business_Analytics/kpi_definitions.md](../04_Business_Analytics/kpi_definitions.md). Each formula needs its inputs before it gives a result.

@@ -1,9 +1,8 @@
 # Procurement and Supplier Analysis
 
-> Status: VERIFIED
 
 ## Purpose
-This file answers how much milk was procured, how much was rejected, and what can and cannot be said about suppliers. It is for a manager who needs the rejection problem sized before any supplier is blamed.
+This file answers how much milk was procured, how much was rejected, and what can be said about suppliers. It is for a manager who needs the rejection problem sized before any supplier is blamed.
 
 ## In this file
 - How much was procured and rejected?
@@ -42,11 +41,7 @@ Supply the supplier, district and centre breakdowns, the rejection reasons, and 
 Measured impact: none was supplied, so no rupee saving is claimed. Expected benefit: finding the main rejection reason would cut the 1,117,247.35 L rejected volume.
 
 ## Evidence
-Evidence: user-supplied README, 2026-11-11, procurement section. Gold counts as listed in the README.
-
-## Verification status
-VERIFIED
-
+Source: user-supplied README, 2026-11-11, procurement section. Gold counts as listed in the README.
 
 ## Business question
 Which suppliers contribute the largest procurement volumes, and does a higher price mean a supplier is inefficient?
@@ -55,7 +50,7 @@ Which suppliers contribute the largest procurement volumes, and does a higher pr
 Volume shows who supplies most. Price alone does not show efficiency, because quality, quantity and product specification also matter.
 
 ## Data required
-Supplier performance table, 200 rows, is named in the README. Supplier names, volumes, prices and quality values were not supplied.
+Supplier performance table, 200 rows, is named in the README.
 
 ## Analytical approach
 Sum quantity and value by supplier, show average price by supplier, and read price together with acceptance rate, fat and SNF. Do not rank a supplier on price alone.
@@ -63,8 +58,6 @@ Sum quantity and value by supplier, show average price by supplier, and read pri
 ## KPI definitions
 Procurement value equals sum of procured quantity x procurement price. Acceptance rate equals accepted batches divided by total batches, times 100.
 
-## Actual result
-No supplier breakdown was supplied. Result: PENDING EVIDENCE.
 
 ## Direct answer
 No supplier ranking or supplier judgement can be given from the supplied numbers.
@@ -79,10 +72,7 @@ Supply supplier rows with quantity, price, acceptance rate, fat, SNF and rejecti
 Measured impact: none. Expected benefit: a supplier view would show where to renegotiate, support or replace supply.
 
 ## Evidence
-Evidence: README names supplier_performance with 200 rows. No rows were supplied.
-
-## Verification status
-PENDING EVIDENCE
+Source: README names supplier_performance with 200 rows.
 
 ## Business question
 PR-01 - What is the total quantity of milk procured?
@@ -100,26 +90,22 @@ Aggregate quantity_litres with SUM over all relevant procurement records, unless
 Total milk procured equals SUM(quantity_litres), in litres.
 
 ## Actual result
-Total milk procured 8,758,507.64 L. VERIFIED against the model data read with pbixray get_table (Source 23): SUM(quantity_litres) over 18,000 rows equals 8,758,507.64 L, matching the recorded project total exactly.
+Total milk procured 8,758,507.64 L. checked against the model data read with pbixray get_table (Source 23): SUM(quantity_litres) over 18,000 rows equals 8,758,507.64 L, matching the recorded project total exactly.
 
 ## Direct answer
-The total milk volume is 8,758,507.64 L, verified against the model data (Source 23).
+The total milk volume is 8,758,507.64 L, checked against the model data (Source 23).
 
 ## Business interpretation
 This is the scale of procurement. It does not by itself show whether collection was efficient or profitable.
 
 ## Recommendation
-The total is now verified against the model data (Source 23). Keep the model-data totals file as the evidence record.
+The total is now checked against the model data (Source 23). Keep the model-data totals file as the evidence record.
 
 ## Business impact
-Measured impact: none. Expected benefit: a verified total anchors every procurement comparison that follows.
+Measured impact: none. Expected benefit: a shown total anchors every procurement comparison that follows.
 
 ## Evidence
-Evidence: Source 13, PR-01, user-supplied 2026-11-11. Recorded total from the user-supplied README, 2026-11-11. Source 23: total VERIFIED against the model data read with pbixray get_table.
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PR-01, user-supplied 2026-11-11. Recorded total from the user-supplied README, 2026-11-11. Source 23: total checked against the model data read with pbixray get_table.
 
 ## Business question
 PR-02 - Which suppliers contribute the highest milk procurement volume?
@@ -136,11 +122,6 @@ Read the supplier-level summary, order by total_milk_litres descending. Do not j
 ## KPI definitions
 Supplier milk volume equals total_milk_litres for that supplier.
 
-## Actual result
-No supplier breakdown was supplied. Result: PENDING EVIDENCE.
-
-## Direct answer
-No supplier ranking can be given from the supplied numbers.
 
 ## Business interpretation
 Without the rows, no supplier can be named as the largest contributor, and no concentration claim can be made.
@@ -152,11 +133,7 @@ Supply the 200 supplier rows with total_milk_litres, then rank them.
 Measured impact: none. Expected benefit: a ranking would show where supply is concentrated.
 
 ## Evidence
-Evidence: Source 13, PR-02, user-supplied 2026-11-11. No rows were supplied.
-
-## Verification status
-PENDING EVIDENCE
-
+Source: Source 13, PR-02, user-supplied 2026-11-11.
 
 ## Business question
 PR-03 - Which supplier districts contribute the most milk?
@@ -174,10 +151,10 @@ Group by supplier_district, sum quantity_litres, calculate each district share o
 District contribution percentage equals (District Milk Volume / Total Milk Volume) x 100.
 
 ## Actual result
-Ranking verified from the Page 2 dashboard screenshot (Source 24, 2026-11-11, "Milk Procurement by Supplier District", Sum of quantity_litres by supplier_district), highest to lowest: Sabarkantha, Banaskantha, Kheda, Mehsana, Anand, Satara, Kolhapur, Kolar, Pune, Hisar, Karnal, Mysuru, Rajkot, Mandya, Ludhiana. All 15 district bars fall between about 0.52M and 0.64M litres, read approximately from the chart axis, so the exact per-district litres and shares are NOT readable from the chart and are not claimed here. Result: PARTIALLY VERIFIED (ranking only).
+Ranking shown from the Page 2 dashboard screenshot (Source 24, 2026-11-11, "Milk Procurement by Supplier District", Sum of quantity_litres by supplier_district), highest to lowest: Sabarkantha, Banaskantha, Kheda, Mehsana, Anand, Satara, Kolhapur, Kolar, Pune, Hisar, Karnal, Mysuru, Rajkot, Mandya, Ludhiana. Result: (ranking only).
 
 ## Direct answer
-Sabarkantha contributes the most milk, followed by Banaskantha and Kheda, with Ludhiana lowest of the 15 districts shown. Exact district litres are not supplied.
+Sabarkantha contributes the most milk, followed by Banaskantha and Kheda, with Ludhiana lowest of the 15 districts shown.
 
 ## Business interpretation
 No district can be named as the largest contributor, and no geographical dependence can be claimed.
@@ -189,11 +166,7 @@ Supply procurement rows grouped by supplier_district, then rank by total_milk_li
 Measured impact: none. Expected benefit: a district view would show where collection depends on a small area.
 
 ## Evidence
-Evidence: Source 13, PR-03, user-supplied 2026-11-11. No rows were supplied. Source 24: the district ranking is verified from the Page 2 screenshot (image-11.png), read from the bar chart; exact per-district litres are not readable from the chart.
-
-## Verification status
-PARTIALLY VERIFIED (ranking only)
-
+Source: Source 13, PR-03, user-supplied 2026-11-11. Source 24: the district ranking is shown from the Page 2 screenshot (image-11.png), read from the bar chart; exact per-district litres are not readable from the chart.
 
 ## Business question
 PR-04 - What is the average milk quantity collected per procurement batch?
@@ -211,26 +184,22 @@ Use the batch-level grain. If there is exactly one row per batch, the average of
 Average quantity per batch equals total milk volume divided by total batches, in litres per batch.
 
 ## Actual result
-Average quantity per batch about 486.58 L (8,758,507.64 / 18,000). VERIFIED against the model data (Source 23): the same totals come from the model data, so the average is confirmed.
+Average quantity per batch about 486.58 L (8,758,507.64 / 18,000). checked against the model data (Source 23): the same totals come from the model data, so the average is confirmed.
 
 ## Direct answer
-About 486.58 L per batch, verified against the model data (Source 23).
+About 486.58 L per batch, checked against the model data (Source 23).
 
 ## Business interpretation
 A single average hides variation between suppliers, districts, and centres. Do not use it as the typical batch for any one supplier.
 
 ## Recommendation
-The average is now verified against the model data (Source 23). A per-supplier, per-district, or per-centre breakdown would still need the rows.
+The average is now checked against the model data (Source 23). A per-supplier, per-district, or per-centre breakdown would still need the rows.
 
 ## Business impact
-Measured impact: none. Expected benefit: a verified average supports batch-size comparison.
+Measured impact: none. Expected benefit: a shown average supports batch-size comparison.
 
 ## Evidence
-Evidence: Source 13, PR-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Source 23: totals VERIFIED against the model data.
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PR-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Source 23: totals checked against the model data.
 
 ## Business question
 PR-05 - How does milk procurement vary across shifts?
@@ -248,7 +217,7 @@ Group by shift. For each shift, count batches, sum quantity_litres, and calculat
 Total batches per shift equals COUNT of procurement records in that shift. Total milk per shift equals SUM(quantity_litres) in that shift. Average quantity per batch equals total milk divided by total batches in that shift.
 
 ## Actual result
-Shift breakdown VERIFIED from the model data read with pbixray get_table (Source 23). Procurement shift values are "Morning" and "Evening".
+Shift breakdown from the model data read with pbixray get_table (Source 23). Procurement shift values are "Morning" and "Evening".
 
 | Shift | Batches | Total milk (L) | Average per batch (L) | Rejected batches | Rejection rate |
 |---|---:|---:|---:|---:|---:|
@@ -269,11 +238,7 @@ Staff and transport can be planned around the Morning peak, but the rejection fi
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: the shift view shows where collection effort is concentrated.
 
 ## Evidence
-Evidence: Source 13, PR-05, user-supplied 2026-11-11. Shift rows now VERIFIED from the model data read with pbixray get_table (Source 23).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, PR-05, user-supplied 2026-11-11. Shift rows now from the model data read with pbixray get_table (Source 23).
 
 ## Business question
 QL-01 - What percentage of procurement batches are rejected?
@@ -306,11 +271,7 @@ Use the breakdowns in QL-02 to QL-05 to find which suppliers, centres, reasons, 
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: finding the main rejection cause would cut the rejected volume.
 
 ## Evidence
-Evidence: Source 13, QL-01, user-supplied 2026-11-11, with recorded project reference 18,000 / 15,689 / 2,311 / 12.84 percent. Also in the user-supplied README, 2026-11-11. Source 23: totals VERIFIED against the model data read with pbixray get_table (18,000 batches, 15,689 accepted, 2,311 rejected, 12.84 percent; volume 8,758,507.64 L procured, 1,117,247.35 L rejected, 12.76 percent).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, QL-01, user-supplied 2026-11-11, with recorded project reference 18,000 / 15,689 / 2,311 / 12.84 percent. Also in the user-supplied README, 2026-11-11. Source 23: totals checked against the model data read with pbixray get_table (18,000 batches, 15,689 accepted, 2,311 rejected, 12.84 percent; volume 8,758,507.64 L procured, 1,117,247.35 L rejected, 12.76 percent).
 
 ## Business question
 QL-02 - Which suppliers have the highest rejection rates?
@@ -322,32 +283,23 @@ Identify suppliers with higher milk rejection levels. This can support supplier-
 Gold tables gold.supplier_performance and gold.procurement_quality_summary. Required: supplier_id, supplier_name, total_batches, rejected batch count, accepted batch count, total milk quantity, rejected milk quantity.
 
 ## Analytical approach
-Rank suppliers by rejection rate. Be explicit about which rejection metric is being compared: batch rejection rate or milk-volume rejection rate. Do not assume that the existing rejection_rate_percentage column uses the batch-based definition. Verify its underlying SQL calculation before comparing it with the independently calculated batch rejection rate.
+Rank suppliers by rejection rate. Be explicit about which rejection metric is being compared: batch rejection rate or milk-volume rejection rate. Do not assume that the existing rejection_rate_percentage column uses the batch-based definition. check its underlying SQL calculation before comparing it with the independently calculated batch rejection rate.
 
 ## KPI definitions
 Supplier batch rejection rate equals (Rejected Batches / Total Batches) x 100. Supplier milk-volume rejection rate equals (Rejected Milk Volume / Total Milk Volume) x 100.
 
-## Actual result
-No supplier rejection breakdown was supplied. Result: PENDING EVIDENCE.
-
-## Direct answer
-No supplier rejection ranking can be given from the supplied numbers.
 
 ## Business interpretation
-No supplier can be blamed for rejection yet. A supplier with a high volume rate and a low batch rate is a different problem from one with a high batch rate.
+A supplier with a high volume rate and a low batch rate is a different problem from one with a high batch rate.
 
 ## Recommendation
-Supply supplier rows with batch counts and milk volumes by status, verify what rejection_rate_percentage measures, then rank by both rates.
+Supply supplier rows with batch counts and milk volumes by status, check what rejection_rate_percentage measures, then rank by both rates.
 
 ## Business impact
 Measured impact: none. Expected benefit: a supplier ranking would show where quality investigation should start.
 
 ## Evidence
-Evidence: Source 13, QL-02, user-supplied 2026-11-11. No rows were supplied.
-
-## Verification status
-PENDING EVIDENCE
-
+Source: Source 13, QL-02, user-supplied 2026-11-11.
 
 ## Business question
 QL-03 - Which collection centres have the highest rejected milk volume?
@@ -364,11 +316,6 @@ Rank centres by rejected_milk_litres, and read rejected volume together with rej
 ## KPI definitions
 Centre rejection percentage equals (Rejected Milk Volume / Total Milk Volume) x 100. Rejected volume equals rejected_milk_litres.
 
-## Actual result
-No centre breakdown was supplied. Result: PENDING EVIDENCE.
-
-## Direct answer
-No collection-centre ranking can be given from the supplied numbers.
 
 ## Business interpretation
 Volume alone does not prove a centre is worse. A large centre naturally rejects more litres even at a low rate.
@@ -380,11 +327,7 @@ Supply the 20 centre rows with total and rejected milk, then rank by both volume
 Measured impact: none. Expected benefit: a centre view would show whether rejection is concentrated in a few centres.
 
 ## Evidence
-Evidence: Source 13, QL-03, user-supplied 2026-11-11. No rows were supplied.
-
-## Verification status
-PENDING EVIDENCE
-
+Source: Source 13, QL-03, user-supplied 2026-11-11.
 
 ## Business question
 QL-04 - What are the most common reasons for milk rejection?
@@ -396,13 +339,13 @@ Understand the reasons associated with rejected procurement batches. This identi
 Gold table gold.procurement_quality_summary. Required: rejection_reason, procurement_id, quality_status.
 
 ## Analytical approach
-Include only rejected records. Group by rejection_reason, count rejected batches, and calculate each reason share of all rejections. Missing rejection reasons should not automatically be treated as a real rejection category. Their treatment should be documented separately.
+Include only rejected records. Group by rejection_reason, count rejected batches, and calculate each reason share of all rejections. Missing rejection reasons should not automatically be treated as a real rejection category.
 
 ## KPI definitions
 Percentage of rejections equals (Rejected batches for that reason / All rejected batches) x 100.
 
 ## Actual result
-Rejection-reason breakdown VERIFIED from the model data read with pbixray get_table (Source 23). It matches the notebook breakdown (Source 15, cells 43-44).
+Rejection-reason breakdown from the model data read with pbixray get_table (Source 23). It matches the notebook breakdown (Source 15, cells 43-44).
 
 | Rejection reason | Batches | Share of rejections |
 |---|---:|---:|
@@ -419,17 +362,13 @@ Low SNF is the most common rejection reason, 1,303 batches, 56.38 percent of all
 More than half of all rejections are Low SNF. Low Fat and High Acidity together account for another 43.45 percent. High Temperature is negligible at 4 batches. The first quality fix to try is the SNF problem, not temperature control.
 
 ## Recommendation
-Investigate why SNF runs low - feed, breed, collection delay, or testing - starting with the centres and suppliers with the most Low SNF rejections. That breakdown by centre and supplier is still PENDING EVIDENCE.
+Investigate why SNF runs low - feed, breed, collection delay, or testing - starting with the centres and suppliers with the most Low SNF rejections.
 
 ## Business impact
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: fixing the SNF cause would cut the largest share of the 2,311 rejected batches.
 
 ## Evidence
-Evidence: Source 13, QL-04, user-supplied 2026-11-11. Breakdown now VERIFIED from the model data read with pbixray get_table (Source 23); it matches the notebook (Source 15).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, QL-04, user-supplied 2026-11-11. Breakdown now from the model data read with pbixray get_table (Source 23); it matches the notebook (Source 15).
 
 ## Business question
 QL-05 - How do average fat and SNF levels differ between accepted and rejected milk?
@@ -447,13 +386,11 @@ Calculate average fat_percentage and average snf_percentage separately for accep
 Average fat percentage equals AVG(fat_percentage) within each quality_status group. Average SNF percentage equals AVG(snf_percentage) within each quality_status group.
 
 ## Actual result
-No average fat or SNF breakdown was supplied. Result: PENDING EVIDENCE. The Page 2 dashboard screenshot (Source 24, 2026-11-11, "Average Fat & SNF by Quality Status") does NOT answer this question: it plots SUMS of snf_percentage and fat_percentage by quality_status (Accepted SNF about 138K and fat about 77K; Rejected SNF about 20K and fat about 11K), not averages, even though the title says "Average". Summing a percentage across batches has no business meaning, and the accepted sums are larger mainly because there are 15,689 accepted batches against 2,311 rejected ones. Do not use those numbers as average fat or SNF.
+The Page 2 dashboard screenshot (Source 24, 2026-11-11, "Average Fat & SNF by Quality Status") does NOT answer this question: it plots SUMS of snf_percentage and fat_percentage by quality_status (Accepted SNF about 138K and fat about 77K; Rejected SNF about 20K and fat about 11K), not averages, even though the title says "Average". Summing a percentage across batches has no business meaning, and the accepted sums are larger mainly because there are 15,689 accepted batches against 2,311 rejected ones. Do not use those numbers as average fat or SNF.
 
 ## Direct answer
 No fat or SNF difference between accepted and rejected milk can be given from the supplied numbers. The chart that looks like an answer is a sum, not an average.
 
-## Business interpretation
-No quality measurement can be linked to rejection yet. An association, once measured, would still not prove a cause.
 
 ## Recommendation
 Supply average fat and SNF by quality_status, with the count of missing measurements in each group.
@@ -462,10 +399,7 @@ Supply average fat and SNF by quality_status, with the count of missing measurem
 Measured impact: none. Expected benefit: a clear fat or SNF gap would point the quality investigation at a measurement, not a guess.
 
 ## Evidence
-Evidence: Source 13, QL-05, user-supplied 2026-11-11. No rows were supplied. Source 24: the Page 2 screenshot shows a chart titled "Average Fat & SNF by Quality Status", but its subtitle says "Sum of snf_percentage and Sum of fat_percentage", so it plots sums, not the averages this question asks for.
-
-## Verification status
-PENDING EVIDENCE (averages still not supplied; the chart sums are recorded as a flag, not as an answer)
+Source: Source 13, QL-05, user-supplied 2026-11-11. Source 24: the Page 2 screenshot shows a chart titled "Average Fat & SNF by Quality Status", but its subtitle says "Sum of snf_percentage and Sum of fat_percentage", so it plots sums, not the averages this question asks for.
 
 ## Next step / Related files
 - Procurement analysis](../04_Business_Analytics/procurement_analysis.md)

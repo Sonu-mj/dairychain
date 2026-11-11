@@ -1,6 +1,5 @@
 # Pipeline Performance
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how to judge whether the DairyChain pipeline is fast enough and where its time goes. It is for a developer who needs a measured view, not a guess about the slowest step.
@@ -8,7 +7,7 @@ This file answers how to judge whether the DairyChain pipeline is fast enough an
 ## In this file
 - What to measure
 - What to record
-- Status
+- Notes
 
 ## What to measure
 - Time to ingest the 10 CSV files.
@@ -20,8 +19,8 @@ This file answers how to judge whether the DairyChain pipeline is fast enough an
 ## What to record
 For each run, record the start and end time per step, the row count per step, and any step that failed or was retried. A single total time does not show which step needs work.
 
-## Status
-No pipeline timing, run log or performance measurement was supplied. Status: PENDING EVIDENCE. Do not claim a run time, a fastest step or a measured improvement.
+## Notes
+No pipeline timing, run log or performance measurement was supplied. Do not claim a run time, a fastest step or a measured improvement.
 
 ## Next step / Related files
 - Query optimization](query_optimization.md)

@@ -1,6 +1,5 @@
 # Debugging Methodology
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how to debug DairyChain in a fixed order, so a fix is proven and not guessed. It is for a developer who needs to find a cause, fix it once, and keep the fix from breaking something else. Its source is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, sections 1, 2 and 3, in full.
@@ -13,7 +12,7 @@ This file answers how to debug DairyChain in a fixed order, so a fix is proven a
 - Isolation
 - Regression
 - Recording
-- Status
+- Notes
 
 ## The method
 Debugging is an important part of software and data engineering. Code may contain syntax errors, incorrect logic, configuration problems, database issues, or unexpected data conditions. During DairyChain development, AI assistance was useful for investigating technical problems and exploring possible corrections. However, an AI-generated correction should not automatically be considered a successful fix.
@@ -32,7 +31,7 @@ The purpose of the method is a disciplined debugging and testing approach:
 
 Core principle:
 
-> A fix is successful only when the original problem is resolved and the expected behaviour is verified.
+> A fix is successful only when the original problem is resolved and the expected behaviour is shown.
 
 ## How debugging was approached with AI
 AI was treated as a debugging assistant rather than asked to replace the entire implementation. The important distinction was between asking for a quick replacement and asking for an explanation of the actual failure.
@@ -46,19 +45,12 @@ This gives AI very little information. It may generate a completely different im
 More useful approach:
 
 > I am working on the data ingestion stage of DairyChain.
->
 > The intended operation is to load the source data into the PostgreSQL Bronze schema.
->
 > Here is the relevant Python code:
->
 > [Insert code]
->
 > Here is the complete error message:
->
 > [Insert error]
->
-> Explain the likely root cause. Identify the exact statement causing the issue. Suggest a minimal correction and explain how I can verify that the correction works.
->
+> Explain the likely root cause. Identify the exact statement causing the issue. Suggest a minimal correction and explain how I can check that the correction works.
 > Do not rewrite unrelated parts of the existing implementation.
 
 This provides context and encourages a focused investigation.
@@ -131,7 +123,7 @@ Change only the relevant component when possible. This makes it easier to unders
 Execute the affected operation after the correction. Check both the original problem and the expected output. An error disappearing does not necessarily mean the implementation is now correct.
 
 ### Step 8: Record the outcome
-Record the problem, likely root cause, correction, test performed, and final status. Do not mark a problem as resolved until there is evidence that the corrected implementation works.
+Record the problem, likely root cause, correction, test performed, and the final outcome. Do not mark a problem as resolved until there is evidence that the corrected implementation works.
 
 ## Isolation
 Isolate the failing component before changing anything else. A change to two parts at once hides which change fixed the fault, and hides which change broke the next test.
@@ -142,8 +134,8 @@ After a fix, run the tests that passed before the fix. A fix that breaks a passi
 ## Recording
 Record the root cause and the resolution in [troubleshooting_log.md](troubleshooting_log.md). A fix that is not recorded will be fixed again, badly, the next time it appears.
 
-## Status
-The method above is user-supplied, 2026-11-11, and is PARTIALLY VERIFIED as method. No debugging journal was supplied, so no DairyChain error can be listed here as a real debugging example. See [errors_and_fixes.md](errors_and_fixes.md).
+## Notes
+The method above is user-supplied, 2026-11-11, and is as method. See [errors_and_fixes.md](errors_and_fixes.md).
 
 ## Next step / Related files
 - [Errors and fixes](errors_and_fixes.md)

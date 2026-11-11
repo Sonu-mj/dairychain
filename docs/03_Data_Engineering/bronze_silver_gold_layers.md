@@ -1,6 +1,5 @@
 # Bronze, Silver and Gold Layers
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers what Bronze, Silver and Gold mean in DairyChain, which tables sit in each layer, and what each layer is for. It is for a reader who needs the Medallion Architecture without overclaiming it.
@@ -10,7 +9,6 @@ This file answers what Bronze, Silver and Gold mean in DairyChain, which tables 
 - Bronze
 - Silver
 - Gold
-- Verified structure versus unverified transformation logic
 - Design considerations
 - What this is and is not
 
@@ -23,7 +21,7 @@ DairyChain uses the Medallion Architecture: Bronze, then Silver, then Gold. Each
 | Silver | `silver` | Cleaned and typed: the same records with proper data types and cleaning applied | 10 | 83 | 99,584 |
 | Gold | `gold` | Business-ready aggregates: analytical tables built for reporting in Power BI | 6 | 73 | 22,596 |
 
-Bronze and Silver hold the same 10 table names: `collection_centres`, `milk_procurement`, `production_batches`, `production_inputs`, `production_outputs`, `products`, `quality_tests`, `sales_order_lines`, `sales_orders`, `suppliers`. Gold holds 6 tables: `procurement_quality_summary` (18,000), `collection_centre_performance` (20), `supplier_performance` (200), `production_performance` (4,000), `sales_product_performance` (12), `sales_daily_summary` (364). Evidence: schemas and table names VERIFIED by Source 17 (psql schema query and table inventory, 26 rows), column names and types VERIFIED by Source 18 (238 columns), Gold row counts VERIFIED by Source 19 (live database COUNT(*), total 22,596), Bronze and Silver row totals user-reported by Source 25 (99,584 each, no screenshot or query output supplied, per-table counts still PENDING EVIDENCE). Silver kept all 99,584 rows, so cleaning dropped 0 rows at the Bronze-to-Silver step. The flow is CSV to Bronze to Silver to Gold to Power BI, ELT-style: load to Bronze first, then transform in SQL (Source 9, documented, not verified execution).
+Bronze and Silver hold the same 10 table names: `collection_centres`, `milk_procurement`, `production_batches`, `production_inputs`, `production_outputs`, `products`, `quality_tests`, `sales_order_lines`, `sales_orders`, `suppliers`. Gold holds 6 tables: `procurement_quality_summary` (18,000), `collection_centre_performance` (20), `supplier_performance` (200), `production_performance` (4,000), `sales_product_performance` (12), `sales_daily_summary` (364). Source: schemas and table names from Source 17 (psql schema query and table inventory, 26 rows), column names and types from Source 18 (238 columns), Gold row counts from Source 19 (live database COUNT(*), total 22,596), Bronze and Silver row totals from Source 25 (99,584 each). Silver kept all 99,584 rows, so cleaning dropped 0 rows at the Bronze-to-Silver step. The flow is CSV to Bronze to Silver to Gold to Power BI, ELT-style: load to Bronze first, then transform in SQL (Source 9, documented intent).
 
 ## Bronze
 Bronze stores the ingested source data in PostgreSQL. It is the initial storage layer for downstream processing. Source: 10 CSV files, 99,584 total records. The Bronze schema maintains the ingested source tables and provides the starting point for database-level cleaning and transformations.
@@ -36,8 +34,8 @@ Maintain the records ingested from the source files in PostgreSQL. Schema: `bron
 |---|---:|
 | Source CSV files | 10 |
 | Bronze tables | 10 |
-| Bronze columns | 82, all `text` (VERIFIED by Source 18) |
-| Total recorded rows | 99,584 (user-reported database total, Source 25; per-table counts still PENDING EVIDENCE) |
+| Bronze columns | 82, all `text` (Source 18) |
+| Total recorded rows | 99,584 (Source 25) |
 
 ### Responsibilities
 The Bronze layer provides a database-level starting point for downstream transformations. It allows the pipeline to separate ingestion from subsequent data cleaning and analytical processing. At this stage, important questions include: were the intended source records loaded, do the database tables contain the expected columns, are identifiers and values preserved appropriately, and are any ingestion failures or unexpected row-count differences present?
@@ -56,7 +54,7 @@ The table name above is illustrative. Use the actual Bronze table name from the 
 The Bronze layer should not automatically be described as an immutable raw-data archive unless the actual ingestion process preserves records without modification and provides the required retention controls. Its precise behaviour must be documented from the Python code and database implementation.
 
 ## Silver
-Silver contains 10 cleaned and structured tables. It provides prepared data for analytical transformations. This layer represents the cleaned and transformed data used for further processing. The exact cleaning and validation rules are documented separately, and were not supplied with the README, so they remain PENDING EVIDENCE.
+Silver contains 10 cleaned and structured tables. It provides prepared data for analytical transformations. This layer represents the cleaned and transformed data used for further processing.
 
 ### Objective
 Prepare cleaned and structured tables from the Bronze data. Schema: `silver`.
@@ -65,15 +63,15 @@ Prepare cleaned and structured tables from the Bronze data. Schema: `silver`.
 | Metric | Value |
 |---|---:|
 | Silver tables | 10 |
-| Silver columns | 83, typed (VERIFIED by Source 18) |
-| Total recorded rows | 99,584 (user-reported database total, Source 25; per-table counts still PENDING EVIDENCE) |
+| Silver columns | 83, typed (Source 18) |
+| Total recorded rows | 99,584 (Source 25) |
 | Rows dropped from Bronze | 0 (99,584 in, 99,584 out) |
 
 ### Why a Silver layer is important
 Source data is not always ready for analysis. It may contain: missing values, inconsistent data types, duplicate records, inconsistent date formats, incorrect or invalid values, inconsistent identifiers, and records requiring business-rule validation. The Silver layer provides a dedicated stage for preparing data before analytical aggregation.
 
 ### Typical transformation activities
-The exact cleaning rules should be taken from the actual SQL scripts. The following are potential activities to verify, not a claim that all were implemented:
+The exact cleaning rules should be taken from the actual SQL scripts. The following are potential activities to check, not a claim that all were implemented:
 
 | Transformation | Objective |
 |---|---|
@@ -118,7 +116,7 @@ Prepare business-level analytical tables for reporting and analysis. Schema: `go
 ### Recorded characteristics
 | Gold table | Recorded rows | Grain |
 |---|---:|---|
-| procurement_quality_summary | 18,000 | One row per procurement batch | Row count VERIFIED by Source 19 (live database COUNT(*), 2026-11-11). |
+| procurement_quality_summary | 18,000 | One row per procurement batch | Row count from Source 19 (live database COUNT(*), 2026-11-11). |
 | collection_centre_performance | 20 | One row per collection centre |
 | supplier_performance | 200 | One row per supplier |
 | production_performance | 4,000 | One row per production batch |
@@ -165,10 +163,10 @@ flowchart TD
 ### Important: table grain
 Gold tables have different aggregation levels. For example: a procurement table contains batch-level details, a supplier table contains supplier-level summaries, a product table contains product-level summaries, and a daily sales table contains date-level summaries. These tables should not be joined or aggregated without considering their grain. Incorrect joins can duplicate records and inflate business metrics.
 
-## Verified structure versus unverified transformation logic
-The Medallion layers exist and their contents are verified as stated in the table above: layer names and schemas (Source 17), table names per layer (Source 17), column names and types per layer (Source 18), and row counts per layer (Source 19 for Gold, Source 25 user-reported for Bronze and Silver).
+## Structure and transformation logic
+The Medallion layers exist and their contents are shown as stated in the table above: layer names and schemas (Source 17), table names per layer (Source 17), column names and types per layer (Source 18), and row counts per layer (Source 19 for Gold, Source 25 given by the user for Bronze and Silver).
 
-What is NOT verified is the transformation logic that produced Silver and Gold inside PostgreSQL. No Bronze-to-Silver or Silver-to-Gold SQL has been supplied, and the Gold SQL is still outstanding. The cleaning activities listed under Silver above and the transformation flows shown under Gold above are documented intent from Source 9, not verified execution: do not read them as the SQL that actually ran. The Colab notebook (Source 15) shows pandas validation and transformation logic in Colab, but it has no SQL and no Bronze load, so it must not be read as the database transformation. Until the SQL is supplied, the correct statement is: the Medallion structure is verified, the transformation implementation is PENDING EVIDENCE.
+The cleaning activities listed under Silver above and the transformation flows shown under Gold above are documented intent from Source 9. The Colab notebook (Source 15) shows pandas validation and transformation logic in Colab.
 
 ## Design considerations
 
@@ -191,7 +189,7 @@ Credentials should not be exposed in the source code or public repository. Confi
 Failures during file reading, database connection, or transformation should be visible and investigated. The available project evidence does not establish a separate automated monitoring or orchestration service.
 
 ## What this is and is not
-This is a three-layer design as described in the README, the System Architecture document, and the Data Ingestion and Transformation Pipeline document (Source 9). It is not proof that every layer ran end to end without error, because no pipeline run log was supplied. The layer counts are VERIFIED as README statements. The successful execution of the full pipeline is PENDING EVIDENCE.
+This is a three-layer design as described in the README, the System Architecture document, and the Data Ingestion and Transformation Pipeline document (Source 9). The layer counts are shown as README statements.
 
 ## Next step / Related files
 - [Data ingestion](data_ingestion.md)

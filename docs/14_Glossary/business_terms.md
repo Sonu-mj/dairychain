@@ -1,6 +1,5 @@
 # Business Terms
 
-> Status: VERIFIED
 
 ## Purpose
 This file answers what the business words in DairyChain mean, in plain language. It is for a reader who is new to dairy operations and needs the terms before the analysis.
@@ -21,7 +20,6 @@ This file answers what the business words in DairyChain mean, in plain language.
 - Byproduct: a secondary product made during production, in addition to the finished product.
 - Fulfilment: delivering what was ordered, in full, in part, or not at all.
 - Delivered order: an order delivered in full.
-- Partially delivered order: an order delivered in part only.
 - Cancelled order: an order that was cancelled and not delivered.
 
 ## How to use this glossary

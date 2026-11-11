@@ -1,6 +1,5 @@
 # Access Control
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers who can read and change DairyChain data, as far as the supplied sources say. It is for a reader who needs to know whether access was actually controlled or only assumed. Its source is section 4.3 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5). The permissions model below is a recommendation to follow, not a claim that it is implemented.
@@ -9,10 +8,10 @@ This file answers who can read and change DairyChain data, as far as the supplie
 - What was supplied
 - What access control should cover
 - Database permissions: least privilege
-- Status
+- Notes
 
 ## What was supplied
-No access control record, user list, role list or privilege list was supplied. Status: PENDING EVIDENCE.
+No access control record, user list, role list or privilege list was supplied.
 
 ## What access control should cover
 - Who can read Bronze, Silver and Gold, and who can write to each layer.
@@ -32,7 +31,7 @@ The principle of least privilege means granting only the permissions necessary f
 
 The actual role configuration must be inspected before claiming that permissions are separated in DairyChain.
 
-## Status
+## Notes
 Do not claim any access control as implemented. Add the user and privilege list here only when it can be shown from the database or the repository.
 
 ## Next step / Related files

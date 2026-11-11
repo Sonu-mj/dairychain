@@ -1,9 +1,8 @@
 # Prompt Engineering
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
-This file answers how to instruct AI well in DairyChain, with a weak prompt against a better engineering prompt. It is for a developer who wants useful AI help without handing over judgement. Its sources are the Master Project Brief, section 7 of the user-supplied AI-Assisted Development Methodology, 2026-11-11, and sections 1, 2, 10 and 11 of the user-supplied AI Prompts and Code Examples document, 2026-11-11. All prompts from that document are representative templates, not claimed to be exact historical chat prompts.
+This file answers how to instruct AI well in DairyChain, with a weak prompt against a better engineering prompt. It is for a developer who wants useful AI help without handing over judgement. Its sources are the Master Project Brief, section 7 of the user-supplied AI-Assisted Development Methodology, 2026-11-11, and sections 1, 2, 10 and 11 of the user-supplied AI Prompts and Code Examples document, 2026-11-11.
 
 ## In this file
 - Weak prompt
@@ -36,13 +35,12 @@ From the methodology, section 4 step 2: instead of asking AI to generate an enti
 This is a representative prompt template from the methodology, section 7. It is not a claim that these exact words were used in a particular debugging session.
 
 > I am working on the DairyChain project. This code is responsible for [specific task]. I expected [expected behaviour], but I received the following error: [complete error message].
->
 > Explain the likely root cause. Identify the exact part of the code that may be responsible. Suggest the smallest appropriate correction and explain how I can test whether the correction works. Do not rewrite unrelated parts of the program.
 
 A useful debugging request contains: the intended behaviour, the relevant code, the complete error message, the command or operation that produced the error, the expected result, and the actual result.
 
 ## Example A: vague against useful, Python ingestion
-Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 2. Both prompts below are representative templates, not claimed to be exact historical chat prompts.
+Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 2.
 
 Vague request:
 
@@ -53,12 +51,9 @@ Why it is vague: it does not explain the folder structure, database configuratio
 More useful request:
 
 > I am developing the data ingestion stage of DairyChain. The source data is provided in CSV files, and PostgreSQL is used as the database.
->
 > Help me design a Python ingestion approach that loads each source file into the Bronze schema.
->
 > Before suggesting code, explain the steps involved. Include appropriate checks for file availability, column names, row counts, data types, and database loading errors.
->
-> Do not hardcode database passwords. Keep the implementation focused on ingestion and explain how I can verify that the records were loaded correctly.
+> Do not hardcode database passwords. Keep the implementation focused on ingestion and explain how I can check that the records were loaded correctly.
 
 Why the second request is better: it provides project context, defines the expected result, identifies important validation requirements, and asks for an explanation rather than only code.
 

@@ -1,32 +1,30 @@
 # Errors and Fixes
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers which errors were found in DairyChain and how each one was fixed. It is for a reader who needs real errors, not invented ones. Its source for the categories and representative examples is the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, sections 4, 5 and 6.
 
 ## In this file
 - What was supplied
-- The one previously reported error
 - Debugging categories
 - Representative example: Python ingestion failure
 - Representative example: incorrect SQL aggregation
 - How to add an error
 
 ## What was supplied
-No separate debugging journal was supplied, but the notebook `dairychain.ipynb` (Source 15, 2026-11-11) contains 4 stored error outputs. Those 4 real errors are listed in "Real errors from the notebook - Source 15" below, in addition to the one previously reported error. No error in this file is invented. BUG-001 to BUG-003 are marked fixed because a later notebook cell shows the correction running with output. BUG-004 is now fixed by Source 17: the psql command was run in PowerShell as intended and connected successfully.
+No error in this file is invented. BUG-001 to BUG-003 are marked fixed because a later notebook cell shows the correction running with output. BUG-004 is now fixed by Source 17: the psql command was run in PowerShell as intended and connected successfully.
 
 ## Real errors from the notebook - Source 15
-- BUG-001, cell 34: KeyError `'quantity_liters'`. Cause: the code used the American spelling `quantity_liters`, but the CSV column is `quantity_litres`. Fix in cell 36: use `quantity_litres`. Verified by cells 38 and 40, which run and show the cost check results.
-- BUG-002, cell 63: FileNotFoundError for `/content/dairychain/DairyChain_dataset/data/raw/master/collection_centers.csv`. Cause: the file name used the American spelling `collection_centers.csv`, but the file is `collection_centres.csv`. Fix in cell 65: use `collection_centres.csv`. Verified by its output, shape (20, 9).
-- BUG-003, cell 87: KeyError `'By-product/residual'`. Cause: the pivot column is named `By-product / residual`, with spaces around the slash. Fix in cells 88-89: use `By-product / residual`. Verified by cell 89, which runs the production check for 4,000 batches.
-- BUG-004, cell 146: SyntaxError, invalid syntax, from `& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d dairychain`. Cause: a PowerShell command was pasted into a Python code cell. Fix: none in the notebook. Status: fixed, verified by Source 17. The same command, run in Windows PowerShell as intended, connected to database `dairychain` on localhost port 5432 as user `postgres` and returned server version `PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit`. Evidence: [postgresql-connection-and-schemas.png](../13_Project_Evidence/postgresql-connection-and-schemas.png).
+- BUG-001, cell 34: KeyError `'quantity_liters'`. Cause: the code used the American spelling `quantity_liters`, but the CSV column is `quantity_litres`. Fix in cell 36: use `quantity_litres`. shown by cells 38 and 40, which run and show the cost check results.
+- BUG-002, cell 63: FileNotFoundError for `/content/dairychain/DairyChain_dataset/data/raw/master/collection_centers.csv`. Cause: the file name used the American spelling `collection_centers.csv`, but the file is `collection_centres.csv`. Fix in cell 65: use `collection_centres.csv`. shown by its output, shape (20, 9).
+- BUG-003, cell 87: KeyError `'By-product/residual'`. Cause: the pivot column is named `By-product / residual`, with spaces around the slash. Fix in cells 88-89: use `By-product / residual`. shown by cell 89, which runs the production check for 4,000 batches.
+- BUG-004, cell 146: SyntaxError, invalid syntax, from `& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d dairychain`. Cause: a PowerShell command was pasted into a Python code cell. Fix: none in the notebook. The same command, run in Windows PowerShell as intended, connected to database `dairychain` on localhost port 5432 as user `postgres` and returned server version `PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit`. Source: [postgresql-connection-and-schemas.png](../13_Project_Evidence/postgresql-connection-and-schemas.png).
 
 Two of these errors are the same kind of mistake twice: a name spelled differently from the actual file or column (BUG-001 and BUG-002). That is a finding about the work, not a new claim: both are visible in the stored outputs.
 
 ## The one previously reported error
 - Error: a database creation attempt encountered an authentication error. The brief states that PostgreSQL 18.6 was installed, psql was made available through the Windows PATH, and the database creation attempt met an authentication error.
-- Status: RESOLVED by Source 17. A current connection test now exists and succeeds: localhost, port 5432, user `postgres`, database `dairychain`, server PostgreSQL 18.6. The earlier authentication error is no longer the current state. What is still not shown is a load run log: the connection works, but no row counts or load output have been supplied.
+- A current connection test now exists and succeeds: localhost, port 5432, user `postgres`, database `dairychain`, server PostgreSQL 18.6. The earlier authentication error is no longer the current state.
 
 ## Debugging categories
 The project's Python, PostgreSQL, SQL, and Power BI components can experience different types of problems. These are debugging categories, not a list of confirmed DairyChain incidents. Actual errors should be recorded in the project debugging log.
@@ -76,7 +74,7 @@ print(file_path.exists())
 ### Targeted correction
 Use a path that resolves correctly from the script's actual location or configure the project data directory explicitly. Do not change the entire ingestion process just because one input path is incorrect.
 
-### Verification
+### Check
 Run the script again and confirm:
 
 - The intended file is found.
@@ -122,13 +120,13 @@ If the joined row count is unexpectedly higher, investigate the relationship and
 - Did the join multiply rows?
 - Does the final aggregation represent procurement records or supplier summaries?
 
-### Verification
+### Check
 Compare the aggregate before and after the corrected query. Confirm that the resulting metric matches the intended business definition.
 
 ## How to add an error
-For each new error, add: the error message, the file and line, the input, the cause, the smallest fix, the test that proves the fix, and the date. Do not add an error from memory without its message and its test. Do not mark a bug fixed without the verification in [troubleshooting_log.md](troubleshooting_log.md).
+For each new error, add: the error message, the file and line, the input, the cause, the smallest fix, the test that proves the fix, and the date. Do not add an error from memory without its message and its test. Do not mark a bug fixed without the check in [troubleshooting_log.md](troubleshooting_log.md).
 
 ## Next step / Related files
 - [Debugging methodology](debugging_methodology.md)
 - [Troubleshooting log](troubleshooting_log.md)
-- [Verification file](../../VERIFICATION_AND_MISSING_INFO.md)
+- [check file](../../VERIFICATION_AND_MISSING_INFO.md)

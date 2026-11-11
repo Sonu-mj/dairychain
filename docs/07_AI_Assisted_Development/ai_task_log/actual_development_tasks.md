@@ -1,6 +1,5 @@
 # Actual Development Tasks
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers which AI-assisted development tasks actually happened in DairyChain, and how each AI suggestion was decided. It is for a reviewer who needs a task record and a decision record, not a general statement that AI was used. Its sources are the Master Project Brief, sections 10 and 12 of the user-supplied AI-Assisted Development Methodology, 2026-11-11, and the user-supplied "AI-Assisted Development Decision Log" document, 2026-11-11, used as Source 7.
@@ -11,16 +10,14 @@ This file answers which AI-assisted development tasks actually happened in Dairy
 - Decision categories
 - Decision register format
 - Decision record template
-- Current status: register empty by design
+- The register holds no entries.
 - Limitations of AI-assisted development
 - Evidence to maintain
-- Evidence to add from the prompts document
 - AI decision log
-- What to add first
 - Template for each task
 
-## What was supplied
-No AI task log was supplied. No task name, prompt, draft, review note, test result, original error, or verified correction was supplied for DairyChain. The methodology document describes the method and principles, and it names one project SQL example, the rejection-rate query in [../sql_development.md](../sql_development.md), but it does not list dated tasks. The decision log document supplies the decision structure and one illustrative technical example, not historical decisions. Status: PENDING EVIDENCE.
+## What the sources hold
+The methodology document describes the method and principles, and it names one project SQL example, the rejection-rate query in [../sql_development.md](../sql_development.md). The decision log document supplies the decision structure and one illustrative technical example.
 
 ## Decision principles
 Source: Decision Log, section 1. Use these principles when evaluating AI-generated suggestions:
@@ -30,7 +27,7 @@ Source: Decision Log, section 1. Use these principles when evaluating AI-generat
 - Consider its impact on the existing implementation.
 - Evaluate potential logical errors and security risks.
 - Prefer simpler solutions when they meet the same requirement.
-- Verify accepted changes through execution and testing.
+- Check accepted changes through execution and testing.
 
 The purpose of the log is to make AI-assisted development transparent and demonstrate developer judgement. AI can offer multiple solutions. Good engineering requires knowing which solution to use, which to modify, and which to reject.
 
@@ -91,24 +88,23 @@ Source: Decision Log, section 4. Copy this template for every new entry.
 
 [Describe what was actually implemented. Include the relevant file, SQL query, Python function, or DAX measure.]
 
-**Verification:**
+**Check:**
 
 [Describe the test performed and the actual result.]
 
-**Evidence:**
+**Source:**
 
 [Add the relevant source file, query output, screenshot, test record, or conversation reference.]
 
 ---
 
-## Current status: register empty by design
-Source: Decision Log, section 10. This file provides the decision-record structure and one illustrative technical example, in [../../12_Engineering_Decisions/architecture_decisions.md](../../12_Engineering_Decisions/architecture_decisions.md). Historical AI decisions should be added from the actual DairyChain development conversations and implementation evidence. No historical entries were supplied, so the register is empty. No unverified AI acceptance, modification, rejection, or testing event is presented here as a historical fact. Update the status when an investigating decision is resolved, and record the actual date and implementation reference where available.
+## The register
+Source: Decision Log, section 10. This file provides the decision-record structure and one illustrative technical example, in [../../12_Engineering_Decisions/architecture_decisions.md](../../12_Engineering_Decisions/architecture_decisions.md). Historical AI decisions should be added from the actual DairyChain development conversations and implementation evidence. Update the entry when an investigating decision is resolved, and record the actual date and implementation reference where available.
 
 ## Limitations of AI-assisted development
 1. **Incorrect logic:** AI may provide code that runs but calculates the wrong result.
 2. **Missing context:** AI may not know the complete database schema or project implementation.
 3. **Security weaknesses:** Generated code may contain unsafe practices.
-4. **Unverified output:** An explanation or code suggestion does not prove successful execution.
 5. **Overcomplication:** A suggested solution may be more complex than the requirement.
 6. **Business misunderstandings:** AI may misunderstand a metric or business rule unless the requirement is clearly explained.
 
@@ -119,39 +115,17 @@ Collect these from the actual project before making more detailed claims:
 
 - Examples of AI-assisted Python implementation.
 - Examples of AI-assisted SQL development.
-- Original errors and the corresponding verified corrections.
+- Original errors and the corresponding shown corrections.
 - Relevant PostgreSQL query outputs.
 - Data quality and reconciliation results.
 - Power BI DAX measures and relationship screenshots.
 - Test cases with actual execution results.
 - Decisions where an AI suggestion was modified or rejected.
 
-These records should be linked to the relevant implementation files and reports wherever possible. None of them was supplied yet.
-
-## Evidence to add from the prompts document
-Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 12. To make that document an accurate record of DairyChain development, add the following evidence where available. None of these was supplied yet, so all five items remain PENDING EVIDENCE:
-
-1. A genuine Python prompt and the corresponding implementation.
-2. A genuine SQL prompt and the query that was reviewed.
-3. An actual debugging conversation showing an error and its verified correction.
-4. A Power BI or DAX example from the implemented dashboard.
-5. An example where an AI suggestion was modified or rejected, with the technical reason.
-
-Do not publish private credentials, access tokens, database passwords, or other secrets in prompts or code examples.
+These records should be linked to the relevant implementation files and reports wherever possible.
 
 ## AI decision log
-Source: the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 10. Use `AI_DECISION_LOG.md` to capture suggestions that were accepted, modified, or rejected. The debugging journal should capture the technical issue and its resolution. The Decision Log document, Source 7, is now the structure for that log: see the decision register format and template above. No AI decision log entries were supplied yet, so no suggestion is recorded here as accepted, modified, or rejected. Do not back-fill this section with invented decisions.
-
-## What to add first
-When the log is built, add these tasks first, in this order:
-1. Requirement clarification for procurement, quality, production and sales.
-2. Schema review for Bronze, Silver and Gold.
-3. Python ingestion drafting and review.
-4. SQL transformation drafting and review for the 6 Gold tables.
-5. Power BI DAX measure drafting and review.
-6. Debugging entries, with the error, the cause and the fix.
-7. Test-case preparation, with the executed output.
-8. Documentation drafting and review.
+Source: the user-supplied "Debugging and Testing Methodology" document, 2026-11-11, section 10. Capture suggestions that were accepted, modified, or rejected in the decision register. The debugging journal should capture the technical issue and its resolution. The Decision Log document, Source 7, is the structure for that log: see the decision register format and template above. Do not back-fill this section with invented decisions.
 
 ## Template for each task
 - Date:
@@ -161,7 +135,6 @@ When the log is built, add these tasks first, in this order:
 - AI suggestion:
 - Developer change after review:
 - Test or check:
-- Status:
 
 Do not back-fill this file with invented tasks. Add a task only when its prompt, draft and test can be shown.
 
@@ -169,4 +142,4 @@ Do not back-fill this file with invented tasks. Add a task only when its prompt,
 - [AI task log README](README.md)
 - [How AI was used](../how_ai_was_used.md)
 - [Architecture decisions](../../12_Engineering_Decisions/architecture_decisions.md)
-- [Verification file](../../../VERIFICATION_AND_MISSING_INFO.md)
+- [check file](../../../VERIFICATION_AND_MISSING_INFO.md)

@@ -1,6 +1,5 @@
 # KPI Definitions
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers what every KPI in DairyChain means, with the same name and formula in every file. It is for any reader who needs to check a number before quoting it.
@@ -12,8 +11,7 @@ This file answers what every KPI in DairyChain means, with the same name and for
 - Power BI calculation review
 - Aggregation considerations (Source 11)
 - Example DAX measures (Source 11)
-- Verified DAX measures, calculated columns, and calculated tables - Source 23 (pbixray)
-- What cannot be calculated yet
+- Shown DAX measures, calculated columns, and calculated tables - Source 23 (pbixray)
 - Unit and zero rules
 
 ## KPI table
@@ -41,7 +39,7 @@ This file answers what every KPI in DairyChain means, with the same name and for
 - Inventory balance: Opening stock + Signed stock movements.
 
 ## Representative DAX measures: procurement rejection rate
-Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 8. These are representative DAX measures for the Procurement and Quality Analysis page, not verified Power BI measures. The source table and columns below are user-supplied in that document. A .pbix file has now been supplied (Source 22), and its model has now been read with pbixray (Source 23), so the VERIFIED formulas are in the Source 23 section below. The measure names Total Milk Procured, Total Accepted Milk, Total Rejected Milk and Overall Rejection Rate ARE referenced in the .pbix. Source 23 correction: the representative Total Milk Procured and Overall Rejection Rate formulas below match the verified formulas, but the representative Total Rejected Milk formula below does NOT match the verified one - see the correction note after the Milk Rejection Rate block.
+Source: the user-supplied "AI Prompts and Code Examples" document, 2026-11-11, section 8. These are representative DAX measures for the Procurement and Quality Analysis page. The model measures are listed below. The source table and columns below are user-supplied in that document. A.pbix file has now been supplied (Source 22), and its model has now been read with pbixray (Source 23), so the shown formulas are in the Source 23 section below. The measure names Total Milk Procured, Total Accepted Milk, Total Rejected Milk and Overall Rejection Rate ARE referenced in the.pbix. Source 23 correction: the representative Total Milk Procured and Overall Rejection Rate formulas below match the shown formulas, but the representative Total Rejected Milk formula below does NOT match the shown one - see the correction note after the Milk Rejection Rate block.
 
 **Total Milk Procured**
 
@@ -77,9 +75,9 @@ DIVIDE(
 ```
 
 ### Source 23 correction - Total Rejected Milk
-The representative Total Rejected Milk formula above is a CALCULATE on `gold procurement_quality_summary[quantity_litres]` filtered to `quality_status = "Rejected"`. The VERIFIED dashboard formula (Source 23, pbixray) is different: a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`, defined on `gold collection_centre_performance`. Do not quote the representative formula as the dashboard formula. The verified formula is in the Source 23 section below. Whether the two formulas return the same total was not checked here, so no equality is claimed.
+The representative Total Rejected Milk formula above is a CALCULATE on `gold procurement_quality_summary[quantity_litres]` filtered to `quality_status = "Rejected"`. The shown dashboard formula (Source 23, pbixray) is different: a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`, defined on `gold collection_centre_performance`. Do not quote the representative formula as the dashboard formula. The shown formula is in the Source 23 section below. Whether the two formulas return the same total was not checked here, so no equality is claimed.
 
-### Verification considerations
+### Notes on the measures
 The measure must be checked for:
 
 - Correct source columns.
@@ -102,7 +100,7 @@ Two different rejection metrics can be calculated from `gold.procurement_quality
 Use the batch rate when the question is about batches, and the volume rate when the question is about milk volume. The DAX measures above use milk volume, not batch count, so they answer the volume question only.
 
 ### Average selling price warning
-`average_selling_price` in `gold.sales_product_performance` is a product-level field. An unweighted average of this field across products is not necessarily the same as the weighted average selling price across all transactions. The exact calculation and aggregation method should be documented when defining Power BI measures. Do not average the product-level field across products and present the result as the overall average selling price.
+`average_selling_price` in `gold.sales_product_performance` is a product-level field. An unweighted average of this field across products is not necessarily the same as the weighted average selling price across all transactions. Do not average the product-level field across products and present the result as the overall average selling price.
 
 ## Power BI calculation review
 Source: "Code Review and Security Practices", section 6 (Source 5). A Power BI visual may display a plausible number even when its underlying measure or relationship is incorrect. The following checks should be performed.
@@ -118,13 +116,13 @@ Source: "Code Review and Security Practices", section 6 (Source 5). A Power BI v
 | Units | Whether litres and kilograms remain separate |
 
 ### Rejection-rate measures
-The DAX measures in the "Representative DAX measures" section above use milk volume rather than batch count: Total Milk Procured, Total Rejected Milk, and Overall Rejection Rate using DIVIDE. They are representative only, except where the verified formulas in the Source 23 section below replace them. The verified Total Rejected Milk formula is a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`, not the CALCULATE on procurement quantity shown above, so the representative version must not be quoted as the dashboard formula. A reviewer should confirm that the measure returns the correct value for the current filter context. A milk-volume rejection rate should not be labelled as a batch rejection rate. The volume rate is 12.76 percent and the batch rate is 12.84 percent. Do not use one in place of the other.
+The DAX measures in the "Representative DAX measures" section above use milk volume rather than batch count: Total Milk Procured, Total Rejected Milk, and Overall Rejection Rate using DIVIDE. They are representative only, except where the shown formulas in the Source 23 section below replace them. The shown Total Rejected Milk formula is a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`, not the CALCULATE on procurement quantity shown above, so the representative version must not be quoted as the dashboard formula. A reviewer should confirm that the measure returns the correct value for the current filter context. A milk-volume rejection rate should not be labelled as a batch rejection rate. The volume rate is 12.76 percent and the batch rate is 12.84 percent. Do not use one in place of the other.
 
 ## Aggregation considerations (Source 11)
-Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 8). Incorrect aggregations are a common source of misleading dashboard numbers. All measures below are representative / illustrative from that source. A .pbix file has now been supplied (Source 22), and its model has now been read with pbixray (Source 23), so the VERIFIED DAX formulas are in the Source 23 section below; the measures in this section stay representative / illustrative.
+Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 8). Incorrect aggregations are a common source of misleading dashboard numbers. All measures below are representative / illustrative from that source. A.pbix file has now been supplied (Source 22), and its model has now been read with pbixray (Source 23), so the shown DAX formulas are in the Source 23 section below; the measures in this section stay representative / illustrative.
 
 ### Order counts
-`sales_daily_summary` contains one record per date and includes total orders. For overall daily order totals, summing its `total_orders` values is appropriate when the dates are unique and the table's business definition is consistent. However, `sales_product_performance` contains one record per product, and a product-level order count may represent orders associated with each product. One order can potentially contain multiple products. Do not assume that summing the product-level `total_orders` gives the overall distinct order count. The overall project reference is 14,000 orders. Use a verified order-level or date-level calculation for the overall total.
+`sales_daily_summary` contains one record per date and includes total orders. For overall daily order totals, summing its `total_orders` values is appropriate when the dates are unique and the table's business definition is consistent. However, `sales_product_performance` contains one record per product, and a product-level order count may represent orders associated with each product. One order can potentially contain multiple products. Do not assume that summing the product-level `total_orders` gives the overall distinct order count. The overall project reference is 14,000 orders. Use a shown order-level or date-level calculation for the overall total.
 
 ### Revenue
 Revenue exists in both `sales_product_performance` and `sales_daily_summary`. These tables represent revenue at different grains. The product-level table supports product comparisons. The date-level table supports daily revenue analysis. Each can be used for the relevant reporting purpose, but the values must not be added together because they represent the same business activity at different aggregation levels. The recorded total revenue is Rs 26,734,294.03.
@@ -135,13 +133,13 @@ The production table contains quantities in litres and kilograms. A total quanti
 ### Average selling price
 The product-level table contains an `average_selling_price` value for each product. An unweighted average across products is not necessarily equivalent to a weighted average across all transactions. The intended KPI must define whether it represents the average of product-level average prices, total revenue divided by total fulfilled or sold quantity subject to the correct sales definition, or the average transaction-level selling price. The measure should be named and interpreted according to its actual calculation.
 
-## Verified DAX measures, calculated columns, and calculated tables - Source 23
+## DAX measures, calculated columns, and calculated tables - Source 23
 Source: `dairy_chain_project.pbix`, read with the open-source pbixray Python library (Source 23, 2026-11-11). pbixray reads the model without Power BI Desktop. This replaces the Source 22 limitation: unzipping the file alone could not parse the XPress9-compressed DataModel, but pbixray extracted the DAX, relationships, and Power Query. Evidence file: [pbixray_dax_measures.txt](../13_Project_Evidence/pbixray_dax_measures.txt) (full DAX dump, 291 lines). Model metadata: Culture en-US, ModifiedTime 2026-11-09 21:23:18, StructureModifiedTime 2026-11-10 19:52:10.
 
-### Verified DAX measures - 23 rows, 21 with formulas, 2 empty
-pbixray `dax_measures` returns 23 rows. The formulas below are copied exactly from the extraction. Short single-line formulas are shown in the table; multi-line formulas follow in full.
+### DAX measures - 23 rows, 21 with formulas, 2 empty
+Pbixray `dax_measures` returns 23 rows. The formulas below are copied exactly from the extraction. Short single-line formulas are shown in the table; multi-line formulas follow in full.
 
-| Measure | Host table | Verified DAX formula |
+| Measure | Host table | DAX formula |
 |---|---|---|
 | Total Revenue | `gold collection_centre_performance` | `SUM('gold sales_product_performance'[total_revenue])` |
 | Total Orders | `gold collection_centre_performance` | `SUM('gold sales_daily_summary'[total_orders])` |
@@ -221,12 +219,12 @@ CALCULATE(
 ```
 
 ### FLAG - Finished Output (L) and Finished Output (kg) filter values
-The model data holds `unit_of_measure` values "Litre" and "Kilogram" (full words), verified with pbixray get_table on `gold production_performance` (3,001 Litre batches, 999 Kilogram batches). The two DAX measures above filter `unit_of_measure` = "L" and "kg". Those filters do not match the values in the data, so the two measures would return blank unless the filter matches. This is flagged to check in Power BI, not called wrong. The plain SUM measures (`Total Finished Product Output` and `Total Finished Output`) have no unit filter and are not affected.
+The model data holds `unit_of_measure` values "Litre" and "Kilogram" (full words), shown with pbixray get_table on `gold production_performance` (3,001 Litre batches, 999 Kilogram batches). The two DAX measures above filter `unit_of_measure` = "L" and "kg". Those filters do not match the values in the data, so the two measures would return blank unless the filter matches. This is flagged to check in Power BI, not called wrong. The plain SUM measures (`Total Finished Product Output` and `Total Finished Output`) have no unit filter and are not affected.
 
-### What the verified formulas change against the representative DAX
-- Total Milk Procured, Overall Rejection Rate, Total Accepted Milk, Total Production Batches, Total Raw Milk Processed (L), and Average Production Duration match the representative formulas given in the sections above. The representative name "Total Raw Milk Processed" differs from the verified name "Total Raw Milk Processed (L)".
-- Total Rejected Milk does NOT match: the representative formula is a CALCULATE on procurement quantity filtered to Rejected, the verified formula is a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`. The representative version must not be quoted as the dashboard formula.
-- Overall Rejection Rate is the volume rejection rate, 12.76 percent, not the batch rejection rate, 12.84 percent. The verified Total Rejected Milk and Total Milk Procured are both volume sums, so the rate divides rejected volume by procured volume.
+### What the formulas change against the representative DAX
+- Total Milk Procured, Overall Rejection Rate, Total Accepted Milk, Total Production Batches, Total Raw Milk Processed (L), and Average Production Duration match the representative formulas given in the sections above. The representative name "Total Raw Milk Processed" differs from the shown name "Total Raw Milk Processed (L)".
+- Total Rejected Milk does NOT match: the representative formula is a CALCULATE on procurement quantity filtered to Rejected, the shown formula is a plain SUM of `gold collection_centre_performance[rejected_milk_litres]`. The representative version must not be quoted as the dashboard formula.
+- Overall Rejection Rate is the volume rejection rate, 12.76 percent, not the batch rejection rate, 12.84 percent. The shown Total Rejected Milk and Total Milk Procured are both volume sums, so the rate divides rejected volume by procured volume.
 
 ### Short Product Name - calculated column and a flagged measure
 `Short Product Name` on `gold sales_product_performance` is a DAX calculated column, not a measure:
@@ -252,9 +250,9 @@ SWITCH(
 )
 ```
 
-Flag, not verified working: `dim_collection_centre` has only three columns (`collection_centre_id`, `centre_name`, `centre_district`) and no `product_name` column, so this expression references a column that does not exist in its host table. It is recorded as a broken or unused expression unless proven otherwise in Power BI. Do not call it a verified working measure.
+It is recorded as a broken or unused expression unless proven otherwise in Power BI. Do not call it a shown working measure.
 
-### Verified DAX calculated columns - date fields
+### DAX calculated columns - date fields
 `procurement_date` on `gold procurement_quality_summary`:
 
 ```dax
@@ -277,7 +275,7 @@ DATE(
 
 This RESOLVES the Source 11 dim_date mismatch definitively: `procurement_date` and `production_date` are DAX calculated columns in the Power BI model, derived from the timestamps. They are NOT columns in PostgreSQL - the Source 18 column dump (238 rows) has no `procurement_date` or `production_date` in any Gold table.
 
-### Verified DAX calculated tables - the dimensions
+### DAX calculated tables - the dimensions
 The five dimensions are NOT loaded from PostgreSQL. They are DAX calculated tables derived from the Gold tables. Power Query loads only the 6 Gold tables (see below).
 
 `dim_date`:
@@ -341,11 +339,11 @@ DISTINCT(
 )
 ```
 
-### Power Query source - VERIFIED
+### Power Query source
 Only the 6 Gold tables are loaded, each with the same source: `PostgreSQL.Database("localhost:5432", "dairychain")`, Navigation to Schema `gold`, Item = the table name. No dimension table is loaded in Power Query. The source is localhost port 5432, database `dairychain`.
 
-### Relationships - VERIFIED, only one exists
-pbixray `relationships` returns exactly one row:
+### Relationships, only one exists
+Pbixray `relationships` returns exactly one row:
 
 | From table | From column | To table | To column | Active | Cardinality | Filter direction | From key count |
 |---|---|---|---|---|---|---|---|
@@ -354,12 +352,12 @@ pbixray `relationships` returns exactly one row:
 This is a MAJOR correction to the documented 10-row intended relationship mapping (Source 11): none of the 10 intended dimension relationships exists in the model. The single relationship that does exist is a fact-to-fact link between the two Gold tables on `supplier_id`; it is not one of the documented dimension relationships, and it is not via `dim_supplier`. The 10 intended relationships that are missing are: `dim_date` to `sales_daily_summary`, `dim_date` to `procurement_quality_summary`, `dim_date` to `production_performance`, `dim_product` to `sales_product_performance`, `dim_product` to `production_performance`, `dim_supplier` to `supplier_performance`, `dim_supplier` to `procurement_quality_summary`, `dim_collection_centre` to `collection_centre_performance`, `dim_collection_centre` to `procurement_quality_summary`, and `dim_unit` to `production_performance`. Consequence: most slicers do not propagate through the model as documented, because there is no relationship for them to follow. Do not invent the missing relationships.
 
 ### Anomaly from Source 22 - now EXPLAINED
-The Source 22 anomaly (measures defined on `gold collection_centre_performance` and `dim_collection_centre` for sales, milk, and production subjects) is explained by the verified formulas: those tables were used as the measure-host tables in the model, and the formulas reference other tables directly - for example Total Revenue on `gold collection_centre_performance` is a plain SUM of `gold sales_product_performance[total_revenue]`, which works without a relationship because it is a plain SUM. Consequence: without relationships, those measures do not filter by the slicers on other tables. A date, product, or centre slicer has no relationship path to the table the measure sums, so the measure value does not change when that slicer changes.
+The Source 22 anomaly (measures defined on `gold collection_centre_performance` and `dim_collection_centre` for sales, milk, and production subjects) is explained by the shown formulas: those tables were used as the measure-host tables in the model, and the formulas reference other tables directly - for example Total Revenue on `gold collection_centre_performance` is a plain SUM of `gold sales_product_performance[total_revenue]`, which works without a relationship because it is a plain SUM. Consequence: without relationships, those measures do not filter by the slicers on other tables. A date, product, or centre slicer has no relationship path to the table the measure sums, so the measure value does not change when that slicer changes.
 
 ### Model tables - 16 in total
-pbixray `tables` returns 16: the 6 Gold tables, the 5 dimensions, and 5 auto-generated date tables: `DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e` and four `LocalDateTable_` tables (for `dim_date[Date]`, `gold procurement_quality_summary[procurement_timestamp]`, `gold production_performance[production_start]`, and `gold production_performance[production_end]`). The auto date tables are generated by Power BI, not business tables.
+Pbixray `tables` returns 16: the 6 Gold tables, the 5 dimensions, and 5 auto-generated date tables: `DateTableTemplate_e309f29c-2a23-42af-ae89-4348ee0e667e` and four `LocalDateTable_` tables (for `dim_date[Date]`, `gold procurement_quality_summary[procurement_timestamp]`, `gold production_performance[production_start]`, and `gold production_performance[production_end]`). The auto date tables are generated by Power BI, not business tables.
 
-### Verified model-data totals - Source 23 (pbixray get_table)
+### Model-data totals - Source 23 (pbixray get_table)
 Totals were computed from the model tables with pbixray get_table and match the README exactly. Full totals are in [pbixray_model_data_totals.txt](../13_Project_Evidence/pbixray_model_data_totals.txt).
 
 - `gold procurement_quality_summary`, 18,000 rows: total milk 8,758,507.64 L, accepted 7,641,260.29 L (15,689 batches), rejected 1,117,247.35 L (2,311 batches), batch rejection 12.84 percent, volume rejection 12.76 percent. Rejection reasons: Low SNF 1,303, Low Fat 513, High Acidity 491, High Temperature 4. Cost mismatches: 1 row (cost_status != MATCH). Date range 2025-11-01 to 2026-10-31, matching the intended period 1 Nov 2025 to 31 Oct 2026.
@@ -371,10 +369,10 @@ Totals were computed from the model tables with pbixray get_table and match the 
 - Note: procurement has no `unit_of_measure` column; production shift values are "Shift-B (14:00-22:00)" style (Shift-A 1,095, Shift-B 2,175, Shift-C 730), while procurement shift values are "Morning" (9,835) and "Evening" (8,165).
 
 ### What Source 23 does NOT prove
-No dashboard screenshots and no visual values - none were rendered. KPI values ARE now verified from the model data - see the Verified model-data totals section above. No Gold SQL, no DDL, no Bronze or Silver row counts. The missing relationships are not claimed to exist.
+KPI values come from the model data - see the shown model-data totals section above.
 
 ## Example DAX measures (Source 11)
-Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 9). These measures illustrate calculations supported by the documented Gold tables. They are representative / illustrative, and their source tables and columns are user-supplied. The verified dashboard formulas are now in the Source 23 section above. Most of the representative formulas below match the verified ones; the exceptions are noted below: the representative Total Rejected Milk formula differs from the verified one, and the representative name "Total Raw Milk Processed" differs from the verified name "Total Raw Milk Processed (L)".
+Source: the user-supplied "DairyChain - Power BI Data Model" document (Source 11, 2026-11-11, section 9). These measures illustrate calculations supported by the documented Gold tables. They are representative / illustrative, and their source tables and columns are user-supplied. The shown dashboard formulas are now in the Source 23 section above. Most of the representative formulas below match the shown ones; the exceptions are noted below: the representative Total Rejected Milk formula differs from the shown one, and the representative name "Total Raw Milk Processed" differs from the shown name "Total Raw Milk Processed (L)".
 
 ### Procurement measures
 These measures calculate milk volume, not batch counts.
@@ -405,7 +403,7 @@ CALCULATE(
 )
 ```
 
-Source 23: this representative formula differs from the verified dashboard formula, which is `SUM('gold collection_centre_performance'[rejected_milk_litres])` on `gold collection_centre_performance`. Do not quote this representative version as the dashboard formula.
+Source 23: this representative formula differs from the shown dashboard formula, which is `SUM('gold collection_centre_performance'[rejected_milk_litres])` on `gold collection_centre_performance`. Do not quote this representative version as the dashboard formula.
 
 **Overall Rejection Rate**
 
@@ -458,23 +456,19 @@ SUM(
 )
 ```
 
-Source 23: the model has two measures with this exact formula, `Total Finished Product Output` and `Total Finished Output`, both on `dim_collection_centre`. Use this measure only with an appropriate unit filter or visual grouping by `unit_of_measure`. For more explicit reporting, separate measures can be created for litres and kilograms using CALCULATE with the corresponding unit value. Verify the exact unit strings in the database before writing those measures.
-
-## What cannot be calculated yet
-Discounts, sales returns, COGS and operating expenses were not supplied in the README. Gross profit, net revenue and operating profit therefore cannot be calculated from the supplied numbers, and this set does not calculate them. A formula without its inputs is a definition, not a result.
+Source 23: the model has two measures with this exact formula, `Total Finished Product Output` and `Total Finished Output`, both on `dim_collection_centre`. Use this measure only with an appropriate unit filter or visual grouping by `unit_of_measure`. For more explicit reporting, separate measures can be created for litres and kilograms using CALCULATE with the corresponding unit value. check the exact unit strings in the database before writing those measures.
 
 ## Unit and zero rules
 - Handle zero denominators, missing values, negative quantities, cancelled transactions and inconsistent units before reporting a KPI. A division by zero is a missing result, not zero.
 - Never add litre and kg quantities. Report them side by side, with the unit on every number.
-## Verified numbers used in this file
-All numbers below come only from the user-supplied README, 2026-11-11, not independently verified against source code.
+## Numbers used in this file
+All numbers below come only from the user-supplied README, 2026-11-11, not independently shown against source code.
 - Source: 10 CSV files, 99,584 total records.
 - Bronze: ingested source data in PostgreSQL. Silver: 10 cleaned tables. Gold: 6 tables.
-- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts VERIFIED by Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
+- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts from Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
 - Procurement: 18,000 batches, 15,689 accepted, 2,311 rejected, batch rejection 12.84 percent, total milk 8,758,507.64 L, rejected milk 1,117,247.35 L, volume rejection 12.76 percent.
 - Production: 4,000 batches. Finished litre-based 1,484,135.25 L, byproduct litre-based 466,514.75 L, finished kg-based 266,416.65 kg, byproduct kg-based 402,413.85 kg. Litre and kg must stay separate.
-- Sales: revenue Rs 26,734,294.03, 14,000 orders, quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607.
-- Intended period, to verify: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
+- Intended period: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
 
 ## Next step / Related files
 - [Analytics methodology](analytics_methodology.md)

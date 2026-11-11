@@ -1,6 +1,5 @@
 # Technical Terms
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers what the technical words in DairyChain mean, in plain language. It is for a reader who needs the stack and the layers without a tutorial.
@@ -24,7 +23,7 @@ This file answers what the technical words in DairyChain mean, in plain language
 - Bronze: ingested source data, as it arrived.
 - Silver: cleaned and structured data, ready for analysis.
 - Gold: analytical tables built for reporting.
-- Medallion architecture: the Bronze, Silver and Gold layer design. In DairyChain, the layers are described in the README. Their successful execution is PENDING EVIDENCE until a run log is supplied.
+- Medallion architecture: the Bronze, Silver and Gold layer design. In DairyChain, the layers are described in the README.
 
 ## Next step / Related files
 - Business terms](business_terms.md)

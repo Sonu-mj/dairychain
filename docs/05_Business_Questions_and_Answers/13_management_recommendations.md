@@ -1,6 +1,5 @@
 # Management Recommendations
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers what management could do next, based only on the supplied numbers and the gaps in them. It is for a manager who needs actions tied to evidence, not actions tied to guesses.
@@ -28,15 +27,14 @@ This file answers what management could do next, based only on the supplied numb
 
 ## Business impact
 Measured impact: none was supplied, so none is claimed. Expected benefit: each recommendation above would turn a supplied total into a named cause and a fixable action, once the breakdown is supplied.
-## Verified numbers used in this file
-All numbers below come only from the user-supplied README, 2026-11-11, not independently verified against source code.
+## Numbers used in this file
+All numbers below come only from the user-supplied README, 2026-11-11, not independently shown against source code.
 - Source: 10 CSV files, 99,584 total records.
 - Bronze: ingested source data in PostgreSQL. Silver: 10 cleaned tables. Gold: 6 tables.
-- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts VERIFIED by Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
+- Gold tables: procurement_quality_summary 18,000; collection_centre_performance 20; supplier_performance 200; production_performance 4,000; sales_product_performance 12; sales_daily_summary 364. Row counts from Source 19 (live database COUNT(*), user-supplied screenshot 2026-11-11, total 22,596).
 - Procurement: 18,000 batches, 15,689 accepted, 2,311 rejected, batch rejection 12.84 percent, total milk 8,758,507.64 L, rejected milk 1,117,247.35 L, volume rejection 12.76 percent.
 - Production: 4,000 batches. Finished litre-based 1,484,135.25 L, byproduct litre-based 466,514.75 L, finished kg-based 266,416.65 kg, byproduct kg-based 402,413.85 kg. Litre and kg must stay separate.
-- Sales: revenue Rs 26,734,294.03, 14,000 orders, quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607.
-- Intended period, to verify: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
+- Intended period: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
 
 ## Next step / Related files
 - Executive summary](../06_Business_Findings_and_Impact/executive_summary.md)

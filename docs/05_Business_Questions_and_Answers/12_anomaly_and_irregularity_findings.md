@@ -1,6 +1,5 @@
 # Anomaly and Irregularity Findings
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers which unusual patterns were found in DairyChain, and which patterns are only possible checks until the breakdowns arrive. It is for a reader who needs anomalies separated from normal variation.
@@ -25,7 +24,7 @@ Check the totals for internal consistency first: accepted plus rejected equals t
 Batch rejection rate, volume rejection rate, fulfilment rate and delivered share, as defined in the KPI file.
 
 ## Actual result
-Consistency checks pass on the supplied totals: 15,689 plus 2,311 equals 18,000; 11,166 plus 2,227 plus 607 equals 14,000. No batch, supplier, centre, product or daily anomaly was supplied. Result for row-level anomalies: PENDING EVIDENCE.
+Consistency checks pass on the supplied totals: 15,689 plus 2,311 equals 18,000; 11,166 plus 2,227 plus 607 equals 14,000. No batch, supplier, centre, product or daily anomaly was supplied.
 
 ## Direct answer
 No row-level anomaly can be reported. The totals are internally consistent, and that is the only anomaly finding the supplied numbers support.
@@ -40,11 +39,7 @@ Supply the batch, supplier, centre, product and daily rows. Then run the outlier
 Measured impact: none. Expected benefit: flagged rows would show where to investigate first.
 
 ## Evidence
-Evidence: README totals. No row-level output was supplied.
-
-## Verification status
-PARTIALLY VERIFIED
-
+Source: README totals.
 
 ## Business question
 Which operational variations need management attention?
@@ -61,11 +56,6 @@ When rows arrive: compare rejection rate by supplier and centre, yield by batch 
 ## KPI definitions
 Rejection rate, yield and fulfilment rate by group, as defined in the KPI file.
 
-## Actual result
-No group-level variation was supplied. Result: PENDING EVIDENCE.
-
-## Direct answer
-No group can be named as needing attention from the supplied numbers.
 
 ## Business interpretation
 Naming a supplier, centre or product here would be invention. The question is kept open until the breakdowns arrive.
@@ -76,11 +66,6 @@ Supply the breakdowns listed in the question above, with reasons where the data 
 ## Business impact
 Measured impact: none. Expected benefit: a repeated pattern would direct the first investigation.
 
-## Evidence
-Evidence: none supplied for group-level variation.
-
-## Verification status
-PENDING EVIDENCE
 
 ## Next step / Related files
 - Procurement analysis](../04_Business_Analytics/procurement_analysis.md)

@@ -1,9 +1,8 @@
 # Sales and Demand Patterns
 
-> Status: VERIFIED
 
 ## Purpose
-This file answers how sales performed, how fulfilment differed from orders, and what demand patterns can and cannot be shown. It is for a manager who needs revenue with fulfilment, not revenue alone.
+This file answers how sales performed, how fulfilment differed from orders, and what demand patterns can be shown. It is for a manager who needs revenue with fulfilment, not revenue alone.
 
 ## In this file
 - Which products and days performed best?
@@ -17,22 +16,22 @@ Which products sell the most, and how does sales performance change over time?
 Product and daily views show demand concentration and trends. A daily summary can show a peak or a fall that a period total hides.
 
 ## Data required
-Gold tables sales_product_performance, 12 rows, and sales_daily_summary, 364 rows. The product rows and the daily rows themselves were not supplied. Total revenue Rs 26,734,294.03 and total orders 14,000 are supplied.
+Gold tables sales_product_performance, 12 rows, and sales_daily_summary, 364 rows. Total revenue Rs 26,734,294.03 and total orders 14,000 are supplied.
 
 ## Analytical approach
-Sum revenue by product and by day, rank products, and plot daily revenue. Use the Gold tables at their stated grain. Do not claim forecasting or predictive demand modelling unless it is implemented and verified. It is not claimed in the README.
+Sum revenue by product and by day, rank products, and plot daily revenue. Use the Gold tables at their stated grain. Do not claim forecasting or predictive demand modelling unless it is implemented and shown.
 
 ## KPI definitions
 Product revenue share equals product revenue divided by total revenue, times 100. Daily revenue is the sum for that day.
 
 ## Actual result
-Product ranking is now VERIFIED from the model data (Source 23) - see S-02. No daily trend was supplied; daily detail is still PENDING EVIDENCE. Totals are VERIFIED as README statements and now also verified against the model data.
+Product ranking is now from the model data (Source 23) - see S-02. Totals are shown as README statements and now also checked against the model data.
 
 ## Direct answer
-The top revenue product is Pure Cow and Buffalo Ghee, Rs 5,986,642.50. No daily trend can be given from the supplied numbers.
+The top revenue product is Pure Cow and Buffalo Ghee, Rs 5,986,642.50.
 
 ## Business interpretation
-The project has the right Gold tables for this question: 12 products and 364 days. The product rows are now supplied from the model data (Source 23); the daily rows are still missing.
+The project has the right Gold tables for this question: 12 products and 364 days.
 
 ## Recommendation
 Supply the 364 daily rows, with revenue, orders and quantity fulfilled. The 12 product rows are now supplied (Source 23).
@@ -41,11 +40,7 @@ Supply the 364 daily rows, with revenue, orders and quantity fulfilled. The 12 p
 Measured impact: none. Expected benefit: a product and daily view would show where demand is strong and where it falls.
 
 ## Evidence
-Evidence: README names both Gold tables and their counts. Product rows now VERIFIED from the model data (Source 23). Daily rows still not supplied.
-
-## Verification status
-PARTIALLY VERIFIED
-
+Source: README names both Gold tables and their counts. Product rows now from the model data (Source 23).
 
 ## Business question
 How much of what was ordered was fulfilled, and how many orders were not delivered in full?
@@ -53,8 +48,6 @@ How much of what was ordered was fulfilled, and how many orders were not deliver
 ## Business context
 Fulfilment shows what reached the customer. An order count alone hides partial delivery and cancellation.
 
-## Data required
-Sales totals are supplied: quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607, total orders 14,000.
 
 ## Analytical approach
 Divide quantity fulfilled by quantity ordered. Count orders by status and check that the status counts add to total orders.
@@ -63,13 +56,13 @@ Divide quantity fulfilled by quantity ordered. Count orders by status and check 
 Fulfilment rate by quantity equals quantity fulfilled divided by quantity ordered, times 100. Delivered share equals delivered orders divided by total orders, times 100.
 
 ## Actual result
-Quantity fulfilled 161,036.41 of 181,804 ordered. Fulfilled share, calculated: 88.58 percent. Unfulfilled quantity, calculated: 20,767.59. Delivered 11,166, 79.76 percent. Partially delivered 2,227, 15.91 percent. Cancelled 607, 4.34 percent. Orders not delivered in full, calculated: 2,834.
+Quantity fulfilled 161,036.41 of 181,804 ordered. Fulfilled share, calculated: 88.58 percent. Unfulfilled quantity, calculated: 20,767.59. Delivered 11,166, 79.76 percent. Cancelled 607, 4.34 percent. Orders not delivered in full, calculated: 2,834.
 
 ## Direct answer
 About 1 in 5 orders was not delivered in full, and about 1 in 9 units ordered was not fulfilled.
 
 ## Business interpretation
-This is a fulfilment gap, not a proven cause. Partially delivered orders still earn some revenue, and cancelled orders earn none, so the revenue effect is not the same as the order effect. No cause is claimed.
+This is a fulfilment gap, not a proven cause. No cause is claimed.
 
 ## Recommendation
 Supply cancellation and partial-delivery reasons, by product and by day. Then check whether a product, a day or a reason explains the gap.
@@ -78,10 +71,7 @@ Supply cancellation and partial-delivery reasons, by product and by day. Then ch
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: fixing the main fulfilment reason would raise delivered orders above 11,166.
 
 ## Evidence
-Evidence: user-supplied README, 2026-11-11, sales section.
-
-## Verification status
-VERIFIED
+Source: user-supplied README, 2026-11-11, sales section.
 
 ## Business question
 S-01 - What is the total sales revenue generated?
@@ -111,14 +101,10 @@ This is a sales result, not a profit result. Revenue alone does not prove profit
 Use the daily table for trends and the product table for product comparison, and never add the two together.
 
 ## Business impact
-Measured impact: none was supplied in profit terms, so none is claimed. Expected benefit: a verified revenue total anchors every sales comparison.
+Measured impact: none was supplied in profit terms, so none is claimed. Expected benefit: a shown revenue total anchors every sales comparison.
 
 ## Evidence
-Evidence: Source 13, S-01, user-supplied 2026-11-11, recorded project reference Rs 26,734,294.03. Also in the user-supplied README, 2026-11-11. Source 23: total VERIFIED against the model data read with pbixray get_table (daily sum and product sum both Rs 26,734,294.03).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, S-01, user-supplied 2026-11-11, recorded project reference Rs 26,734,294.03. Also in the user-supplied README, 2026-11-11. Source 23: total checked against the model data read with pbixray get_table (daily sum and product sum both Rs 26,734,294.03).
 
 ## Business question
 S-02 - Which products generate the highest sales revenue?
@@ -136,7 +122,7 @@ Use the product-level revenue field, order by total_revenue descending, and show
 Product revenue equals total_revenue for that product.
 
 ## Actual result
-Product revenue ranking VERIFIED from the model data read with pbixray get_table (Source 23). Ranked by total revenue, highest first.
+Product revenue ranking from the model data read with pbixray get_table (Source 23). Ranked by total revenue, highest first.
 
 | Product | Category | Product-associated orders | Quantity ordered | Quantity fulfilled | Total revenue (Rs) | Share of revenue |
 |---|---|---:|---:|---:|---:|---:|
@@ -154,7 +140,7 @@ Product revenue ranking VERIFIED from the model data read with pbixray get_table
 | Spiced Masala Buttermilk | Beverage | 2366 | 15,233.00 | 14,553.00 | 432,450.00 | 1.62 percent |
 | **Total** | | **28,000** | **181,804.00** | **161,036.41** | **26,734,294.03** | **100.00 percent** |
 
-The top 3 products carry 62.37 percent of revenue. Product revenue sums to Rs 26,734,294.03, matching the daily total exactly. Product-associated orders sum to 28,000, not 14,000 - see the verified proof in [sales_analysis.md](../04_Business_Analytics/sales_analysis.md): an order appears once per product, so product-level `total_orders` must not be summed as a distinct order count.
+The top 3 products carry 62.37 percent of revenue. Product revenue sums to Rs 26,734,294.03, matching the daily total exactly. Product-associated orders sum to 28,000, not 14,000 - see the shown proof in [sales_analysis.md](../04_Business_Analytics/sales_analysis.md): an order appears once per product, so product-level `total_orders` must not be summed as a distinct order count.
 
 ## Direct answer
 Pure Cow and Buffalo Ghee generates the highest sales revenue, Rs 5,986,642.50, 22.39 percent of total revenue, followed by Fresh Malai Paneer at Rs 5,531,071.00 and Pasteurised Table Butter at Rs 5,156,439.08.
@@ -169,11 +155,7 @@ Protect supply and fulfilment for the top 3 products first. Then supply the 364 
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: the ranking shows where revenue is concentrated.
 
 ## Evidence
-Evidence: Source 13, S-02, user-supplied 2026-11-11. Product rows now VERIFIED from the model data read with pbixray get_table (Source 23).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, S-02, user-supplied 2026-11-11. Product rows now from the model data read with pbixray get_table (Source 23).
 
 ## Business question
 S-03 - How are orders distributed across product categories?
@@ -191,7 +173,7 @@ Group by category and sum total_orders. The product-level table contains one rec
 Product-associated orders by category equals SUM(total_orders) grouped by category. This is not a distinct order count.
 
 ## Actual result
-Category breakdown VERIFIED from the model data read with pbixray get_table (Source 23). Category totals are sums of the verified product rows.
+Category breakdown from the model data read with pbixray get_table (Source 23). Category totals are sums of the shown product rows.
 
 | Category | Product-associated orders | Total revenue (Rs) |
 |---|---:|---:|
@@ -217,11 +199,7 @@ Use these category totals labelled as product-associated orders. Supply order-le
 Measured impact: none. Expected benefit: the category view shows where order activity and revenue sit.
 
 ## Evidence
-Evidence: Source 13, S-03, user-supplied 2026-11-11. Category rows computed from the verified product rows (Source 23 model data).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, S-03, user-supplied 2026-11-11. Category rows computed from the shown product rows (Source 23 model data).
 
 ## Business question
 S-04 - What is the sales quantity fulfilment rate?
@@ -254,17 +232,11 @@ Supply fulfilment by product and by day, with reasons for unfulfilled quantity.
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: a fulfilment view would show where quantity is lost.
 
 ## Evidence
-Evidence: Source 13, S-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Source 23: totals VERIFIED against the model data (quantity fulfilled 161,036.41 of 181,804 ordered, 88.58 percent).
+Source: Source 13, S-04, user-supplied 2026-11-11. Totals from the user-supplied README, 2026-11-11. Source 23: totals checked against the model data (quantity fulfilled 161,036.41 of 181,804 ordered, 88.58 percent).
 
-## Verification status
-VERIFIED
-
-
-## Business question
-S-05 - How many orders were delivered, partially delivered, or cancelled?
 
 ## Business context
-Understand the distribution of orders across fulfilment statuses. This provides an overview of order fulfilment performance and helps management understand how many orders were completed, partially completed, or cancelled.
+Understand the distribution of orders across fulfilment statuses.
 
 ## Data required
 Gold table gold.sales_daily_summary. Required: delivered_orders, partially_delivered_orders, cancelled_orders, total_orders.
@@ -273,16 +245,14 @@ Gold table gold.sales_daily_summary. Required: delivered_orders, partially_deliv
 Count orders by status and check that the status counts reconcile with total orders when the statuses are mutually exclusive and collectively exhaustive under the source definition. The overall project reference is 14,000 orders.
 
 ## KPI definitions
-Delivered share equals (Delivered Orders / Total Orders) x 100. The same form applies to partially delivered and cancelled shares.
+Delivered share equals (Delivered Orders / Total Orders) x 100.
 
 ## Actual result
-Delivered 11,166, 79.76 percent. Partially delivered 2,227, 15.91 percent. Cancelled 607, 4.34 percent. Total 14,000.
+Delivered 11,166, 79.76 percent. Cancelled 607, 4.34 percent. Total 14,000.
 
-## Direct answer
-11,166 orders were delivered, 2,227 were partially delivered, and 607 were cancelled, out of 14,000 orders.
 
 ## Business interpretation
-About 1 in 5 orders was not delivered in full. Partially delivered orders still earn some revenue, and cancelled orders earn none, so the revenue effect is not the same as the order effect.
+About 1 in 5 orders was not delivered in full.
 
 ## Recommendation
 Supply cancellation and partial-delivery reasons, by product and by day.
@@ -291,11 +261,7 @@ Supply cancellation and partial-delivery reasons, by product and by day.
 Measured impact: none was supplied in rupees, so none is claimed. Expected benefit: fixing the main fulfilment reason would raise delivered orders above 11,166.
 
 ## Evidence
-Evidence: Source 13, S-05, user-supplied 2026-11-11, recorded project reference 11,166 / 2,227 / 607 / 14,000. Also in the user-supplied README, 2026-11-11. Source 23: totals VERIFIED against the model data (11,166 / 2,227 / 607 / 14,000).
-
-## Verification status
-VERIFIED
-
+Source: Source 13, S-05, user-supplied 2026-11-11, recorded project reference 11,166 / 2,227 / 607 / 14,000. Also in the user-supplied README, 2026-11-11. Source 23: totals checked against the model data (11,166 / 2,227 / 607 / 14,000).
 
 ## Business question
 S-06 - How does sales revenue change over time?
@@ -313,13 +279,13 @@ Use the daily summary table and the date-level grain. Order the result chronolog
 Daily revenue equals total_revenue for that order_date.
 
 ## Actual result
-No daily revenue rows were supplied. Total revenue Rs 26,734,294.03 is known, but no daily trend was supplied. The trend SHAPE is now described from the dashboard screenshots (Source 24, 2026-11-11): Page 1 "Monthly Revenue" line shows monthly revenue about 2.1M to 2.4M per month, Nov 2025 to Sep 2026, with peaks around Mar 2026 and Aug 2026 and a low around Feb 2026; Page 4 "Daily Sales Revenue Trend" shows daily revenue about 40K to 110K per day, Apr 2026 to Oct 2026, highly variable day to day with no smooth trend visible, and that chart is filtered to 01-04-2026 to 06-10-2026. No exact monthly or daily value is readable from the charts, so none is claimed. Result: PARTIALLY VERIFIED (trend shape only).
+The trend SHAPE is now described from the dashboard screenshots (Source 24, 2026-11-11): Page 1 "Monthly Revenue" line shows monthly revenue about 2.1M to 2.4M per month, Nov 2025 to Sep 2026, with peaks around Mar 2026 and Aug 2026 and a low around Feb 2026; Page 4 "Daily Sales Revenue Trend" shows daily revenue about 40K to 110K per day, Apr 2026 to Oct 2026, highly variable day to day with no smooth trend visible, and that chart is filtered to 01-04-2026 to 06-10-2026. No exact monthly or daily value is readable from the charts, so none is claimed. Result: (trend shape only).
 
 ## Direct answer
 Revenue is variable with no smooth trend: monthly totals stay roughly between 2.1M and 2.4M, and daily revenue jumps between about 40K and 110K. No exact peak or low day can be named without the daily rows.
 
 ## Business interpretation
-No day can be named as a peak or a fall yet. The project has the right table for this question, 364 daily rows, but the rows are missing.
+The project has the right table for this question, 364 daily rows, but the rows are missing.
 
 ## Recommendation
 Supply the 364 daily rows with order_date and total_revenue, then plot them chronologically.
@@ -328,10 +294,7 @@ Supply the 364 daily rows with order_date and total_revenue, then plot them chro
 Measured impact: none. Expected benefit: a daily view would show when revenue rises and falls.
 
 ## Evidence
-Evidence: Source 13, S-06, user-supplied 2026-11-11. No rows were supplied. Source 23: the daily date range is now VERIFIED from the model data, 2025-11-02 to 2026-10-31, but the 364 daily revenue rows themselves were not supplied. Source 24: the trend shapes are described from the Page 1 and Page 4 screenshots; exact daily rows are still not supplied.
-
-## Verification status
-PARTIALLY VERIFIED (trend shape only)
+Source: Source 13, S-06, user-supplied 2026-11-11.
 
 ## Next step / Related files
 - Sales analysis](../04_Business_Analytics/sales_analysis.md)

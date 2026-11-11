@@ -1,6 +1,5 @@
 # Development Workflow
 
-> Status: PARTIALLY VERIFIED
 
 ## Purpose
 This file answers how work moved from a business requirement to validated code in DairyChain. It is for a developer who needs the workflow, not a list of tools. Its source is sections 3, 4 and 6 of the user-supplied AI-Assisted Development Methodology, 2026-11-11.

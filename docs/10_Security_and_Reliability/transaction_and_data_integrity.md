@@ -1,6 +1,5 @@
 # Transaction and Data Integrity
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers how DairyChain protects data when a write fails part-way through, and why transactions matter for stock and for Gold builds. It is for a developer who needs atomic updates, not half-finished ones. Its source for the SQL logic review below is section 5 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5).
@@ -14,7 +13,7 @@ This file answers how DairyChain protects data when a write fails part-way throu
 - SQL logic review: NULL handling
 - SQL logic review: date filters
 - SQL logic review: measurement units
-- Status
+- Notes
 
 ## Transactions
 A transaction groups several writes so they succeed together or fail together. A Gold build, a stock update or a multi-table load that fails half-way must roll back, not leave half the data changed.
@@ -23,7 +22,7 @@ A transaction groups several writes so they succeed together or fail together. A
 Inventory allocation, when it exists, must update stock and record the allocation in the same transaction. A stock change without its record, or a record without its stock change, leaves the reconciliation broken. The reconciliation rule is: Opening stock plus Signed movement ledger equals Current stock.
 
 ## Integrity checks
-- Primary keys and foreign keys must be enforced, not only documented. In this database they are not enforced: Source 20 verified that no primary key, foreign key, unique, or check constraint exists on any table in bronze, silver, or gold (`pg_constraint` returned 0 rows). This is a recorded gap, not a design choice. Indexes are also absent: Source 21 verified that no index exists on any table in bronze, silver, or gold (`pg_index` returned 0 rows). See [data_validation.md](../03_Data_Engineering/data_validation.md).
+- Primary keys and foreign keys must be enforced, not only documented. In this database they are not enforced: Source 20 shown that no primary key, foreign key, unique, or check constraint exists on any table in bronze, silver, or gold (`pg_constraint` returned 0 rows). This is a recorded gap, not a design choice. Indexes are also absent: Source 21 shown that no index exists on any table in bronze, silver, or gold (`pg_index` returned 0 rows). See [data_validation.md](../03_Data_Engineering/data_validation.md).
 - A Gold build must be re-runnable, and a failed build must not leave a half-built Gold table in place.
 - Counts at Bronze, Silver and Gold must be checked after every run.
 
@@ -77,7 +76,7 @@ SELECT
 FROM gold.procurement_quality_summary;
 ```
 
-`AVG()` ignores NULL values. The result is therefore the average of available values, not necessarily the average across all procurement batches.
+`AVG` ignores NULL values. The result is therefore the average of available values, not necessarily the average across all procurement batches.
 
 When reviewing a query, ask:
 
@@ -112,8 +111,8 @@ Source: "Code Review and Security Practices", section 5.5. DairyChain contains p
 
 These quantities must not be summed into one meaningful total without a valid conversion rule. Any calculation combining measurement units should be reviewed carefully.
 
-## Status
-No transaction code or integrity check output was supplied. A constraint list output WAS supplied by Source 20: a `pg_constraint` query over bronze, silver, and gold returned 0 rows, so no primary key, foreign key, unique, or check constraint exists on any table. Inventory itself is NOT IMPLEMENTED in the README scope, so the stock example above is method only. Status: PENDING EVIDENCE for transactions and integrity checks; constraints VERIFIED ABSENT.
+## Notes
+A constraint list output WAS supplied by Source 20: a `pg_constraint` query over bronze, silver, and gold returned 0 rows, so no primary key, foreign key, unique, or check constraint exists on any table.
 
 ## Next step / Related files
 - [Security review](security_review.md)

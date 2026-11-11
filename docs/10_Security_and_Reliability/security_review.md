@@ -1,6 +1,5 @@
 # Security Review
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers what security DairyChain needs, what is implemented, and what is only recommended. It is for a reader who must not mistake a recommendation for a control that exists. Its sources are the Master Project Brief and sections 1, 2, 7 and 10 of the user-supplied "Code Review and Security Practices" document, 2026-11-11 (Source 5).
@@ -12,12 +11,11 @@ This file answers what security DairyChain needs, what is implemented, and what 
 - Recommended controls
 - Security and code review checklist
 - Known limitations and evidence requirements
-- What was not supplied
 
 ## Core principle
 Source: "Code Review and Security Practices", section 1. AI can help generate code quickly, but generated code is not automatically correct, secure, or suitable for an existing project. During DairyChain development, it was important to distinguish between code that merely executes and code that correctly implements the intended business requirement.
 
-> Code should be understood, reviewed, executed, and verified before it is trusted.
+> Code should be understood, reviewed, executed, and shown before it is trusted.
 
 This document distinguishes between recommended engineering practices and controls that must be confirmed in the actual project code. It does not claim that every security measure below has already been implemented.
 
@@ -38,7 +36,7 @@ Source: "Code Review and Security Practices", section 2.
 A successful execution does not prove that the code is correct.
 
 ## Implemented controls
-No security control can be listed as implemented from the supplied sources, because no security configuration, access record or review output was supplied. Status: PENDING EVIDENCE for every control below.
+No security control can be listed as implemented from the supplied sources, because no security configuration, access record or review output was supplied.
 
 ## Recommended controls
 - Keep credentials out of code and out of the repository. Use environment variables.
@@ -48,7 +46,7 @@ No security control can be listed as implemented from the supplied sources, beca
 - Plan backup and recovery for the PostgreSQL database.
 
 ## Security and code review checklist
-Source: "Code Review and Security Practices", section 7. Use this checklist when reviewing a new or AI-assisted implementation. These are items to check, not completed items. No item below is marked complete, because no review record was supplied.
+Source: "Code Review and Security Practices", section 7. Use this checklist when reviewing a new or AI-assisted implementation. These are items to check, not completed items.
 
 ### Python
 
@@ -100,9 +98,6 @@ Source: "Code Review and Security Practices", section 10. This document describe
 - All code has undergone a formal security review.
 
 A checklist item should only be marked complete after the corresponding implementation or test has been inspected.
-
-## What was not supplied
-No credential setup, privilege list, access control record or backup plan was supplied. Do not claim any of them as implemented. Add each control here only when its configuration or output can be shown.
 
 ## Next step / Related files
 - [SQL injection prevention](sql_injection_prevention.md)

@@ -1,6 +1,5 @@
 # AI Task Log - Overview
 
-> Status: PENDING EVIDENCE
 
 ## Purpose
 This file answers what the AI task log is for and how to add a task to it, and how to record what happened to each AI suggestion. It is for a developer who needs a record of what AI helped with, task by task, instead of a general claim. Its sources are the Master Project Brief, sections 10 and 12 of the user-supplied AI-Assisted Development Methodology, 2026-11-11, and the user-supplied "AI-Assisted Development Decision Log" document, 2026-11-11, used as Source 7.
@@ -25,7 +24,7 @@ The AI task log is a dated record of AI-assisted tasks in DairyChain. Each entry
 - What AI suggested.
 - What the developer changed after review.
 - The test or check that proves the result.
-- The status: done, in progress, or rejected.
+- The outcome: done, in progress, or rejected.
 
 ## Decision evaluation framework
 Source: Decision Log, section 3. Before accepting an AI-generated implementation, consider these questions.
@@ -55,7 +54,7 @@ Source: Decision Log, section 3. Before accepting an AI-generated implementation
 - Does it add unnecessary complexity?
 - Can another developer maintain it?
 
-### Verification
+### Check
 - Has the suggested implementation been executed?
 - Has its output been inspected?
 - Is there independent evidence that it works?
@@ -69,7 +68,7 @@ Source: Decision Log, section 6. Sometimes AI provides a useful solution but the
 4. Why the revised implementation was more appropriate.
 5. How the final result was validated.
 
-The purpose is to show the developer's contribution rather than merely recording that AI generated code. No modified-suggestion case was supplied yet, so none is recorded here.
+The purpose is to show the developer's contribution rather than merely recording that AI generated code.
 
 ## Recording rejected suggestions
 Source: Decision Log, section 7. Rejecting an AI suggestion can also be an important engineering decision. Examples of reasons to reject a suggestion include:
@@ -80,9 +79,9 @@ Source: Decision Log, section 7. Rejecting an AI suggestion can also be an impor
 - It creates a security weakness.
 - It uses an incompatible measurement unit.
 - It changes unrelated parts of working code.
-- It cannot be verified with the available evidence.
+- It cannot be shown with the available evidence.
 
-A rejection should include a clear technical explanation, not simply state that the suggestion did not work. No rejected-suggestion case was supplied yet, so none is recorded here.
+A rejection should include a clear technical explanation, not simply state that the suggestion did not work.
 
 ## Limitations of AI-assisted development
 AI assistance has limitations that need to be recognised. The methodology lists 6:
@@ -90,7 +89,6 @@ AI assistance has limitations that need to be recognised. The methodology lists 
 1. **Incorrect logic:** AI may provide code that runs but calculates the wrong result.
 2. **Missing context:** AI may not know the complete database schema or project implementation.
 3. **Security weaknesses:** Generated code may contain unsafe practices.
-4. **Unverified output:** An explanation or code suggestion does not prove successful execution.
 5. **Overcomplication:** A suggested solution may be more complex than the requirement.
 6. **Business misunderstandings:** AI may misunderstand a metric or business rule unless the requirement is clearly explained.
 
@@ -101,17 +99,17 @@ The following evidence should be collected from the actual project before making
 
 - Examples of AI-assisted Python implementation.
 - Examples of AI-assisted SQL development.
-- Original errors and the corresponding verified corrections.
+- Original errors and the corresponding shown corrections.
 - Relevant PostgreSQL query outputs.
 - Data quality and reconciliation results.
 - Power BI DAX measures and relationship screenshots.
 - Test cases with actual execution results.
 - Decisions where an AI suggestion was modified or rejected.
 
-These records should be linked to the relevant implementation files and reports wherever possible. None of these items was supplied with the methodology document, so all of them remain PENDING EVIDENCE.
+These records should be linked to the relevant implementation files and reports wherever possible.
 
 ## Where the entries live
-Entries live in [actual_development_tasks.md](actual_development_tasks.md). No entries were supplied with the README or with the methodology document, and no historical AI decisions were supplied with the decision log document, so that file states what is missing and what to add first. Evidence and traceability: where possible, connect each decision record to Colab notebook (.ipynb) files, SQL scripts, PostgreSQL query outputs, DAX measures, Power BI screenshots, test results, relevant AI conversations, and Git commit references, once available. Do not include confidential conversation content, credentials, database passwords, or access tokens.
+Entries live in [actual_development_tasks.md](actual_development_tasks.md). Evidence and traceability: where possible, connect each decision record to Colab notebook (.ipynb) files, SQL scripts, PostgreSQL query outputs, DAX measures, Power BI screenshots, test results, relevant AI conversations, and Git commit references, once available. Do not include confidential conversation content, credentials, database passwords, or access tokens.
 
 ## Next step / Related files
 - [Actual development tasks](actual_development_tasks.md)

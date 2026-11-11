@@ -1,6 +1,5 @@
 # Analytics Terms
 
-> Status: VERIFIED
 
 ## Purpose
 This file answers what the analytics words in DairyChain mean, with the formula where one exists. It is for a reader who needs to check a KPI name before quoting its value.
