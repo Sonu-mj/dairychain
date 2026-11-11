@@ -8,6 +8,7 @@ This file is the entry point for DairyChain. It is for a first-time reader who w
 ## In this file
 - Business Problem
 - Requirements
+- Dashboards
 - Medallion Architecture
 - System Design
 - Data Engineering
@@ -28,6 +29,34 @@ All numbers below come only from the user-supplied README, 2026-11-11, not indep
 - Production: 4,000 batches. Finished litre-based 1,484,135.25 L, byproduct litre-based 466,514.75 L, finished kg-based 266,416.65 kg, byproduct kg-based 402,413.85 kg. Litre and kg must stay separate.
 - Sales: revenue Rs 26,734,294.03, 14,000 orders, quantity ordered 181,804, quantity fulfilled 161,036.41, delivered 11,166, partially delivered 2,227, cancelled 607.
 - Intended period, to verify: 1 Nov 2025 to 31 Oct 2026, Asia/Kolkata, INR.
+
+## Dashboards
+
+Four Power BI report pages, screenshots taken in Power BI Desktop on 2026-11-11. Pages 1 to 3 show full-period values. Page 4 was captured with a date filter active (01-04-2026 to 06-10-2026), so its cards are filtered values, not full-period totals. Full-period sales are Rs 26,734,294.03 across 14,000 orders.
+
+### Page 1 - Executive Overview
+
+![Page 1 - Executive Overview](docs/13_Project_Evidence/powerbi-page-1-executive-overview.png)
+
+Total Revenue Rs 26,734,294.03, Total Orders 14,000, Delivered Orders 11,166, Total Suppliers 200, Total Products 12.
+
+### Page 2 - Procurement and Quality Analysis
+
+![Page 2 - Procurement and Quality Analysis](docs/13_Project_Evidence/powerbi-page-2-procurement-quality.png)
+
+Total Milk Procured 8.76M L, Total Rejected Milk 1.12M L, Overall Rejection Rate 12.76 percent by volume, Total Accepted Milk 7.64M L. The donut on the same page shows the batch rejection rate, 12.84 percent. The two rates are different measures and are kept separate.
+
+### Page 3 - Production Performance Analysis
+
+![Page 3 - Production Performance Analysis](docs/13_Project_Evidence/powerbi-page-3-production-performance.png)
+
+Average Production Duration 135.03 minutes, Total Raw Milk Processed 2.60M L, Total Production Batches 4,000.
+
+### Page 4 - Sales Analysis
+
+![Page 4 - Sales Analysis](docs/13_Project_Evidence/powerbi-page-4-sales-analysis.png)
+
+Captured with the date filter 01-04-2026 to 06-10-2026 active, so the cards read Total Sales Revenue 13.80M, Total Orders 7K, Quantity Fulfilled 83.90K. These are filtered values for that date range, not the full-period totals.
 
 ## Medallion Architecture
 
