@@ -1,0 +1,38 @@
+DairyChain dataset validation
+============================
+Status: PASS
+
+PASS  suppliers_pk_unique
+PASS  collection_centres_pk_unique
+PASS  products_pk_unique
+PASS  procurement_pk_unique
+PASS  quality_pk_unique
+PASS  production_batches_pk_unique
+PASS  production_inputs_pk_unique
+PASS  production_outputs_pk_unique
+PASS  sales_orders_pk_unique
+PASS  sales_order_lines_pk_unique
+PASS  proc_supplier_fk
+PASS  proc_centre_fk
+PASS  quality_batch_fk
+PASS  production_product_fk
+PASS  input_production_fk
+PASS  input_source_batch_fk
+PASS  output_production_fk
+PASS  output_product_fk
+PASS  line_order_fk
+PASS  line_product_fk
+PASS  all_production_batches_completed
+PASS  input_from_accepted_procurement
+PASS  input_after_source_timestamp
+PASS  source_consumption_not_over_procurement
+PASS  sales_fulfilled_not_above_ordered
+PASS  sales_fulfilled_nonnegative
+PASS  sales_not_above_total_primary_output
+PASS  proc_cost_matches_except_injected_row
+PASS  five_intentional_dq_patterns_present
+
+Total datasets: 10
+Total rows: 99,584
+Total CSV size: 7.47 MB
+Elapsed generation time: 2.27 seconds

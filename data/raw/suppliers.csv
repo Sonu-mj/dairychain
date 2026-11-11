@@ -1,0 +1,201 @@
+supplier_id,supplier_name,village,district,state,supplier_type,registration_date,status,contact_reference
+SUP-0001,Sunil Solanki Dairy,Ode,Anand,Gujarat,Dairy Cooperative Society,2024-11-13,Active,SYNTH-REF-SUP-0001
+SUP-0002,Vijay Sharma Dairy,Boriavi,Mehsana,Gujarat,Individual Farmer,2022-08-20,Active,SYNTH-REF-SUP-0002
+SUP-0003,Anil Verma Dairy,Karamsad,Banaskantha,Gujarat,Dairy Cooperative Society,2021-08-05,Active,SYNTH-REF-SUP-0003
+SUP-0004,Suresh Rabari Dairy,Valasan,Sabarkantha,Gujarat,Private Dairy Farm,2022-09-10,Active,SYNTH-REF-SUP-0004
+SUP-0005,Mahesh Pawar Dairy,Bakrol,Kheda,Gujarat,Individual Farmer,2022-01-26,Active,SYNTH-REF-SUP-0005
+SUP-0006,Vikram Thakor Dairy,Navli,Rajkot,Gujarat,Dairy Cooperative Society,2023-06-29,Active,SYNTH-REF-SUP-0006
+SUP-0007,Prakash Rathod Dairy,Vadtal,Karnal,Haryana,Individual Farmer,2023-10-06,Active,SYNTH-REF-SUP-0007
+SUP-0008,Vijay Chaudhary Dairy,Kanjari,Hisar,Haryana,Individual Farmer,2023-12-17,Active,SYNTH-REF-SUP-0008
+SUP-0009,Ganesh Rabari Dairy,Chaklasi,Ludhiana,Punjab,Dairy Cooperative Society,2023-01-07,Active,SYNTH-REF-SUP-0009
+SUP-0010,Suresh Verma Dairy,Adas,Kolhapur,Maharashtra,Dairy Cooperative Society,2023-08-21,Active,SYNTH-REF-SUP-0010
+SUP-0011,Kiran Rathod Dairy,Vasad,Pune,Maharashtra,Dairy Cooperative Society,2021-09-04,Active,SYNTH-REF-SUP-0011
+SUP-0012,Anil Desai Dairy,Sarsa,Satara,Maharashtra,Individual Farmer,2024-05-10,Active,SYNTH-REF-SUP-0012
+SUP-0013,Nitin Reddy Dairy,Bhalaj,Kolar,Karnataka,Dairy Cooperative Society,2021-12-21,Active,SYNTH-REF-SUP-0013
+SUP-0014,Rajesh Gowda Dairy,Umreth,Mandya,Karnataka,Individual Farmer,2022-05-03,Active,SYNTH-REF-SUP-0014
+SUP-0015,Ganesh Singh Dairy,Thamna,Mysuru,Karnataka,Individual Farmer,2023-08-16,active,SYNTH-REF-SUP-0015
+SUP-0016,Harish Singh Dairy,Lingda,Anand,Gujarat,Individual Farmer,2023-06-22,Active,SYNTH-REF-SUP-0016
+SUP-0017,Prakash Singh Dairy,Pansora,Mehsana,Gujarat,Individual Farmer,2021-11-26,Active,SYNTH-REF-SUP-0017
+SUP-0018,Prakash Jadhav Dairy,Finav,Banaskantha,Gujarat,Private Dairy Farm,2025-08-09,Active,SYNTH-REF-SUP-0018
+SUP-0019,Ramesh Parmar Dairy,Dharmaj,Sabarkantha,Gujarat,Individual Farmer,2021-10-09,Active,SYNTH-REF-SUP-0019
+SUP-0020,Suresh Gowda Dairy,Tarapur,Kheda,Gujarat,Dairy Cooperative Society,2024-05-22,Active,SYNTH-REF-SUP-0020
+SUP-0021,Vijay Jadhav Dairy,Ode,Rajkot,Gujarat,Individual Farmer,2023-10-09,Active,SYNTH-REF-SUP-0021
+SUP-0022,Suresh Chaudhary Dairy,Boriavi,Karnal,Haryana,Dairy Cooperative Society,2021-10-23,Inactive,SYNTH-REF-SUP-0022
+SUP-0023,Mahesh Rathod Dairy,Karamsad,Hisar,Haryana,Individual Farmer,2022-04-12,Active,SYNTH-REF-SUP-0023
+SUP-0024,Rajesh Jadhav Dairy,Valasan,Ludhiana,Punjab,Individual Farmer,2023-04-30,Active,SYNTH-REF-SUP-0024
+SUP-0025,Nitin Singh Dairy,Bakrol,Kolhapur,Maharashtra,Individual Farmer,2022-06-10,Active,SYNTH-REF-SUP-0025
+SUP-0026,Kiran Rabari Dairy,Navli,Pune,Maharashtra,Private Dairy Farm,2024-01-01,Active,SYNTH-REF-SUP-0026
+SUP-0027,Dinesh Solanki Dairy,Vadtal,Satara,Maharashtra,Dairy Cooperative Society,2023-07-16,Active,SYNTH-REF-SUP-0027
+SUP-0028,Vikram Jadhav Dairy,Kanjari,Kolar,Karnataka,Individual Farmer,2021-01-21,Active,SYNTH-REF-SUP-0028
+SUP-0029,Sunil Chaudhary Dairy,Chaklasi,Mandya,Karnataka,Individual Farmer,2023-08-03,Active,SYNTH-REF-SUP-0029
+SUP-0030,Anil Gowda Dairy,Adas,Mysuru,Karnataka,Individual Farmer,2023-07-19,Active,SYNTH-REF-SUP-0030
+SUP-0031,Vikram Reddy Dairy,Vasad,Anand,Gujarat,Individual Farmer,2025-08-29,Active,SYNTH-REF-SUP-0031
+SUP-0032,Mahesh Gowda Dairy,Sarsa,Mehsana,Gujarat,Individual Farmer,2022-04-08,Active,SYNTH-REF-SUP-0032
+SUP-0033,Vijay Solanki Dairy,Bhalaj,Banaskantha,Gujarat,Individual Farmer,2022-01-31,Active,SYNTH-REF-SUP-0033
+SUP-0034,Nitin Desai Dairy,Umreth,Sabarkantha,Gujarat,Individual Farmer,2025-07-21,Active,SYNTH-REF-SUP-0034
+SUP-0035,Mahesh Verma Dairy,Thamna,Kheda,Gujarat,Individual Farmer,2021-11-28,Active,SYNTH-REF-SUP-0035
+SUP-0036,Nitin Gowda Dairy,Lingda,Rajkot,Gujarat,Individual Farmer,2021-04-09,Active,SYNTH-REF-SUP-0036
+SUP-0037,Rajesh Reddy Dairy,Pansora,Karnal,Haryana,Individual Farmer,2023-09-23,Active,SYNTH-REF-SUP-0037
+SUP-0038,Ganesh Reddy Dairy,Finav,Hisar,Haryana,Private Dairy Farm,2021-12-17,Active,SYNTH-REF-SUP-0038
+SUP-0039,Rajesh Parmar Dairy,Dharmaj,Ludhiana,Punjab,Individual Farmer,2023-02-16,Active,SYNTH-REF-SUP-0039
+SUP-0040,Anil Jadhav Dairy,Tarapur,Kolhapur,Maharashtra,Individual Farmer,2024-06-17,Active,SYNTH-REF-SUP-0040
+SUP-0041,Sunil Gowda Dairy,Ode,Pune,Maharashtra,Individual Farmer,2025-09-15,Active,SYNTH-REF-SUP-0041
+SUP-0042,Nitin Thakor Dairy, Boriavi ,Satara,Maharashtra,Individual Farmer,2025-01-27,Active,SYNTH-REF-SUP-0042
+SUP-0043,Ganesh Rabari Dairy,Karamsad,Kolar,Karnataka,Individual Farmer,2022-03-20,Active,SYNTH-REF-SUP-0043
+SUP-0044,Ashok Sharma Dairy,Valasan,Mandya,Karnataka,Individual Farmer,2022-01-11,Active,SYNTH-REF-SUP-0044
+SUP-0045,Kiran Verma Dairy,Bakrol,Mysuru,Karnataka,Dairy Cooperative Society,2023-02-08,Active,SYNTH-REF-SUP-0045
+SUP-0046,Dinesh Rabari Dairy,Navli,Anand,Gujarat,Individual Farmer,2021-09-25,Active,SYNTH-REF-SUP-0046
+SUP-0047,Dinesh Rabari Dairy,Vadtal,Mehsana,Gujarat,Individual Farmer,2021-05-14,Active,SYNTH-REF-SUP-0047
+SUP-0048,Prakash Jadhav Dairy,Kanjari,Banaskantha,Gujarat,Bulk Milk Cooler Group,2021-03-21,Inactive,SYNTH-REF-SUP-0048
+SUP-0049,Vikram Parmar Dairy,Chaklasi,Sabarkantha,Gujarat,Private Dairy Farm,2025-04-25,Active,SYNTH-REF-SUP-0049
+SUP-0050,Rajesh Verma Dairy,Adas,Kheda,Gujarat,Dairy Cooperative Society,2021-06-09,Active,SYNTH-REF-SUP-0050
+SUP-0051,Kiran Rathod Dairy,Vasad,Rajkot,Gujarat,Dairy Cooperative Society,2023-10-07,Active,SYNTH-REF-SUP-0051
+SUP-0052,Ramesh Rabari Dairy,Sarsa,Karnal,Haryana,Individual Farmer,2025-04-18,Active,SYNTH-REF-SUP-0052
+SUP-0053,Anil Rathod Dairy,Bhalaj,Hisar,Haryana,Individual Farmer,2025-06-05,Active,SYNTH-REF-SUP-0053
+SUP-0054,Ganesh Rathod Dairy,Umreth,Ludhiana,Punjab,Individual Farmer,2025-01-04,Active,SYNTH-REF-SUP-0054
+SUP-0055,Vikram Verma Dairy,Thamna,Kolhapur,Maharashtra,Individual Farmer,2020-12-01,Active,SYNTH-REF-SUP-0055
+SUP-0056,Ashok Patel Dairy,Lingda,Pune,Maharashtra,Individual Farmer,2021-01-16,Active,SYNTH-REF-SUP-0056
+SUP-0057,Ganesh Rabari Dairy,Pansora,Satara,Maharashtra,Individual Farmer,2025-09-01,Active,SYNTH-REF-SUP-0057
+SUP-0058,Vikram Gowda Dairy,Finav,Kolar,Karnataka,Individual Farmer,2025-03-01,Active,SYNTH-REF-SUP-0058
+SUP-0059,Ganesh Chaudhary Dairy,Dharmaj,Mandya,Karnataka,Individual Farmer,2025-08-19,Active,SYNTH-REF-SUP-0059
+SUP-0060,Harish Rathod Dairy,Tarapur,Mysuru,Karnataka,Individual Farmer,2022-03-04,Active,SYNTH-REF-SUP-0060
+SUP-0061,Rajesh Reddy Dairy,Ode,Anand,Gujarat,Bulk Milk Cooler Group,2025-02-10,Active,SYNTH-REF-SUP-0061
+SUP-0062,Ashok Rathod Dairy,Boriavi,Mehsana,Gujarat,Individual Farmer,2022-07-17,Active,SYNTH-REF-SUP-0062
+SUP-0063,Nitin Parmar Dairy,Karamsad,Banaskantha,Gujarat,Individual Farmer,2025-01-13,Active,SYNTH-REF-SUP-0063
+SUP-0064,Ramesh Rabari Dairy,Valasan,Sabarkantha,Gujarat,Individual Farmer,2025-03-29,Active,SYNTH-REF-SUP-0064
+SUP-0065,Anil Jadhav Dairy,Bakrol,Kheda,Gujarat,Dairy Cooperative Society,2022-03-06,Active,SYNTH-REF-SUP-0065
+SUP-0066,Nitin Chaudhary Dairy,Navli,Rajkot,Gujarat,Dairy Cooperative Society,2023-06-28,Inactive,SYNTH-REF-SUP-0066
+SUP-0067,Dinesh Pawar Dairy,Vadtal,Karnal,Haryana,Individual Farmer,2023-07-06,Active,SYNTH-REF-SUP-0067
+SUP-0068,Vikram Singh Dairy,Kanjari,Hisar,Haryana,Individual Farmer,2023-03-08,Active,SYNTH-REF-SUP-0068
+SUP-0069,Vijay Chaudhary Dairy,Chaklasi,Ludhiana,Punjab,Private Dairy Farm,2021-04-07,Active,SYNTH-REF-SUP-0069
+SUP-0070,Rajesh Sharma Dairy,Adas,Kolhapur,Maharashtra,Individual Farmer,2022-08-06,Active,SYNTH-REF-SUP-0070
+SUP-0071,Anil Rabari Dairy,Vasad,Pune,Maharashtra,Individual Farmer,2021-09-05,Active,SYNTH-REF-SUP-0071
+SUP-0072,Kiran Desai Dairy,Sarsa,Satara,Maharashtra,Dairy Cooperative Society,2025-03-30,Active,SYNTH-REF-SUP-0072
+SUP-0073,Mahesh Rathod Dairy,Bhalaj,Kolar,Karnataka,Individual Farmer,2021-04-12,Active,SYNTH-REF-SUP-0073
+SUP-0074,Harish Desai Dairy,Umreth,Mandya,Karnataka,Individual Farmer,2021-04-16,Active,SYNTH-REF-SUP-0074
+SUP-0075,Ramesh Desai Dairy,Thamna,Mysuru,Karnataka,Individual Farmer,2022-04-27,Inactive,SYNTH-REF-SUP-0075
+SUP-0076,Rajesh Thakor Dairy,Lingda,Anand,Gujarat,Individual Farmer,2024-11-27,Active,SYNTH-REF-SUP-0076
+SUP-0077,Rajesh Solanki Dairy,Pansora,Mehsana,Gujarat,Private Dairy Farm,2020-12-25,Active,SYNTH-REF-SUP-0077
+SUP-0078,Rajesh Desai Dairy,Finav,Banaskantha,Gujarat,Individual Farmer,2021-07-07,Inactive,SYNTH-REF-SUP-0078
+SUP-0079,Harish Rabari Dairy,Dharmaj,Sabarkantha,Gujarat,Individual Farmer,2022-08-22,Active,SYNTH-REF-SUP-0079
+SUP-0080,Sunil Reddy Dairy,Tarapur,Kheda,Gujarat,Individual Farmer,2023-09-27,Active,SYNTH-REF-SUP-0080
+SUP-0081,Ramesh Jadhav Dairy,Ode,Rajkot,Gujarat,Individual Farmer,2025-03-28,Active,SYNTH-REF-SUP-0081
+SUP-0082,Anil Rathod Dairy,Boriavi,Karnal,Haryana,Bulk Milk Cooler Group,2021-04-10,Active,SYNTH-REF-SUP-0082
+SUP-0083,Vikram Singh Dairy,Karamsad,Hisar,Haryana,Dairy Cooperative Society,2022-12-12,Active,SYNTH-REF-SUP-0083
+SUP-0084,Anil Gowda Dairy,Valasan,Ludhiana,Punjab,Individual Farmer,2022-08-22,Active,SYNTH-REF-SUP-0084
+SUP-0085,Vijay Solanki Dairy,Bakrol,Kolhapur,Maharashtra,Individual Farmer,2021-09-18,Active,SYNTH-REF-SUP-0085
+SUP-0086,Ramesh Desai Dairy,Navli,Pune,Maharashtra,Individual Farmer,2023-11-21,Active,SYNTH-REF-SUP-0086
+SUP-0087,Dinesh Pawar Dairy,Vadtal,Satara,Maharashtra,Individual Farmer,2022-10-29,Active,SYNTH-REF-SUP-0087
+SUP-0088,Vijay Pawar Dairy,Kanjari,Kolar,Karnataka,Dairy Cooperative Society,2023-12-22,Active,SYNTH-REF-SUP-0088
+SUP-0089,Ashok Thakor Dairy,Chaklasi,Mandya,Karnataka,Individual Farmer,2021-11-29,Active,SYNTH-REF-SUP-0089
+SUP-0090,Vijay Gowda Dairy,Adas,Mysuru,Karnataka,Dairy Cooperative Society,2021-04-25,Active,SYNTH-REF-SUP-0090
+SUP-0091,Anil Gowda Dairy,Vasad,Anand,Gujarat,Individual Farmer,2024-10-09,Active,SYNTH-REF-SUP-0091
+SUP-0092,Mahesh Solanki Dairy,Sarsa,Mehsana,Gujarat,Individual Farmer,2023-03-05,Active,SYNTH-REF-SUP-0092
+SUP-0093,Anil Rathod Dairy,Bhalaj,Banaskantha,Gujarat,Individual Farmer,2023-04-26,Active,SYNTH-REF-SUP-0093
+SUP-0094,Nitin Thakor Dairy,Umreth,Sabarkantha,Gujarat,Individual Farmer,2025-02-11,Active,SYNTH-REF-SUP-0094
+SUP-0095,Mahesh Rabari Dairy,Thamna,Kheda,Gujarat,Dairy Cooperative Society,2022-04-01,Active,SYNTH-REF-SUP-0095
+SUP-0096,Vijay Solanki Dairy,Lingda,Rajkot,Gujarat,Dairy Cooperative Society,2021-02-08,Active,SYNTH-REF-SUP-0096
+SUP-0097,Dinesh Thakor Dairy,Pansora,Karnal,Haryana,Individual Farmer,2025-04-26,Active,SYNTH-REF-SUP-0097
+SUP-0098,Mahesh Desai Dairy,Finav,Hisar,Haryana,Individual Farmer,2022-11-23,Active,SYNTH-REF-SUP-0098
+SUP-0099,Vijay Thakor Dairy,Dharmaj,Ludhiana,Punjab,Dairy Cooperative Society,2023-06-13,Active,SYNTH-REF-SUP-0099
+SUP-0100,Rajesh Reddy Dairy,Tarapur,Kolhapur,Maharashtra,Individual Farmer,2023-03-22,Active,SYNTH-REF-SUP-0100
+SUP-0101,Suresh Solanki Dairy,Ode,Pune,Maharashtra,Individual Farmer,2021-08-29,Active,SYNTH-REF-SUP-0101
+SUP-0102,Ganesh Jadhav Dairy,Boriavi,Satara,Maharashtra,Dairy Cooperative Society,2025-03-09,Active,SYNTH-REF-SUP-0102
+SUP-0103,Kiran Solanki Dairy,Karamsad,Kolar,Karnataka,Dairy Cooperative Society,2022-03-19,Active,SYNTH-REF-SUP-0103
+SUP-0104,Vikram Pawar Dairy,Valasan,Mandya,Karnataka,Individual Farmer,2021-05-26,Active,SYNTH-REF-SUP-0104
+SUP-0105,Mahesh Chaudhary Dairy,Bakrol,Mysuru,Karnataka,Individual Farmer,2021-02-04,Active,SYNTH-REF-SUP-0105
+SUP-0106,Suresh Thakor Dairy,Navli,Anand,Gujarat,Individual Farmer,2021-03-21,Active,SYNTH-REF-SUP-0106
+SUP-0107,Vikram Singh Dairy,Vadtal,Mehsana,Gujarat,Individual Farmer,2024-01-03,Active,SYNTH-REF-SUP-0107
+SUP-0108,Ramesh Thakor Dairy,Kanjari,Banaskantha,Gujarat,Bulk Milk Cooler Group,2023-06-07,Active,SYNTH-REF-SUP-0108
+SUP-0109,Anil Rathod Dairy,Chaklasi,Sabarkantha,Gujarat,Individual Farmer,2024-06-10,Active,SYNTH-REF-SUP-0109
+SUP-0110,Ramesh Thakor Dairy,Adas,Kheda,Gujarat,Individual Farmer,2022-09-01,Active,SYNTH-REF-SUP-0110
+SUP-0111,Anil Jadhav Dairy,Vasad,Rajkot,Gujarat,Individual Farmer,2022-04-03,Active,SYNTH-REF-SUP-0111
+SUP-0112,Ramesh Verma Dairy,Sarsa,Karnal,Haryana,Private Dairy Farm,2024-04-28,Active,SYNTH-REF-SUP-0112
+SUP-0113,Suresh Pawar Dairy,Bhalaj,Hisar,Haryana,Private Dairy Farm,2023-02-11,Active,SYNTH-REF-SUP-0113
+SUP-0114,Vikram Parmar Dairy,Umreth,Ludhiana,Punjab,Individual Farmer,2020-12-03,Active,SYNTH-REF-SUP-0114
+SUP-0115,Nitin Desai Dairy,Thamna,Kolhapur,Maharashtra,Individual Farmer,2025-08-21,Active,SYNTH-REF-SUP-0115
+SUP-0116,Anil Patel Dairy,Lingda,Pune,Maharashtra,Individual Farmer,2022-08-09,Active,SYNTH-REF-SUP-0116
+SUP-0117,Vikram Parmar Dairy,Pansora,Satara,Maharashtra,Private Dairy Farm,2021-08-12,Active,SYNTH-REF-SUP-0117
+SUP-0118,Sunil Patel Dairy,Finav,Kolar,Karnataka,Individual Farmer,2024-10-17,Active,SYNTH-REF-SUP-0118
+SUP-0119,Nitin Rabari Dairy,Dharmaj,Mandya,Karnataka,Individual Farmer,2021-10-12,Active,SYNTH-REF-SUP-0119
+SUP-0120,Dinesh Patel Dairy,Tarapur,Mysuru,Karnataka,Dairy Cooperative Society,2021-11-14,Active,SYNTH-REF-SUP-0120
+SUP-0121,Vikram Parmar Dairy,Ode,Anand,Gujarat,Dairy Cooperative Society,2025-03-04,Active,SYNTH-REF-SUP-0121
+SUP-0122,Vijay Sharma Dairy,Boriavi,Mehsana,Gujarat,Individual Farmer,2022-05-16,Inactive,SYNTH-REF-SUP-0122
+SUP-0123,Vikram Gowda Dairy,Karamsad,Banaskantha,Gujarat,Private Dairy Farm,2023-02-20,Active,SYNTH-REF-SUP-0123
+SUP-0124,Anil Solanki Dairy,Valasan,Sabarkantha,Gujarat,Individual Farmer,2022-09-13,Active,SYNTH-REF-SUP-0124
+SUP-0125,Ganesh Reddy Dairy,Bakrol,Kheda,Gujarat,Individual Farmer,2025-04-09,Active,SYNTH-REF-SUP-0125
+SUP-0126,Suresh Singh Dairy,Navli,Rajkot,Gujarat,Individual Farmer,2021-01-02,Active,SYNTH-REF-SUP-0126
+SUP-0127,Ganesh Jadhav Dairy,Vadtal,Karnal,Haryana,Individual Farmer,2023-07-13,Active,SYNTH-REF-SUP-0127
+SUP-0128,Kiran Rabari Dairy,Kanjari,Hisar,Haryana,Individual Farmer,2024-11-30,Active,SYNTH-REF-SUP-0128
+SUP-0129,Nitin Rathod Dairy,Chaklasi,Ludhiana,Punjab,Individual Farmer,2024-07-09,Active,SYNTH-REF-SUP-0129
+SUP-0130,Harish Verma Dairy,Adas,Kolhapur,Maharashtra,Individual Farmer,2022-12-24,Active,SYNTH-REF-SUP-0130
+SUP-0131,Nitin Jadhav Dairy,Vasad,Pune,Maharashtra,Individual Farmer,2024-07-04,Active,SYNTH-REF-SUP-0131
+SUP-0132,Ganesh Jadhav Dairy,Sarsa,Satara,Maharashtra,Individual Farmer,2021-03-13,Active,SYNTH-REF-SUP-0132
+SUP-0133,Mahesh Rabari Dairy,Bhalaj,Kolar,Karnataka,Individual Farmer,2021-01-14,Active,SYNTH-REF-SUP-0133
+SUP-0134,Vikram Singh Dairy,Umreth,Mandya,Karnataka,Individual Farmer,2024-05-28,Active,SYNTH-REF-SUP-0134
+SUP-0135,Vijay Parmar Dairy,Thamna,Mysuru,Karnataka,Individual Farmer,2025-01-04,Active,SYNTH-REF-SUP-0135
+SUP-0136,Sunil Patel Dairy,Lingda,Anand,Gujarat,Individual Farmer,2024-09-12,Active,SYNTH-REF-SUP-0136
+SUP-0137,Dinesh Chaudhary Dairy,Pansora,Mehsana,Gujarat,Individual Farmer,2025-01-14,Active,SYNTH-REF-SUP-0137
+SUP-0138,Harish Singh Dairy,Finav,Banaskantha,Gujarat,Dairy Cooperative Society,2022-12-24,Active,SYNTH-REF-SUP-0138
+SUP-0139,Vikram Pawar Dairy,Dharmaj,Sabarkantha,Gujarat,Individual Farmer,2024-07-24,Active,SYNTH-REF-SUP-0139
+SUP-0140,Rajesh Pawar Dairy,Tarapur,Kheda,Gujarat,Individual Farmer,2023-02-04,Active,SYNTH-REF-SUP-0140
+SUP-0141,Sunil Chaudhary Dairy,Ode,Rajkot,Gujarat,Individual Farmer,2023-01-18,Active,SYNTH-REF-SUP-0141
+SUP-0142,Prakash Solanki Dairy,Boriavi,Karnal,Haryana,Individual Farmer,2021-04-16,Active,SYNTH-REF-SUP-0142
+SUP-0143,Rajesh Patel Dairy,Karamsad,Hisar,Haryana,Individual Farmer,2023-11-23,Active,SYNTH-REF-SUP-0143
+SUP-0144,Anil Patel Dairy,Valasan,Ludhiana,Punjab,Individual Farmer,2025-03-11,Active,SYNTH-REF-SUP-0144
+SUP-0145,Mahesh Thakor Dairy,Bakrol,Kolhapur,Maharashtra,Dairy Cooperative Society,2023-05-24,Active,SYNTH-REF-SUP-0145
+SUP-0146,Vijay Parmar Dairy,Navli,Pune,Maharashtra,Private Dairy Farm,2024-03-26,Inactive,SYNTH-REF-SUP-0146
+SUP-0147,Mahesh Sharma Dairy,Vadtal,Satara,Maharashtra,Individual Farmer,2022-04-26,Active,SYNTH-REF-SUP-0147
+SUP-0148,Rajesh Rabari Dairy,Kanjari,Kolar,Karnataka,Bulk Milk Cooler Group,2022-11-04,Active,SYNTH-REF-SUP-0148
+SUP-0149,Prakash Solanki Dairy,Chaklasi,Mandya,Karnataka,Dairy Cooperative Society,2023-09-12,Active,SYNTH-REF-SUP-0149
+SUP-0150,Sunil Singh Dairy,Adas,Mysuru,Karnataka,Individual Farmer,2022-06-03,Active,SYNTH-REF-SUP-0150
+SUP-0151,Rajesh Reddy Dairy,Vasad,Anand,Gujarat,Individual Farmer,2022-02-01,Active,SYNTH-REF-SUP-0151
+SUP-0152,Sunil Rabari Dairy,Sarsa,Mehsana,Gujarat,Individual Farmer,2024-12-17,Active,SYNTH-REF-SUP-0152
+SUP-0153,Ashok Singh Dairy,Bhalaj,Banaskantha,Gujarat,Individual Farmer,2021-11-14,Active,SYNTH-REF-SUP-0153
+SUP-0154,Prakash Chaudhary Dairy,Umreth,Sabarkantha,Gujarat,Dairy Cooperative Society,2025-01-25,Active,SYNTH-REF-SUP-0154
+SUP-0155,Rajesh Rathod Dairy,Thamna,Kheda,Gujarat,Individual Farmer,2023-06-06,Active,SYNTH-REF-SUP-0155
+SUP-0156,Ashok Patel Dairy,Lingda,Rajkot,Gujarat,Individual Farmer,2025-01-09,Active,SYNTH-REF-SUP-0156
+SUP-0157,Rajesh Rabari Dairy,Pansora,Karnal,Haryana,Individual Farmer,2024-10-23,Active,SYNTH-REF-SUP-0157
+SUP-0158,Prakash Sharma Dairy,Finav,Hisar,Haryana,Dairy Cooperative Society,2022-11-29,Active,SYNTH-REF-SUP-0158
+SUP-0159,Nitin Jadhav Dairy,Dharmaj,Ludhiana,Punjab,Dairy Cooperative Society,2023-01-22,Active,SYNTH-REF-SUP-0159
+SUP-0160,Ganesh Pawar Dairy,Tarapur,Kolhapur,Maharashtra,Individual Farmer,2022-07-04,Active,SYNTH-REF-SUP-0160
+SUP-0161,Anil Verma Dairy,Ode,Pune,Maharashtra,Dairy Cooperative Society,2021-03-29,Active,SYNTH-REF-SUP-0161
+SUP-0162,Kiran Reddy Dairy,Boriavi,Satara,Maharashtra,Private Dairy Farm,2023-06-01,Active,SYNTH-REF-SUP-0162
+SUP-0163,Anil Pawar Dairy,Karamsad,Kolar,Karnataka,Individual Farmer,2025-03-04,Active,SYNTH-REF-SUP-0163
+SUP-0164,Rajesh Chaudhary Dairy,Valasan,Mandya,Karnataka,Individual Farmer,2024-02-08,Active,SYNTH-REF-SUP-0164
+SUP-0165,Nitin Pawar Dairy,Bakrol,Mysuru,Karnataka,Individual Farmer,2022-09-15,Active,SYNTH-REF-SUP-0165
+SUP-0166,Dinesh Patel Dairy,Navli,Anand,Gujarat,Private Dairy Farm,2024-11-22,Active,SYNTH-REF-SUP-0166
+SUP-0167,Prakash Desai Dairy,Vadtal,Mehsana,Gujarat,Individual Farmer,2023-09-20,Active,SYNTH-REF-SUP-0167
+SUP-0168,Mahesh Thakor Dairy,Kanjari,Banaskantha,Gujarat,Individual Farmer,2022-11-08,Active,SYNTH-REF-SUP-0168
+SUP-0169,Nitin Rathod Dairy,Chaklasi,Sabarkantha,Gujarat,Dairy Cooperative Society,2021-11-12,Active,SYNTH-REF-SUP-0169
+SUP-0170,Rajesh Thakor Dairy,Adas,Kheda,Gujarat,Bulk Milk Cooler Group,2023-06-10,Active,SYNTH-REF-SUP-0170
+SUP-0171,Sunil Chaudhary Dairy,Vasad,Rajkot,Gujarat,Dairy Cooperative Society,2023-07-10,Active,SYNTH-REF-SUP-0171
+SUP-0172,Nitin Gowda Dairy,Sarsa,Karnal,Haryana,Dairy Cooperative Society,2025-03-15,Active,SYNTH-REF-SUP-0172
+SUP-0173,Ashok Desai Dairy,Bhalaj,Hisar,Haryana,Dairy Cooperative Society,2025-03-27,Active,SYNTH-REF-SUP-0173
+SUP-0174,Nitin Pawar Dairy,Umreth,Ludhiana,Punjab,Individual Farmer,2024-05-10,Active,SYNTH-REF-SUP-0174
+SUP-0175,Vikram Rabari Dairy,Thamna,Kolhapur,Maharashtra,Bulk Milk Cooler Group,2023-04-17,Inactive,SYNTH-REF-SUP-0175
+SUP-0176,Prakash Rabari Dairy,Lingda,Pune,Maharashtra,Individual Farmer,2023-05-20,Active,SYNTH-REF-SUP-0176
+SUP-0177,Suresh Sharma Dairy,Pansora,Satara,Maharashtra,Dairy Cooperative Society,2022-08-09,Active,SYNTH-REF-SUP-0177
+SUP-0178,Vijay Parmar Dairy,Finav,Kolar,Karnataka,Individual Farmer,2023-01-23,Active,SYNTH-REF-SUP-0178
+SUP-0179,Ramesh Pawar Dairy,Dharmaj,Mandya,Karnataka,Dairy Cooperative Society,2021-02-18,Active,SYNTH-REF-SUP-0179
+SUP-0180,Nitin Solanki Dairy,Tarapur,Mysuru,Karnataka,Private Dairy Farm,2025-03-23,Active,SYNTH-REF-SUP-0180
+SUP-0181,Anil Pawar Dairy,Ode,Anand,Gujarat,Individual Farmer,2023-11-06,Active,SYNTH-REF-SUP-0181
+SUP-0182,Dinesh Parmar Dairy,Boriavi,Mehsana,Gujarat,Individual Farmer,2025-07-08,Active,SYNTH-REF-SUP-0182
+SUP-0183,Ganesh Reddy Dairy,Karamsad,Banaskantha,Gujarat,Individual Farmer,2024-06-24,Active,SYNTH-REF-SUP-0183
+SUP-0184,Nitin Thakor Dairy,Valasan,Sabarkantha,Gujarat,Individual Farmer,2025-08-11,Active,SYNTH-REF-SUP-0184
+SUP-0185,Kiran Solanki Dairy,Bakrol,Kheda,Gujarat,Individual Farmer,2023-03-20,Active,SYNTH-REF-SUP-0185
+SUP-0186,Vijay Pawar Dairy,Navli,Rajkot,Gujarat,Individual Farmer,2021-08-14,Active,SYNTH-REF-SUP-0186
+SUP-0187,Mahesh Thakor Dairy,Vadtal,Karnal,Haryana,Individual Farmer,2021-07-22,Active,SYNTH-REF-SUP-0187
+SUP-0188,Vijay Parmar Dairy,Kanjari,Hisar,Haryana,Bulk Milk Cooler Group,2025-05-05,Active,SYNTH-REF-SUP-0188
+SUP-0189,Vijay Gowda Dairy,Chaklasi,Ludhiana,Punjab,Individual Farmer,2021-12-30,Active,SYNTH-REF-SUP-0189
+SUP-0190,Anil Thakor Dairy,Adas,Kolhapur,Maharashtra,Individual Farmer,2025-02-02,Active,SYNTH-REF-SUP-0190
+SUP-0191,Sunil Sharma Dairy,Vasad,Pune,Maharashtra,Individual Farmer,2023-05-09,Active,SYNTH-REF-SUP-0191
+SUP-0192,Suresh Chaudhary Dairy,Sarsa,Satara,Maharashtra,Individual Farmer,2023-05-07,Active,SYNTH-REF-SUP-0192
+SUP-0193,Vijay Rabari Dairy,Bhalaj,Kolar,Karnataka,Individual Farmer,2024-04-16,Inactive,SYNTH-REF-SUP-0193
+SUP-0194,Sunil Rabari Dairy,Umreth,Mandya,Karnataka,Dairy Cooperative Society,2022-09-05,Active,SYNTH-REF-SUP-0194
+SUP-0195,Prakash Pawar Dairy,Thamna,Mysuru,Karnataka,Individual Farmer,2021-01-01,Active,SYNTH-REF-SUP-0195
+SUP-0196,Sunil Rathod Dairy,Lingda,Anand,Gujarat,Individual Farmer,2021-05-29,Active,SYNTH-REF-SUP-0196
+SUP-0197,Harish Singh Dairy,Pansora,Mehsana,Gujarat,Individual Farmer,2024-09-16,Active,SYNTH-REF-SUP-0197
+SUP-0198,Prakash Verma Dairy,Finav,Banaskantha,Gujarat,Individual Farmer,2022-08-03,Active,SYNTH-REF-SUP-0198
+SUP-0199,Prakash Patel Dairy,Dharmaj,Sabarkantha,Gujarat,Dairy Cooperative Society,2025-09-30,Active,SYNTH-REF-SUP-0199
+SUP-0200,Nitin Jadhav Dairy,Tarapur,Kheda,Gujarat,Individual Farmer,2023-01-13,Active,SYNTH-REF-SUP-0200

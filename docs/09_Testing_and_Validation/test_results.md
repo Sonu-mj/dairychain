@@ -14,6 +14,12 @@ This file answers which tests were actually executed in DairyChain and what they
 ## What was supplied
 No formal test files, test outputs or test run logs were supplied: no pytest files, no unit-test files, no test-run summary. No formal test is reported as passed, failed or skipped in this file. What was supplied instead is one Colab notebook, `dairychain.ipynb` (Source 15, 2026-11-11), whose cells run validation checks and whose stored outputs show the results. Those checks are listed below as Verified execution results from stored outputs. They are notebook validation checks, not a formal test suite, so do not describe them as a passed test suite.
 
+## Dataset validation report - Source 28
+
+The dataset ZIP (Source 28, 2026-11-11) supplies its own validation report, `validation_report.txt`, copied to [dataset_validation_report.txt](../13_Project_Evidence/dataset_validation_report.txt). Status: PASS. It lists 29 checks, all PASS: 10 primary-key uniqueness checks (one per dataset), 10 foreign-key checks, and 9 business-rule checks (all production batches completed, inputs from accepted procurement only, input after source timestamp, source consumption not over procurement, fulfilled not above ordered, fulfilled non-negative, sales not above total primary output, procurement cost matches except the injected row, and the five intentional DQ patterns present). Total datasets 10, total rows 99,584, total CSV size 7.47 MB, generation time 2.27 seconds.
+
+This report is supplied evidence from the dataset generator, recorded as supplied. It was NOT re-run here, and it is not a test of the DairyChain pipeline. It proves the generated files are internally consistent, including the 5 deliberate faults. It does not prove the Bronze load, the Silver or Gold transformations, or the Power BI model. Those still need their own evidence.
+
 ## Validation evidence from the notebook - Source 15
 All values below are from the notebook's stored outputs, with cell numbers. "PASS" in the last rows is the notebook's own label in its `quality_report` dataframe (cells 111, 114, 116), not a test-framework verdict.
 

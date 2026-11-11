@@ -32,6 +32,18 @@ Useful checks from the pipeline document include:
 | Missing values | Identify incomplete records |
 | Duplicate records | Identify potential duplication |
 
+## Intentional data-quality scenarios - Source 28
+
+The dataset contains 5 deliberate data-quality faults, built in by the generator so the cleaning and validation work can be shown against known faults. They are documented in the manifest (`data/manifests/manifest.json`) and in the zip data dictionary, and each one was confirmed present in the supplied CSVs on 2026-11-11:
+
+- DQ-01: suppliers SUP-0015, status value `active` in lowercase. The other suppliers use `Active` or `Inactive`.
+- DQ-02: suppliers SUP-0042, village with leading and trailing whitespace (` Boriavi `).
+- DQ-03: milk_procurement PRC-000500, procurement timestamp in non-ISO format (`10/11/2025 19:19`). This is the same row the notebook (Source 15) cleaned in cells 30-32, converting it to 2025-11-10 19:19:00.
+- DQ-04: milk_procurement PRC-001000, total purchase cost inflated by 25 percent (510.03 L at 52.21 gives 26,628.67, but the file holds 33,285.84). This is the same row the notebook (Source 15) flagged as the 1 cost mismatch, 6,657.17, 0.0056 percent of rows.
+- DQ-05: quality_tests QCT-000250, temperature_c is NULL. This is the same row the notebook (Source 15) reported as the 1 missing temperature, and Source 25 confirmed it originates in Bronze and stays NULL in Silver.
+
+The validation report supplied with the dataset ([dataset_validation_report.txt](../13_Project_Evidence/dataset_validation_report.txt)) lists 29 checks, Status PASS, including `five_intentional_dq_patterns_present`. That report is supplied evidence from the dataset, recorded as supplied, not re-run as a test by this documentation. See [test_results.md](../09_Testing_and_Validation/test_results.md).
+
 ## Pipeline validation and reconciliation
 A successful pipeline requires more than checking whether the scripts execute. The output at each stage should be examined.
 

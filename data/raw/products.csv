@@ -1,0 +1,13 @@
+product_id,product_name,category,unit_of_measure,standard_pack_size,shelf_life_days,selling_price,active_status
+PRD-001,Full Cream Milk,Liquid Milk,Litre,1.0 L Pouch,2,66.0,Active
+PRD-002,Toned Milk,Liquid Milk,Litre,0.5 L Pouch,2,54.0,Active
+PRD-003,Double Toned Milk,Liquid Milk,Litre,0.5 L Pouch,2,48.0,Active
+PRD-004,Standardised Milk,Liquid Milk,Litre,1.0 L Pouch,2,60.0,Active
+PRD-005,Classic Set Curd,Fermented,Kilogram,0.4 kg Cup,7,75.0,Active
+PRD-006,Fresh Malai Paneer,Coagulated,Kilogram,0.2 kg Pack,15,380.0,Active
+PRD-007,Pure Cow & Buffalo Ghee,Fat Rich,Litre,1.0 L Jar,270,620.0,Active
+PRD-008,Pasteurised Table Butter,Fat Rich,Kilogram,0.5 kg Carton,180,520.0,Active
+PRD-009,Fresh Dairy Cream,Fat Rich,Litre,0.2 L Pack,10,220.0,Active
+PRD-010,Spiced Masala Buttermilk,Beverage,Litre,0.2 L Pouch,5,30.0,Active
+PRD-011,Elaichi Flavoured Milk,Beverage,Litre,0.2 L Bottle,90,125.0,Active
+PRD-012,Probiotic Lassi,Fermented,Litre,0.25 L Cup,10,80.0,Active

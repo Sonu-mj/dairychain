@@ -43,6 +43,14 @@ Bronze and Silver hold the same 10 table names: `collection_centres`, `milk_proc
 
 What this summary does NOT claim: the transformation logic that produced Silver and Gold inside PostgreSQL has not been located or verified. No Bronze-to-Silver or Silver-to-Gold SQL has been supplied, and the Gold SQL is still outstanding. The Colab notebook (Source 15) shows pandas validation and transformation logic, but it has no SQL and no Bronze load, so it must not be read as the database transformation.
 
+## Source CSV files - Source 28
+
+The 10 source CSV files are now supplied as files, not only described in the notebook. Source 28 is the user-supplied `DairyChain_dataset_full.zip` (2026-11-11), copied to `data/raw/` flat (10 files) and kept as evidence at [DairyChain_dataset_full.zip](../13_Project_Evidence/DairyChain_dataset_full.zip). Each CSV was SHA256-checked against the supplied `SHA256SUMS.txt` (all 10 OK) and recounted with `wc -l`: suppliers 200, collection_centres 20, products 12, milk_procurement 18,000, quality_tests 18,000, production_batches 4,000, production_inputs 9,352, production_outputs 8,000, sales_orders 14,000, sales_order_lines 28,000. Total 99,584 rows, matching the README exactly.
+
+Comparison against the documented Bronze columns: the CSV headers were compared against the Bronze column lists in this file, table by table, in order. All 10 tables agree exactly, 82 columns in total, 0 differences. The zip's own `DATA_DICTIONARY.md` (copied to [dataset_DATA_DICTIONARY.md](../13_Project_Evidence/dataset_DATA_DICTIONARY.md)) also agrees with the documented columns and row counts. The generator (`generate_dairychain.py`, version 2.1.1-generated, seed 42) and the manifest (`data/manifests/manifest.json`, generated 2026-11-09T09:24:37Z) are in the repo under `data/`.
+
+The dataset is synthetic, generated, not real operational dairy data. The generator's modelling assumptions are in the zip README and in `docs/00_Project_Overview/project_summary.md`. One consequence for this dictionary: the manifest states primary keys and foreign keys for the CSV files (for example `supplier_id` on suppliers, `supplier_id` and `collection_centre_id` on milk_procurement), but those keys exist only in the generated files. In PostgreSQL they are VERIFIED ABSENT (Source 20, 0 constraints on any table). Do not read the manifest's keys as database keys.
+
 ## Tables named in the sources
 
 ### Verified table inventory - Source 17
